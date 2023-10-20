@@ -1,0 +1,311 @@
+# Introduction to Computers
+
+## Definition 
+
+A computer is an electronic device that stores, retrieves, processes and
+manipulates data. It is an *electronic machine* that takes input from
+the *user*, processes the given input and generates output in the form
+of useful information.
+
+## Characteristics
+
+-   **Speed**: Computers can process data at an extremely fast rate.Computers need only a few seconds to complete a task that a normal human being may take days or even years to complete. Powerful computers are capable of performing billions of operations in one second.
+
+-   **Accuracy**: Computers generate accurate results. But faulty instructions may lead to faulty results. This condition is known as GIGO (Garbage In Garbage Out).
+
+-  **Diligence**: Being a machine computer does not suffer from human traits of tiredness and lack of concentration.
+
+-   **Reliability**: A computer produces error-free results. At hardware level, it does not require any human intervention between its processing operations. Moreover, computers have built-in diagnostic capabilities, which help in continuous monitoring of the system.
+
+-   **Storage capability**: Computers can store large amounts of data and can recall the required information almost instantaneously. As the main memory of the computer is relatively small, data can be stored on secondary storage devices such as disks. The data stored in the disks can be accessed quickly for processing, as and when required.
+
+-   **Versatility**: Computers are versatile in nature. They can easily perform multiple tasks simultaneously. For example, at one moment, it can be used to draft a letter, another moment it can be used to play music and in between, one can print a document as well. All this work is possible by changing the program (computer instructions).
+
+-   **Resource Sharing**: In the initial stages of development, computers were isolated machines. With the advancement of technologies, computers can be connected with each other. This has made the sharing of costly resources like printers possible. Apart from resource sharing, data and information can also be shared among groups of computers, thus creating a large information and knowledge base.
+
+## Computer Evolution and Generations
+
+The evolution of computers began with manual computing devices like the
+Sand table and the Abacus, followed by automated computing devices like
+the difference engine and the analytical engine. Charles Babbage, a
+professor at the Cambridge University is considered to be the father of
+modern computers.
+
+### First Generation Computers  
+Were those used during the period
+1937-1956. These used vacuum tubes technology for calculation, storage
+and control purpose and so were invariably colossal. They were not
+easily transferable due to their immense size and it was important to
+always keep them in cool places. Dissipation of heat in large quantities
+made these computers prone to frequent hardware faults. Although fast in
+that time, they are the slowest when compared to the modern-day
+computers. These computers carried out complex mathematical
+computations efficiently and in a shorter span of time than when done
+manually. The programming in these computers was done in machine
+language (binary codes using 0 and 1).  
+```{r vaccum, echo=FALSE,fig.cap='Vaccum tubes in first generation computer',out.width="40%", fig.align='center'}
+knitr::include_graphics(rep("images/vaccumtubes.jpg"))
+```  
+Multi-tasking using these
+computers were impossible because they were generally designed as
+special-purpose computers and could execute only one program at a time.
+These computers were expensive to operate and used a large amount of
+electricity. Some examples of first generation computers are ENIAC,
+EDVAC, EDSAC and UNIVAC. Programming language used was machine code.
+Punch cards and paper tapes served as the input device and output
+devices. Magnetic tapes and Magnetic drums were the main memory.  
+
+```{r eniac, echo=FALSE,fig.cap='Replacing a vaccum tube in ENIAC',out.width="40%", fig.align='center'}
+knitr::include_graphics(rep("images/eniac.jpg"))
+```  
+
+```{r magdrum, echo=FALSE,fig.cap='Magnetic drums',out.width="20%", fig.align='center'}
+knitr::include_graphics(rep("images/magdrum.jpg"))
+```  
+
+```{r magdrum1, echo=FALSE,fig.cap='Drum memory from the BESK computer Swedens first binary computer',out.width="40%", fig.align='center'}
+knitr::include_graphics(rep("images/magdrum1.jpg"))
+```  
+
+
+### Second Generation computers  
+These were used during the period 1956-1963. 
+The logic circuits in them use transistors in place of vacuum tubes in
+building the basic logic circuits.  They were the fastest computing
+devices of their time; and were easier to program due to the use
+of assembly language.  Assembly languages had to be translated into
+machine codes, using assemblers so that it was easier for the computer
+to process the codes. They could be transferred from one place to other
+very easily because they were small and light.  Also, they required very
+less power in carrying out their operations.  They were more reliable
+than the first generation computers as they did not require maintenance
+at regular intervals of time. Punched cards and magnetic tapes were the
+input/output devices. Magnetic core, magnetic tapes and magnetic discs
+were the main memory. Examples of computers in this generation are
+UNIVAC 1107, IBM 1401  
+
+```{r univac, echo=FALSE,fig.cap='UNIVAC 1107',out.width="40%", fig.align='center'}
+knitr::include_graphics(rep("images/univac1107.jpg"))
+```  
+
+```{r transistor, echo=FALSE,fig.cap='A transistor',out.width="20%", fig.align='center'}
+knitr::include_graphics(rep("images/transistor.jpg"))
+```
+
+### Third Generation computers 
+Brought huge gains in computational power.
+Computers in this generation used Integrated Circuits (ICs), which are
+semiconductor devices with several transistors built into one physical
+component.  These devices were than the previous generation.  They could
+be installed very easily and required less space.  Programming became
+easier due to the use of high-level languages and any type of
+application could be executed.  They are easily transportable, more
+reliable and require less frequent maintenance schedules.  Magnetic
+tapes and discs served as the main storage memory. However, the storage
+capacity of these computers was still very small and the performance of
+these computers degraded while executing large applications, involving
+complex computations because of the small storage capacity.  The cost of
+these computers was very high and they had to be placed in
+air-conditioned places.  Input was given using keyboard and output
+obtained via the monitor. Programs were written using Assembly language
+and High Level language. E.g. UNIVAC 1108.  
+
+```{r Third, echo=FALSE,fig.cap='A third generation computer',out.width="40%", fig.align='center'}
+knitr::include_graphics(rep("images/thirdgen.jpg"))
+```  
+```{r ic, echo=FALSE,fig.cap='A third generation integrated circuit',out.width="30%", fig.align='center'}
+knitr::include_graphics(rep("images/ic1.jpg"))
+```  
+### Fourth Generation computers  
+They used Large Scale Integration (LSI)
+technology and Very Large Scale Integration (VLSI) technology.  The term
+Personal Computer (PC) became known to the people during this era. 
+These computers are very powerful in terms of their processing speed,
+access time and storage capacity.  Semi-conductor memories like Random
+Access Memory (RAM) and Read Only Memory (ROM) came into existence. They
+are highly reliable and required very less maintenance.  They are very
+user- friendly, versatile systems as the programs written on these
+computers are highly portable.  They require very less power to
+operate.  However, the soldering of LSI and VLSI chips on the wiring
+board was not an easy task and required complicated technologies to bind
+these chips on the wiring board.  High level languages like Java,
+Kotlin, C# were used for programming. Advanced input and output devices
+were used e.g. optical readers, various types of keyboards, GUI's,
+paddles, joysticks, impact and non-impact printers, plotters. Computers
+could be linked together to form networks. Databases could also be
+created for data processing during this generation.  
+
+```{r vlsi, echo=FALSE,fig.cap='A very large scale integrated circuit',out.width="30%", fig.align='center'}
+knitr::include_graphics(rep("images/vlsi.jpg"))
+```  
+
+### Fifth Generation Computers
+These are different types of modern
+digital computers.  These use Ultra Large Scale Integration technology
+that allows almost ten million electronic components to be fabricated on
+one small chip.  They are the fastest and powerful computers till date. 
+They have the capacity to execute a large number of applications at the
+same time and that too at a very high speed, thereby decreasing their
+size.  This generation of computers use microprocessors for parallel
+processing. They are extremely user-friendly and are versatile for
+communications and resource sharing.  The *expert system* concept is
+used in these systems. The *expert system* is defined as a computer
+information system that attempts to mimic the thought process and
+reasoning of experts in specific areas. Artificial Intelligence (AI)
+refers to a series of related technologies that tries to simulate and
+reproduce human behavior, including thinking, speaking and reasoning.
+Most high level languages like C++. Java, Python, R can be used for
+programming. Input/output devices are highly advanced and can use
+Bluetooth technology and printers can be connected through wiFi
+technology to communicate. Computers sizes have reduced considerably and
+can be carried in the pockets. Example of fifth generation computers are
+Smartphones, tablets, notebooks, laptops, desktops.  
+
+```{r ulsi, echo=FALSE,fig.cap='An ultra large scale integrated circuit',out.width="30%", fig.align='center'}
+knitr::include_graphics(rep("images/ulsi.png"))
+```  
+
+### Sixth Generation  
+These computers uses lots of parallel computing.  This
+generation shows vast potential for improved wide area networking utilising the explosive increase in network bandwidths. Computer storage
+capacity has increased tremendously and Solid State Devices can be
+embedded in the computer for large storage space at cheaper and
+efficient rates.
+
+## Computer Classification  
+
+Classification of computers can be made based on operating
+principles, applications, function, and size and capability
+
+### Based on operating principles
+
+-   Analog
+
+-   Digital 
+
+-   Hybrid
+
+**Analog computers**: represent data in the form of continuous electrical
+signals having a specific magnitude.  They work on the principles of
+measurement.  They are very fast and allow several operations to be
+carried out simultaneously. However, the results produced by these
+computers are not very accurate. Therefore, the analog computers are
+widely used in applications in which accuracy of results is not a major
+concern. They are powerful tools to solve differential equations.
+
+**Digital computers**: store and process data in the digital form (0 and
+1).  The outputs produced by these computers are also in the digital
+form. Digital computers are generally faster and more reliable than the
+analog computer systems and provide more accurate results.
+
+**Hybrid computers**: a combination of analog computer and digital computer
+because it encompasses the best features of both. They use analog for
+computation and digital for storage.  These features make the hybrid
+computers very fast, efficient and reliable. They are less expensive
+than digital computers.
+
+### Based on application
+
+-   **General purpose computers** that can work in all environments. They are versatile and can store a number of programs meant for performing distinct tasks. However, they are not efficient and consume a large amount of time in generating a result.  
+
+-   **Special purpose computers** that can perform only a specified task.  They are not versatile and their speed and memory size depend on the task that is to be performed. They are less expensive. They are efficient and consume less amount of time in generating the result.  
+
+### Based on Size and Capability
+
+-   Microcomputers (Personal Computers)
+
+-   Mini Computers 
+
+-   Mainframe Computers
+
+-   Super Computers
+
+**Microcomputer** was designed to be used by individuals.  These computers
+include Desktop Computers- which includes a box and a monitor on a
+table;  In-car computers (carputers) -- which are built into a car, for
+entertainment or navigation and Game consoles- video games use computers
+such as these.  Smaller microcomputers are also called mobile computer
+devices.  Some examples are:
+
+1.  Laptops and portable computers -- Portable and all in one case.
+
+2.  Tablet Computer- Like laptops, but with a touch screen that replaces
+    the keyboard
+
+3.  Smartphones, smart-books, palmtop computers- Small handheld
+    computers with limited hardware
+
+4.  Programmable calculator - Like small handhelds, but specialized on
+    mathematical work.
+
+5.  Handheld game consoles- The same as game consoles, but small and
+    portable.
+
+**Mini computers** were developed in mid 60s.  They were also called
+mid-range computers and used 16 bit processors.  The mini computer is a
+small digital computer whose process and storage capacity is lesser than
+that of a mainframe, but more than that of micro-computer. Its speed of
+processing data is in between that of a mainframe and a
+micro-computer.  Mini computer is designed to meet the computing needs
+for several people simultaneously in a small to medium-sized business
+environment. It is capable of supporting form 4 to about 200
+simultaneous users. It serves as a centralised storehouse for a cluster
+of workstations or as a network server.
+
+**mainframe computer** is an ultra-high performance computer made for
+high-volume, processor-intensive computing. It consists of a high-end
+computer processor, with related peripheral devices, capable of
+supporting large volumes of data processing, high performance online
+transaction processing systems, and extensive data storage and
+retrieval.  Mainframes are the second largest (in capability and size)
+of the computer family, the largest being super computers. However,
+mainframes can usually execute many programs simultaneously at a high
+speed whereas super computers are designed for single process. Mainframe
+computers are very large, expensive, powerful and can handle millions of
+users at a time.  They can process immense data volumes quickly.  Their
+speed is measured in MIPS (Millions of Instructions per
+Second).  Mainframe allows its user to maintain large information
+storage at a centralized location and be able to access and process this
+data from different computers located at different locations. It is
+typically used by large businesses and for scientific purposes.
+
+**Super computers** are high speed computers with extremely high processing,
+storage and computing capabilities.  Super computers are the special
+purpose machines. A super computer has the highest processing speed at a
+given time for solving scientific and engineering problems. Essentially,
+it contains a large number of CPUs that operate in parallel to make it
+faster. Due to this feature, super computers are used in many
+applications.  A super computer can process a great deal of information
+and make extensive calculations very quickly.   Supercomputer processing
+speeds are measured in floating point operations per second,
+or FLOPS.  It can resolve complex mathematical equations in a few hours,
+which would have taken a scientist with paper and pencil a lifetime, or
+years, using a hand calculator. It is the fastest, costliest and the
+most powerful computer available today. Typically, super computers are
+used to solve complex mathematical problems. PARAM is a super computer
+developed in India.
+
+### Based on Function
+
+-   Servers
+
+-   Workstations
+
+-   Embedded computers
+
+-   Information Appliance Computers
+
+**Servers** A server is a computer that is dedicated to provide service to
+other computers on a network.      
+
+**workstation** was intended to serve a single user.  It can also be
+termed as a terminal at the user end of a computer network.\
+\
+**Embedded computers** are a part of a device and usually execute a
+program that is stored in the non-volatile memory of the system.  These
+computers exist in digital watches, MP3 players, traffic signals,
+avionics, microcontroller chip, factory controllers.\
+\
+**Information Appliance computers** are designed to exclusively perform a
+singular user-friendly task such as playing music, or photography or
+edit text.
