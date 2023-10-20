@@ -1,22 +1,24 @@
 ---
-title: "FUNDAMENTALS OF AGRI-INFORMATICS"
-author: "Dr. GEETHA RADHAKRISHNAN"
-date: "2022-01-30"
+title: "MULTIVARIATE DATA ANALYSIS TOOLS FOR AGRICULTURAL RESEARCH"
+author: "Dr. PRATHEESH P GOPINATH"
+date: "2023-10-20"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib]
 biblio-style: apalike
 link-citations: yes
 github-repo: https://github.com/KAUMELON/stat3202
-description: "A BOOK FOR UNDERGRADUATE PROGRAMME IN AGRICULTURE"
+description: "TRAINING MANUAL DEPARTMENT OF AGRICULTURAL STATISTICS"
 cover-image: images/cover.PNG
 ---  
  
 
 # Welcome {-} 
-<p style="text-align: center;"><a href="https://coavellayani.kau.in/people/dr-geetha-radhakrishnan"><img src="images/cover.png" class="cover" width="250" height="328"/></a></p>  
-Welcome to the online version of the book **TEXTBOOK OF AGRI-INFORMATICS**.  
-<p>This book is a collection of all lecture notes covering the syllabus of statistics course Agri-Informatics (STAT 2101) in B.Sc.(Hons.) Agriculture under Kerala Agricultural University </p> 
+<p style="text-align: center;"><a href="https://coavellayani.kau.in/people/sub-lt-dr-pratheesh-p-gopinath"><img src="images/cover.png" class="cover" width="250" height="328"/></a></p>  
+Welcome to the online version of the book **MULTIVARIATE DATA ANALYSIS TOOLS - TRAINING MANUAL**.  
+<p>Welcome to the "Multivariate Data Analysis Tools for Agricultural Research" training manual, a specialized resource tailored for agricultural researchers leveraging the R programming language for data analysis. In the realm of agricultural research, where multidimensional datasets hold the keys to improving crop yields, soil health, and sustainable farming practices, this manual equips you with the essential knowledge and skills to unlock actionable insights. From fundamental concepts to practical applications, our training explores techniques like PCA, Factor Analysis, Cluster Analysis, and more, all within the context of agricultural research. With the power of R at your fingertips, you'll harness the full potential of your agricultural data, making informed decisions to drive innovation and advancement in the field of agriculture.</p> 
+
+<p>The content of this manual has been carefully designed to ensure that it is presented in a simple and straightforward manner, making it accessible to individuals of all levels of expertise. Our aim is to demystify complex concepts, providing clarity and ease of understanding so that anyone, regardless of their background, can grasp and apply these fundamental principles of multivariate data analysis in agricultural research with confidence.</p>
 
 
 
