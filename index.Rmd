@@ -15,7 +15,7 @@ cover-image: images/cover.PNG
 
 # Welcome {-} 
 <p style="text-align: center;"><a href="https://coavellayani.kau.in/people/sub-lt-dr-pratheesh-p-gopinath"><img src="images/cover.png" class="cover" width="250" height="328"/></a></p>  
-Welcome to the online version of the book **MULTIVARIATE DATA ANALYSIS TOOLS - TRAINING MANUAL**.  
+Welcome to the online version of the training manual **MULTIVARIATE DATA ANALYSIS TOOLS in Agricultural research**.  
 <p>Welcome to the "Multivariate Data Analysis Tools for Agricultural Research" training manual, a specialized resource tailored for agricultural researchers leveraging the R programming language for data analysis. In the realm of agricultural research, where multidimensional datasets hold the keys to improving crop yields, soil health, and sustainable farming practices, this manual equips you with the essential knowledge and skills to unlock actionable insights. From fundamental concepts to practical applications, our training explores techniques like PCA, Factor Analysis, Cluster Analysis, and more, all within the context of agricultural research. With the power of R at your fingertips, you'll harness the full potential of your agricultural data, making informed decisions to drive innovation and advancement in the field of agriculture.</p> 
 
 <p>The content of this manual has been carefully designed to ensure that it is presented in a simple and straightforward manner, making it accessible to individuals of all levels of expertise. Our aim is to demystify complex concepts, providing clarity and ease of understanding so that anyone, regardless of their background, can grasp and apply these fundamental principles of multivariate data analysis in agricultural research with confidence.</p>
@@ -23,11 +23,7 @@ Welcome to the online version of the book **MULTIVARIATE DATA ANALYSIS TOOLS - T
 
 
 # Preface {-}  
-<p style="text-align: justify;">
-</p>   
-```{r logo, echo=FALSE,out.width="80%", fig.align='center'}
-knitr::include_graphics(rep("docs/info.png"))
-```
+<p style="text-align: center;"><a href="https://coavellayani.kau.in/people/sub-lt-dr-pratheesh-p-gopinath"><img src="docs/info.png" class="cover" width="250" height="500"/></a></p>    
 <p style="text-align: justify;"> **Note**: This training Manual is published in MeLoN (Module for e-Learning & Online Notes) by Department of Agricultural Statistics . The online version of this book is free to read here.</p> 
 ````{=html}
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.

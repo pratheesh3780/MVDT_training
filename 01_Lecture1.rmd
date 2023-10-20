@@ -1,5 +1,3 @@
-# Introduction to Computers
-
 # Principal Component Analysis  
 
 ```{r eniac, echo=FALSE,fig.cap='Replacing a vaccum tube in ENIAC',out.width="40%", fig.align='center'}
