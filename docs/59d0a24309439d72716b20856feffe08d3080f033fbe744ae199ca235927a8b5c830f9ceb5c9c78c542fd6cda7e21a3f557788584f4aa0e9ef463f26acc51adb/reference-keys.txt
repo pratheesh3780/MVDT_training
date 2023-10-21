@@ -1,5 +1,4 @@
 fig:eniac
 fig:magdrum
-introduction-to-computers
 principal-component-analysis
 references
