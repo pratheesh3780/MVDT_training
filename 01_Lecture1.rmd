@@ -1,9 +1,0 @@
-# Principal Component Analysis  
-
-```{r eniac, echo=FALSE,fig.cap='Replacing a vaccum tube in ENIAC',out.width="40%", fig.align='center'}
-knitr::include_graphics(rep("images/eniac.jpg"))
-```  
-
-```{r magdrum, echo=FALSE,fig.cap='Magnetic drums',out.width="20%", fig.align='center'}
-knitr::include_graphics(rep("images/magdrum.jpg"))
-```  

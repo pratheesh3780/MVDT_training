@@ -4,22 +4,27 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 1 Principal Component Analysis | MULTIVARIATE DATA ANALYSIS TOOLS FOR AGRICULTURAL RESEARCH</title>
+<title>Chapter 2 Principal Component Analysis | MULTIVARIATE DATA ANALYSIS TOOLS FOR AGRICULTURAL RESEARCH</title>
 <meta name="author" content="Dr. PRATHEESH P GOPINATH">
-<meta name="description" content="Figure 1.1: Replacing a vaccum tube in ENIAC   Figure 1.2: Magnetic drums">
+<meta name="description" content="2.1 What is PCA? Principal component analysis (PCA) is a technique that transforms high-dimensions data into lower-dimensions while retaining as much information as possible. Drawing meaningful...">
 <meta name="generator" content="bookdown 0.36 with bs4_book()">
-<meta property="og:title" content="Chapter 1 Principal Component Analysis | MULTIVARIATE DATA ANALYSIS TOOLS FOR AGRICULTURAL RESEARCH">
+<meta property="og:title" content="Chapter 2 Principal Component Analysis | MULTIVARIATE DATA ANALYSIS TOOLS FOR AGRICULTURAL RESEARCH">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/images/cover.PNG">
-<meta property="og:description" content="Figure 1.1: Replacing a vaccum tube in ENIAC   Figure 1.2: Magnetic drums">
+<meta property="og:description" content="2.1 What is PCA? Principal component analysis (PCA) is a technique that transforms high-dimensions data into lower-dimensions while retaining as much information as possible. Drawing meaningful...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 1 Principal Component Analysis | MULTIVARIATE DATA ANALYSIS TOOLS FOR AGRICULTURAL RESEARCH">
-<meta name="twitter:description" content="Figure 1.1: Replacing a vaccum tube in ENIAC   Figure 1.2: Magnetic drums">
+<meta name="twitter:title" content="Chapter 2 Principal Component Analysis | MULTIVARIATE DATA ANALYSIS TOOLS FOR AGRICULTURAL RESEARCH">
+<meta name="twitter:description" content="2.1 What is PCA? Principal component analysis (PCA) is a technique that transforms high-dimensions data into lower-dimensions while retaining as much information as possible. Drawing meaningful...">
 <meta name="twitter:image" content="/images/cover.PNG">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.1/transition.js"></script><script src="libs/bs3compat-0.5.1/tabs.js"></script><script src="libs/bs3compat-0.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="libs/datatables-binding-0.29/datatables.js"></script><link href="libs/dt-core-1.13.4/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="libs/dt-core-1.13.4/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="libs/dt-core-1.13.4/js/jquery.dataTables.min.js"></script><link href="libs/dt-ext-buttons-1.13.4/css/buttons.dataTables.min.css" rel="stylesheet">
+<script src="libs/dt-ext-buttons-1.13.4/js/dataTables.buttons.min.js"></script><script src="libs/dt-ext-buttons-1.13.4/js/buttons.html5.min.js"></script><script src="libs/dt-ext-buttons-1.13.4/js/buttons.colVis.min.js"></script><script src="libs/dt-ext-buttons-1.13.4/js/buttons.print.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
@@ -46,8 +51,9 @@
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Welcome</a></li>
 <li><a class="" href="preface.html">Preface</a></li>
-<li><a class="active" href="principal-component-analysis.html"><span class="header-section-number">1</span> Principal Component Analysis</a></li>
-<li><a class="" href="references.html"><span class="header-section-number">2</span> References</a></li>
+<li><a class="" href="r-and-r-studio.html"><span class="header-section-number">1</span> R and R studio</a></li>
+<li><a class="active" href="principal-component-analysis.html"><span class="header-section-number">2</span> Principal Component Analysis</a></li>
+<li><a class="" href="references.html"><span class="header-section-number">3</span> References</a></li>
 </ul>
 
         <div class="book-extra">
@@ -55,30 +61,98 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="principal-component-analysis" class="section level1" number="1">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="principal-component-analysis" class="section level1" number="2">
 <h1>
-<span class="header-section-number">1</span> Principal Component Analysis<a class="anchor" aria-label="anchor" href="#principal-component-analysis"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2</span> Principal Component Analysis<a class="anchor" aria-label="anchor" href="#principal-component-analysis"><i class="fas fa-link"></i></a>
 </h1>
+<div id="what-is-pca" class="section level2" number="2.1">
+<h2>
+<span class="header-section-number">2.1</span> What is PCA?<a class="anchor" aria-label="anchor" href="#what-is-pca"><i class="fas fa-link"></i></a>
+</h2>
+<p>Principal component analysis (PCA) is a technique that transforms high-dimensions data into lower-dimensions while retaining as much information as possible.</p>
+<p>Drawing meaningful inferences from high-dimensional data can be challenging, as humans naturally excel at visualizing and comprehending information in two dimensions. PCA, a powerful technique, aids in transforming multi-dimensional data into a more manageable form by reducing its dimensionality. This simplification facilitates easier visualization and analysis, ultimately enhancing our ability to extract valuable insights from complex datasets.</p>
+<p>PCA is a valuable tool in social science and agricultural research. It works by transforming multi-dimensional data into a lower-dimensional space while retaining as much variance in the data as possible. In essence, PCA identifies the most significant dimensions or “principal components” of the data, effectively reducing its complexity.
+The idea of PCA is simple — reduce the number of variables of a data set, while preserving as much information as possible.</p>
+</div>
+<div id="when-to-use-pca" class="section level2" number="2.2">
+<h2>
+<span class="header-section-number">2.2</span> When to Use PCA<a class="anchor" aria-label="anchor" href="#when-to-use-pca"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>Dimensionality Reduction</strong>: Use PCA when you have a high-dimensional dataset with many features (variables) and you want to reduce its dimensionality. This can help in cases where you have too many variables to work with efficiently.</p>
+<p><strong>Data Visualization</strong>: PCA is effective when you need to visualize high-dimensional data. By projecting data onto a lower-dimensional space, you can create scatter plots, heatmaps, or other visualizations that are easier to interpret.</p>
+<p><strong>Minimum data set</strong>: Principal components can be used to eliminate some data sets and identify a minimum data set for further experimentation.</p>
+<p><strong>Noise Reduction</strong>: If your dataset contains noisy or redundant features, PCA can help by capturing the most important information and eliminating the less relevant components.</p>
+<p><strong>Multicollinearity</strong>: When your dataset has multicollinearity issues (high correlations between variables), PCA can help reduce these interdependencies, making models more stable and interpretable.</p>
+<p>Sample size (n) should be at least equal to number of dimensions (n ≥ p)</p>
+</div>
+<div id="when-not-to-use-pca" class="section level2" number="2.3">
+<h2>
+<span class="header-section-number">2.3</span> When Not to Use PCA<a class="anchor" aria-label="anchor" href="#when-not-to-use-pca"><i class="fas fa-link"></i></a>
+</h2>
+<p>When the <strong>sample size</strong> is less than number of dimensions (n &lt; p)</p>
+<p><strong>Non-Linear Relationships</strong>: PCA is based on linear transformations and may not be effective when your data contains complex non-linear relationships. In such cases, techniques like kernel PCA or other non-linear dimensionality reduction methods might be more appropriate.</p>
+<p><strong>Small Dimensionality</strong>: If you already have a low-dimensional dataset with only a few important variables, applying PCA might not provide significant benefits and could even lead to information loss.</p>
+<p><strong>Loss of Variability Information</strong>: PCA aims to maximize variance capture, which may not be desirable in some cases. If preserving other characteristics of the data is more important (e.g., categorical information), other dimensionality reduction techniques should be considered.</p>
+</div>
+<div id="how-pca-is-done" class="section level2" number="2.4">
+<h2>
+<span class="header-section-number">2.4</span> How PCA is done<a class="anchor" aria-label="anchor" href="#how-pca-is-done"><i class="fas fa-link"></i></a>
+</h2>
+<p>In this training program, we are primarily focused on the practical application of PCA rather than delving into its theoretical aspects. Our aim is to explore when and how PCA can be effectively utilized and to understand how to interpret the results in a meaningful manner.</p>
+<p>-Standardize the range of continuous initial variables<br>
+-Compute the covariance matrix to identify correlations<br>
+-Compute the eigen vectors and eigen values of the covariance matrix to identify the principal components<br>
+-Create a feature vector to decide which principal components to keep -Recast the data along the principal components axes</p>
+</div>
+<div id="what-is-principal-component" class="section level2" number="2.5">
+<h2>
+<span class="header-section-number">2.5</span> What is Principal Component<a class="anchor" aria-label="anchor" href="#what-is-principal-component"><i class="fas fa-link"></i></a>
+</h2>
+<p>Principal components are new variables that are constructed as linear combinations of the initial variables. These combinations are done in such a way that the new variables (i.e. principal components) are uncorrelated and most of the information within the initial variables are included in the first components. So, the idea if 10-dimensional data gives you 10 principal components, but PCA tries to put maximum possible information in the first component, then maximum remaining information in the second and so on. In the scree plot below you can see 5 principal components of a 5-dimensional data and the corresponding variance explained.</p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:eniac"></span>
-<img src="images/eniac.jpg" alt="Replacing a vaccum tube in ENIAC" width="40%"><p class="caption">
-Figure 1.1: Replacing a vaccum tube in ENIAC
+<span style="display:block;" id="fig:pcavar"></span>
+<img src="images/pcavar.png" alt="Scree Plot: Principal components and percentage variance explained" width="70%"><p class="caption">
+Figure 2.1: Scree Plot: Principal components and percentage variance explained
 </p>
 </div>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:magdrum"></span>
-<img src="images/magdrum.jpg" alt="Magnetic drums" width="20%"><p class="caption">
-Figure 1.2: Magnetic drums
+</div>
+<div id="how-pca-constructs-the-principal-components" class="section level2" number="2.6">
+<h2>
+<span class="header-section-number">2.6</span> How PCA Constructs the Principal Components<a class="anchor" aria-label="anchor" href="#how-pca-constructs-the-principal-components"><i class="fas fa-link"></i></a>
+</h2>
+Number of principal components are equal to the number of variables in the data, principal components are constructed in such a manner that the first principal component accounts for the largest possible variance in the data set. For example, see the Figure 1.2 below, we can see the scatter plot of our assumed data set, can we guess the first principal component ? Yes, it’s approximately the line that matches the purple marks because it goes through the origin and it’s the line in which the projection of the points (red dots) is the most spread out. Or mathematically speaking, it’s the line that maximizes the variance (the average of the squared distances from the projected points (red dots) to the origin).<br><div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:pcagif"></span>
+<img src="images/pca.gif" alt="Concept of PCA" width="100%"><p class="caption">
+Figure 2.2: Concept of PCA
 </p>
 </div>
-
+<p>These lines (PCs) were identified using linear algebra concepts Eigen vectors and eigen values which are calculated from the covariance matrix in order to determine the principal components of the data. We are not going much in to theoretical details.</p>
+</div>
+<div id="practical-example" class="section level2" number="2.7">
+<h2>
+<span class="header-section-number">2.7</span> PRACTICAL EXAMPLE<a class="anchor" aria-label="anchor" href="#practical-example"><i class="fas fa-link"></i></a>
+</h2>
+<p>We will be using Usarrests dataset in R to explain PCA in the coming sessions.The “USarrests” dataset in R is a built-in dataset that offers insights into crime and arrests across the 50 states of the United States in 1973. It comprises four key variables: murder rate, assault rate, the percentage of the population living in urban areas, and the rape rate.</p>
+<p>You can View and download the datasets here</p>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-a1e743ed5072654791af" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-a1e743ed5072654791af">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Carolina","North Dakota","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"],[13.2,10,8.1,8.800000000000001,9,7.9,3.3,5.9,15.4,17.4,5.3,2.6,10.4,7.2,2.2,6,9.699999999999999,15.4,2.1,11.3,4.4,12.1,2.7,16.1,9,6,4.3,12.2,2.1,7.4,11.4,11.1,13,0.8,7.3,6.6,4.9,6.3,3.4,14.4,3.8,13.2,12.7,3.2,2.2,8.5,4,5.7,2.6,6.8],[236,263,294,190,276,204,110,238,335,211,46,120,249,113,56,115,109,249,83,300,149,255,72,259,178,109,102,252,57,159,285,254,337,45,120,151,159,106,174,279,86,188,201,120,48,156,145,81,53,161],[58,48,80,50,91,78,77,72,80,60,83,54,83,65,57,66,52,66,51,67,85,74,66,44,70,53,62,81,56,89,70,86,45,44,75,68,67,72,87,48,45,59,80,80,32,63,73,39,66,60],[21.2,44.5,31,19.5,40.6,38.7,11.1,15.8,31.9,25.8,20.2,14.2,24,21,11.3,18,16.3,22.2,7.8,27.8,16.3,35.1,14.9,17.1,28.2,16.4,16.5,46,9.5,18.8,32.1,26.1,16.1,7.3,21.4,20,29.3,14.9,8.300000000000001,22.5,12.8,26.9,25.5,22.9,11.2,20.7,26.2,9.300000000000001,10.8,15.6]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Murder<\/th>\n      <th>Assault<\/th>\n      <th>UrbanPop<\/th>\n      <th>Rape<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":[{"extend":"csv","filename":"data"}],"searching":false,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
 </div>
   <div class="chapter-nav">
-<div class="prev"><a href="preface.html">Preface</a></div>
-<div class="next"><a href="references.html"><span class="header-section-number">2</span> References</a></div>
+<div class="prev"><a href="r-and-r-studio.html"><span class="header-section-number">1</span> R and R studio</a></div>
+<div class="next"><a href="references.html"><span class="header-section-number">3</span> References</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav"><li><a class="nav-link" href="#principal-component-analysis"><span class="header-section-number">1</span> Principal Component Analysis</a></li></ul>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#principal-component-analysis"><span class="header-section-number">2</span> Principal Component Analysis</a></li>
+<li><a class="nav-link" href="#what-is-pca"><span class="header-section-number">2.1</span> What is PCA?</a></li>
+<li><a class="nav-link" href="#when-to-use-pca"><span class="header-section-number">2.2</span> When to Use PCA</a></li>
+<li><a class="nav-link" href="#when-not-to-use-pca"><span class="header-section-number">2.3</span> When Not to Use PCA</a></li>
+<li><a class="nav-link" href="#how-pca-is-done"><span class="header-section-number">2.4</span> How PCA is done</a></li>
+<li><a class="nav-link" href="#what-is-principal-component"><span class="header-section-number">2.5</span> What is Principal Component</a></li>
+<li><a class="nav-link" href="#how-pca-constructs-the-principal-components"><span class="header-section-number">2.6</span> How PCA Constructs the Principal Components</a></li>
+<li><a class="nav-link" href="#practical-example"><span class="header-section-number">2.7</span> PRACTICAL EXAMPLE</a></li>
+</ul>
 
       <div class="book-extra">
         <ul class="list-unstyled">
