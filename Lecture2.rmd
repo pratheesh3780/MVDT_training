@@ -50,7 +50,7 @@ Column names should be compatible with R naming conventions.
 A final good looking file  
 
 ```{r goodfile, echo=FALSE,fig.cap='An example file',out.width="50%", fig.align='center'}
-knitr::include_graphics(rep("images/data1c4.png"))
+knitr::include_graphics(rep("images/import/data1c4.png"))
 ```
 
 
@@ -92,11 +92,11 @@ Under the \"File name\" section in the \"Save As\" tab, you can select
 \"Save as type\" and change it to \"CSV (Comma delimited) (\*.csv).  
 
 ```{r saving, echo=FALSE,fig.cap='How to save as csv',out.width="50%", fig.align='center'}
-knitr::include_graphics(rep("images/data2c4.png"))
+knitr::include_graphics(rep("images/import/data2c4.png"))
 ```  
 
 ```{r saving1, echo=FALSE,fig.cap='How to save as csv (1)',out.width="80%", fig.align='center'}
-knitr::include_graphics(rep("images/data3c4.png"))
+knitr::include_graphics(rep("images/import/data3c4.png"))
 ```
 
 
@@ -107,13 +107,13 @@ To import a csv file in Rstudio
 click on `File` then click on `Import Dataset` then select `from Text (base)`  
 
 ```{r saving2, echo=FALSE,fig.cap='Importing data set',out.width="50%", fig.align='center'}
-knitr::include_graphics(rep("images/data4c4.png"))
+knitr::include_graphics(rep("images/import/data4c4.png"))
 ```    
 
 Select the file and click open  
 
 ```{r saving3, echo=FALSE,fig.cap='Import Dataset dialogue box',out.width="80%", fig.align='center'}
-knitr::include_graphics(rep("images/data5c4.png"))
+knitr::include_graphics(rep("images/import/data5c4.png"))
 ```    
 
 In the *Import Dataset* dialogue box you can change the name of the
@@ -146,7 +146,7 @@ summary(my_data)
 
 To import from xlsx file, we need the package xlsx  
 
-```
+```{r, eval=FALSE}
 library(xlsx)  
 
 df <-read.xlsx("path/file.xlsx", n)

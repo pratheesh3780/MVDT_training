@@ -114,7 +114,7 @@ The idea of PCA is simple — reduce the number of variables of a data set, whil
 <p>In the example scree plot shown below you can see 5 principal components of a 5-dimensional data and the corresponding variance explained.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:pcavar"></span>
-<img src="images/pcavar.png" alt="Scree Plot: Principal components and percentage variance explained" width="70%"><p class="caption">
+<img src="images/PCA_img/pcavar.png" alt="Scree Plot: Principal components and percentage variance explained" width="70%"><p class="caption">
 Figure 3.1: Scree Plot: Principal components and percentage variance explained
 </p>
 </div>
@@ -126,7 +126,7 @@ Figure 3.1: Scree Plot: Principal components and percentage variance explained
 <p>Number of principal components are equal to the number of variables in the data, principal components are constructed in such a manner that the first principal component accounts for the largest possible variance in the data set. For example, see the Figure 1.2 below, we can see the scatter plot of our assumed data set, can we guess the first principal component ? Yes, it’s approximately the line that matches the purple marks because it goes through the origin and it’s the line in which the projection of the points (red dots) is the most spread out. Or mathematically speaking, it’s the line that maximizes the variance (the average of the squared distances from the projected points (red dots) to the origin).</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:pcagif"></span>
-<img src="images/pca.gif" alt="Concept of PCA" width="100%"><p class="caption">
+<img src="images/PCA_img/pca.gif" alt="Concept of PCA" width="100%"><p class="caption">
 Figure 3.2: Concept of PCA
 </p>
 </div>
@@ -138,8 +138,8 @@ Figure 3.2: Concept of PCA
 </h2>
 <p>We will be using Usarrests dataset in R to explain PCA in the coming sessions.The “USarrests” dataset in R is a built-in dataset that offers insights into crime and arrests across the 50 states of the United States in 1973. It comprises four key variables: murder rate, assault rate, the percentage of the population living in urban areas, and the rape rate.</p>
 <p>You can View and download the datasets here</p>
-<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-e7ba2cc8774889943538" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-e7ba2cc8774889943538">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Carolina","North Dakota","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"],[13.2,10,8.1,8.800000000000001,9,7.9,3.3,5.9,15.4,17.4,5.3,2.6,10.4,7.2,2.2,6,9.699999999999999,15.4,2.1,11.3,4.4,12.1,2.7,16.1,9,6,4.3,12.2,2.1,7.4,11.4,11.1,13,0.8,7.3,6.6,4.9,6.3,3.4,14.4,3.8,13.2,12.7,3.2,2.2,8.5,4,5.7,2.6,6.8],[236,263,294,190,276,204,110,238,335,211,46,120,249,113,56,115,109,249,83,300,149,255,72,259,178,109,102,252,57,159,285,254,337,45,120,151,159,106,174,279,86,188,201,120,48,156,145,81,53,161],[58,48,80,50,91,78,77,72,80,60,83,54,83,65,57,66,52,66,51,67,85,74,66,44,70,53,62,81,56,89,70,86,45,44,75,68,67,72,87,48,45,59,80,80,32,63,73,39,66,60],[21.2,44.5,31,19.5,40.6,38.7,11.1,15.8,31.9,25.8,20.2,14.2,24,21,11.3,18,16.3,22.2,7.8,27.8,16.3,35.1,14.9,17.1,28.2,16.4,16.5,46,9.5,18.8,32.1,26.1,16.1,7.3,21.4,20,29.3,14.9,8.300000000000001,22.5,12.8,26.9,25.5,22.9,11.2,20.7,26.2,9.300000000000001,10.8,15.6]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Murder<\/th>\n      <th>Assault<\/th>\n      <th>UrbanPop<\/th>\n      <th>Rape<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":[{"extend":"csv","filename":"data"}],"searching":false,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-8ee8a9f69dffbeaffc0b" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-8ee8a9f69dffbeaffc0b">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Carolina","North Dakota","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"],[13.2,10,8.1,8.800000000000001,9,7.9,3.3,5.9,15.4,17.4,5.3,2.6,10.4,7.2,2.2,6,9.699999999999999,15.4,2.1,11.3,4.4,12.1,2.7,16.1,9,6,4.3,12.2,2.1,7.4,11.4,11.1,13,0.8,7.3,6.6,4.9,6.3,3.4,14.4,3.8,13.2,12.7,3.2,2.2,8.5,4,5.7,2.6,6.8],[236,263,294,190,276,204,110,238,335,211,46,120,249,113,56,115,109,249,83,300,149,255,72,259,178,109,102,252,57,159,285,254,337,45,120,151,159,106,174,279,86,188,201,120,48,156,145,81,53,161],[58,48,80,50,91,78,77,72,80,60,83,54,83,65,57,66,52,66,51,67,85,74,66,44,70,53,62,81,56,89,70,86,45,44,75,68,67,72,87,48,45,59,80,80,32,63,73,39,66,60],[21.2,44.5,31,19.5,40.6,38.7,11.1,15.8,31.9,25.8,20.2,14.2,24,21,11.3,18,16.3,22.2,7.8,27.8,16.3,35.1,14.9,17.1,28.2,16.4,16.5,46,9.5,18.8,32.1,26.1,16.1,7.3,21.4,20,29.3,14.9,8.300000000000001,22.5,12.8,26.9,25.5,22.9,11.2,20.7,26.2,9.300000000000001,10.8,15.6]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Murder<\/th>\n      <th>Assault<\/th>\n      <th>UrbanPop<\/th>\n      <th>Rape<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":[{"extend":"csv","filename":"data"}],"searching":false,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="analysis" class="section level2" number="3.8">
 <h2>
@@ -151,7 +151,7 @@ Figure 3.2: Concept of PCA
 <p>When you copy a path from your system to data please change the format as “C:/Users/HP/Documents/” in your code.<br>
 This is how the dataset looks like after importing to R.</p>
 <div class="figure" style="text-align: center">
-<img src="images/dataset.png" alt="Data set after importing to R in Rstudio" width="70%"><p class="caption">
+<img src="images/PCA_img/dataset.png" alt="Data set after importing to R in Rstudio" width="70%"><p class="caption">
 (#fig:data_imp)Data set after importing to R in Rstudio
 </p>
 </div>
@@ -467,7 +467,7 @@ Also you can see California, New jersey etc in the top side indicating high valu
 </ul>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:quadrant"></span>
-<img src="images/quadrant.png" alt="Quadrants in biplot" width="30%"><p class="caption">
+<img src="images/PCA_img/quadrant.png" alt="Quadrants in biplot" width="30%"><p class="caption">
 Figure 3.3: Quadrants in biplot
 </p>
 </div>

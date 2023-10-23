@@ -109,7 +109,7 @@ Good format: 01/01/2016. Bad format: 01/01/16</p></li>
 <p>A final good looking file</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:goodfile"></span>
-<img src="images/data1c4.png" alt="An example file" width="50%"><p class="caption">
+<img src="images/import/data1c4.png" alt="An example file" width="50%"><p class="caption">
 Figure 2.1: An example file
 </p>
 </div>
@@ -152,13 +152,13 @@ between interfaces.</p>
 "Save as type" and change it to "CSV (Comma delimited) (*.csv).</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:saving"></span>
-<img src="images/data2c4.png" alt="How to save as csv" width="50%"><p class="caption">
+<img src="images/import/data2c4.png" alt="How to save as csv" width="50%"><p class="caption">
 Figure 2.2: How to save as csv
 </p>
 </div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:saving1"></span>
-<img src="images/data3c4.png" alt="How to save as csv (1)" width="80%"><p class="caption">
+<img src="images/import/data3c4.png" alt="How to save as csv (1)" width="80%"><p class="caption">
 Figure 2.3: How to save as csv (1)
 </p>
 </div>
@@ -172,14 +172,14 @@ Figure 2.3: How to save as csv (1)
 <p>click on <code>File</code> then click on <code>Import Dataset</code> then select <code>from Text (base)</code></p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:saving2"></span>
-<img src="images/data4c4.png" alt="Importing data set" width="50%"><p class="caption">
+<img src="images/import/data4c4.png" alt="Importing data set" width="50%"><p class="caption">
 Figure 2.4: Importing data set
 </p>
 </div>
 <p>Select the file and click open</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:saving3"></span>
-<img src="images/data5c4.png" alt="Import Dataset dialogue box" width="80%"><p class="caption">
+<img src="images/import/data5c4.png" alt="Import Dataset dialogue box" width="80%"><p class="caption">
 Figure 2.5: Import Dataset dialogue box
 </p>
 </div>
@@ -227,11 +227,12 @@ read.csv('path to the file')</p>
 <span class="header-section-number">2.2.1.2</span> Importing excel files<a class="anchor" aria-label="anchor" href="#importing-excel-files"><i class="fas fa-link"></i></a>
 </h4>
 <p>To import from xlsx file, we need the package xlsx</p>
-<pre><code><a href="https://github.com/colearendt/xlsx">library(xlsx)  
-
-df &lt;-read.xlsx("path/file.xlsx", n)
-
-# n is n-th worksheet to import</a></code></pre>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/colearendt/xlsx">xlsx</a></span><span class="op">)</span>  </span>
+<span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span><span class="fu">read.xlsx</span><span class="op">(</span><span class="st">"path/file.xlsx"</span>, <span class="va">n</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># n is n-th worksheet to import</span></span></code></pre></div>
 
 </div>
 </div>

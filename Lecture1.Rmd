@@ -8,7 +8,7 @@ R is a programming language for statistical computing and graphics supported by 
 According to user surveys and studies of scholarly literature databases, R is one of the most commonly used programming languages used in data mining. The official R software environment is an open-source free software environment within the GNU package, available under the [GNU General Public License](https://www.gnu.org/licenses/gpl-3.0.en.html). It is written primarily in C, Fortran, and R itself (partially self-hosting). R has a command line interface. Multiple third-party graphical user interfaces are also available, such as RStudio, an integrated development environment.  
 
 ```{r rlogo, echo=FALSE,fig.cap='R logo',out.width="30%", fig.align='center'}
-knitr::include_graphics(rep("images/rlogo.png"))
+knitr::include_graphics(rep("images/chapter1/rlogo.png"))
 ```
 
 ## Rstudio  
@@ -17,13 +17,13 @@ RStudio is an integrated development environment (IDE) for R. It includes a cons
 RStudio is written in the C++ programming language and uses the Qt framework for its graphical user interface. Work on RStudio started at around December 2010, and the first public beta version (v0.92) was officially announced in February 2011.  
 
 ```{r rstudio1, echo=FALSE,fig.cap='R studio logo',out.width="30%", fig.align='center'}
-knitr::include_graphics(rep("images/rstudiologo.png"))
+knitr::include_graphics(rep("images/chapter1/rstudiologo.png"))
 ```
 
 Typical RStudio window has four panes as explained below  
 
 ```{r rstudio2, echo=FALSE,fig.cap='R studio window',out.width="80%", fig.align='center'}
-knitr::include_graphics(rep("images/rstudiowindow.png"))
+knitr::include_graphics(rep("images/chapter1/rstudiowindow.png"))
 ```
 
 1. **Console**
@@ -61,42 +61,42 @@ Go to the [CRAN](https://cran.r-project.org/) website.
 
 **Click on "Download R for Windows"**.  
 ```{r crandown, echo=FALSE,fig.cap= "",out.width="70%", fig.align='center'}
-knitr::include_graphics(rep("images/cranwindow.png"))
+knitr::include_graphics(rep("images/chapter1/cranwindow.png"))
 ```  
 
 **Click on "install R for the first time"**.
 ```{r crandown2, echo=FALSE,fig.cap= "",out.width="70%", fig.align='center'}
-knitr::include_graphics(rep("images/cranwindow2.png"))
+knitr::include_graphics(rep("images/chapter1/cranwindow2.png"))
 ```  
 
 **Click on "Download R-4.3.1 for windows" link to download the R executable (.exe) file**.(By the time of writing this manual R version was 4.3.1, it may change in future)  
 ```{r crandown3, echo=FALSE,fig.cap= "",out.width="70%", fig.align='center'}
-knitr::include_graphics(rep("images/cranwindow3.png"))
+knitr::include_graphics(rep("images/chapter1/cranwindow3.png"))
 ``` 
 
 After downloading the file. Run the R executable file by double clicking on the downloaded file to start installation, and allow the app to make changes to your device.  
 
 **Select the installation language.**  
 ```{r crandown4, echo=FALSE,fig.cap= "",out.width="50%", fig.align='center'}
-knitr::include_graphics(rep("images/exefile.png"))
+knitr::include_graphics(rep("images/chapter1/exefile.png"))
 ```  
 
 **Follow the installation instructions**.  
 ```{r crandown5, echo=FALSE,fig.cap= "",out.width="50%", fig.align='center'}
-knitr::include_graphics(rep("images/setup.png"))
+knitr::include_graphics(rep("images/chapter1/setup.png"))
 ```  
 **Click next and wait for the installation to complete**.  
 ```{r crandown6, echo=FALSE,fig.cap= "",out.width="70%", fig.align='center'}
-knitr::include_graphics(rep("images/setupinstall.png"))
+knitr::include_graphics(rep("images/chapter1/setupinstall.png"))
 ```
 **Click on "Finish" to exit and complete the installation setup.**  
 ```{r crandown7, echo=FALSE,fig.cap= "",out.width="70%", fig.align='center'}
-knitr::include_graphics(rep("images/completeinstall.jpg"))
+knitr::include_graphics(rep("images/chapter1/completeinstall.jpg"))
 ```
 **You can now run R from the start menu or the shortcut created on your desktop**  
 
 ```{r crandown8, echo=FALSE,fig.cap= "",out.width="70%", fig.align='center'}
-knitr::include_graphics(rep("images/Rfinal.png"))
+knitr::include_graphics(rep("images/chapter1/Rfinal.png"))
 ```
 
 ```{block2 items, type='rmdnote'}
@@ -108,7 +108,7 @@ After installing latest version of R. Go to the [Rstudio](https://posit.co/downl
 
 Click on "DOWNLOAD RSTUDIO DESKTOP FOR R"  
 ```{r rinsatll, echo=FALSE,fig.cap= FALSE,out.width="50%", fig.align='center'}
-knitr::include_graphics(rep("images/rstudio1.png"))
+knitr::include_graphics(rep("images/chapter1/rstudio1.png"))
 ``` 
 
 Now like you have completed the installation of R, complete the installation setup of Rstudio. After installation you can now run R from the start menu or the shortcut created on your desktop.   

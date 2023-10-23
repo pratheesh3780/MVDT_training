@@ -47,7 +47,7 @@ Principal components are new variables that are constructed as linear combinatio
 In the example scree plot shown below you can see 5 principal components of a 5-dimensional data and the corresponding variance explained.  
 
 ```{r pcavar, echo=FALSE,fig.cap='Scree Plot: Principal components and percentage variance explained',out.width="70%", fig.align='center'}
-knitr::include_graphics(rep("images/pcavar.png"))
+knitr::include_graphics(rep("images/PCA_img/pcavar.png"))
 ```  
 
 ## How PCA Constructs the Principal Components  
@@ -55,7 +55,7 @@ knitr::include_graphics(rep("images/pcavar.png"))
 Number of principal components are equal to the number of variables in the data, principal components are constructed in such a manner that the first principal component accounts for the largest possible variance in the data set. For example, see the Figure 1.2 below, we can see the scatter plot of our assumed data set, can we guess the first principal component ? Yes, it’s approximately the line that matches the purple marks because it goes through the origin and it’s the line in which the projection of the points (red dots) is the most spread out. Or mathematically speaking, it’s the line that maximizes the variance (the average of the squared distances from the projected points (red dots) to the origin).  
 
 ```{r pcagif, echo=FALSE,fig.cap='Concept of PCA',out.width="100%", fig.align='center'}
-knitr::include_graphics(rep("images/pca.gif"))
+knitr::include_graphics(rep("images/PCA_img/pca.gif"))
 ```   
 These lines (PCs) were identified using linear algebra concepts Eigen vectors and eigen values which are calculated from the covariance matrix in order to determine the principal components of the data. We are not going much in to theoretical details. 
 
@@ -92,7 +92,7 @@ When you copy a path from your system to data please  change the format as "C:/U
 This is how the dataset looks like after importing to R.  
 
 ```{r data_imp, echo=FALSE,fig.cap='Data set after importing to R in Rstudio',out.width="70%", fig.align='center'}
-knitr::include_graphics(rep("images/dataset.png"))
+knitr::include_graphics(rep("images/PCA_img/dataset.png"))
 ``` 
 
 ```{block2 item2, type='rmdnote'}
@@ -338,7 +338,7 @@ In general we can divide the quadrants in the biplot of this example as follows:
 * Towards center: States with moderate crime rate and urbanization  
 
 ```{r quadrant, echo=FALSE,fig.cap='Quadrants in biplot',out.width="30%", fig.align='center'}
-knitr::include_graphics(rep("images/quadrant.png"))
+knitr::include_graphics(rep("images/PCA_img/quadrant.png"))
 ```
 
 
