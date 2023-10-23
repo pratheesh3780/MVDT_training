@@ -1,83 +1,158 @@
-# Principal Component Analysis  
+# Importing data files in R {#import}
 
-## What is PCA?
-Principal component analysis (PCA) is a technique that transforms high-dimensions data into lower-dimensions while retaining as much information as possible.  
+In the previous chapter we have discussed the very basics of R
+programming including installation, launching, basic data types and
+arithmetic functions. Here, you will learn how to import data into R. It
+is important to ensure that your data is well prepared before importing
+it into R to avoid errors.
 
-Drawing meaningful inferences from high-dimensional data can be challenging, as humans naturally excel at visualizing and comprehending information in two dimensions. PCA, a powerful technique, aids in transforming multi-dimensional data into a more manageable form by reducing its dimensionality. This simplification facilitates easier visualization and analysis, ultimately enhancing our ability to extract valuable insights from complex datasets.  
+## Preparing your file
 
-PCA is a valuable tool in social science and agricultural research. It works by transforming multi-dimensional data into a lower-dimensional space while retaining as much variance in the data as possible. In essence, PCA identifies the most significant dimensions or "principal components" of the data, effectively reducing its complexity.
-The idea of PCA is simple — reduce the number of variables of a data set, while preserving as much information as possible.  
+-   File can be prepared in MS Excel
 
-## When to Use PCA  
+-   Use the first row as column headers (or column names). Generally,
+    columns represent variables.
 
-**Dimensionality Reduction**: Use PCA when you have a high-dimensional dataset with many features (variables) and you want to reduce its dimensionality. This can help in cases where you have too many variables to work with efficiently.  
+-   Use the first column as row names. Generally rows represent
+    observations.
 
-**Data Visualization**: PCA is effective when you need to visualize high-dimensional data. By projecting data onto a lower-dimensional space, you can create scatter plots, heatmaps, or other visualizations that are easier to interpret.  
+-   Make sure each row name is unique. But this is not in case of
+    analysis of experiments , there each row name is treatment name,
+    which should be repeated for each replication
 
-**Minimum data set**: Principal components can be used to eliminate some data sets and identify a minimum data set for further experimentation.  
+Column names should be compatible with R naming conventions.
 
-**Noise Reduction**: If your dataset contains noisy or redundant features, PCA can help by capturing the most important information and eliminating the less relevant components.  
+### Naming conventions:
 
-**Multicollinearity**: When your dataset has multicollinearity issues (high correlations between variables), PCA can help reduce these interdependencies, making models more stable and interpretable.  
+-   Avoid names with blank spaces. Bad column name `Sepal width`; Good
+    convention `Sepal_width`
 
-Sample size (n) should be at least equal to number of dimensions (n ≥ p)
+-   Avoid names with special symbols: ?, \$, \*, +, #, (, ), -, /, }, {,
+    \|, \>, \< etc. Only underscore can be used.
 
-## When Not to Use PCA  
+-   Avoid beginning variable names with a number. Use letter instead.
+    Good column names: obs_100m or x100m. Bad column name: 100m
 
-When the **sample size** is less than number of dimensions (n < p)  
+-   Column names must be unique. Duplicated names are not allowed.
 
-**Non-Linear Relationships**: PCA is based on linear transformations and may not be effective when your data contains complex non-linear relationships. In such cases, techniques like kernel PCA or other non-linear dimensionality reduction methods might be more appropriate.  
+-   R is case sensitive. This means that Name, NAME and name, naMe all
+    are treated as different.
 
-**Small Dimensionality**: If you already have a low-dimensional dataset with only a few important variables, applying PCA might not provide significant benefits and could even lead to information loss.  
+-   Avoid blank rows in your data
 
-**Loss of Variability Information**: PCA aims to maximize variance capture, which may not be desirable in some cases. If preserving other characteristics of the data is more important (e.g., categorical information), other dimensionality reduction techniques should be considered.  
+-   Delete any comments in your file
 
-## How PCA is done
-In this training program, we are primarily focused on the practical application of PCA rather than delving into its theoretical aspects. Our aim is to explore when and how PCA can be effectively utilized and to understand how to interpret the results in a meaningful manner.  
+-   Replace missing values by NA (denotes **N**ot **A**vailable)
 
--Standardize the range of continuous initial variables  
--Compute the covariance matrix to identify correlations  
--Compute the eigen vectors and eigen values of the covariance matrix to identify the principal components  
--Create a feature vector to decide which principal components to keep -Recast the data along the principal components axes  
+-   If you have a column containing date, use the four digit format.
+    Good format: 01/01/2016. Bad format: 01/01/16
 
-## What is Principal Component  
+A final good looking file  
 
-Principal components are new variables that are constructed as linear combinations of the initial variables. These combinations are done in such a way that the new variables (i.e. principal components) are uncorrelated and most of the information within the initial variables are included in the first components. So, the idea if 10-dimensional data gives you 10 principal components, but PCA tries to put maximum possible information in the first component, then maximum remaining information in the second and so on. In the scree plot below you can see 5 principal components of a 5-dimensional data and the corresponding variance explained.  
+```{r goodfile, echo=FALSE,fig.cap='An example file',out.width="50%", fig.align='center'}
+knitr::include_graphics(rep("images/data1c4.png"))
+```
 
-```{r pcavar, echo=FALSE,fig.cap='Scree Plot: Principal components and percentage variance explained',out.width="70%", fig.align='center'}
-knitr::include_graphics(rep("images/pcavar.png"))
+
+### Saving file  
+
+I recommend you to save your file in .csv (comma separated value file)
+format.
+
+**Why CSV?**
+
+The usual file we save in MS Excel will be saved as XLS files or XLSX
+files. Workbook files for Microsoft Excel from 97 to 2003 are known as
+XLS files. The XLSX extension is used by later versions of Excel. All of
+the data from the worksheets in a workbook, including formatting,
+charts, graphics, calculations, and more, is contained in the XLS and
+XLSX file formats.
+
+The Comma Separated Values (CSV) format is a plain text format in which
+values are separated by commas, whereas the Excel Sheets binary file
+format (XLS) contains information on all of the worksheets in a file,
+including both content and formatting. Any spreadsheet programme,
+including Microsoft Excel, Open Office, Google Sheets, etc., can open
+CSV files. A straightforward text editor can also be used to open CSV
+files. Because it is straightforward and compatible with the majority of
+platforms, it is a very prevalent and well-liked file format for storing
+and accessing data. But there are certain drawbacks to this simplicity.
+CSV files can only contain a single sheet without any formatting or
+formulas.
+
+While CSV files are supported by almost all data upload interfaces,
+Excel (XLS and XLSX) file types are preferable for storing more
+complicated data. The CSV file format may be more advantageous if you
+intend to move your data between platforms or export and import it
+between interfaces.
+
+### How to save as csv
+
+Under the \"File name\" section in the \"Save As\" tab, you can select
+\"Save as type\" and change it to \"CSV (Comma delimited) (\*.csv).  
+
+```{r saving, echo=FALSE,fig.cap='How to save as csv',out.width="50%", fig.align='center'}
+knitr::include_graphics(rep("images/data2c4.png"))
 ```  
 
-## How PCA Constructs the Principal Components  
+```{r saving1, echo=FALSE,fig.cap='How to save as csv (1)',out.width="80%", fig.align='center'}
+knitr::include_graphics(rep("images/data3c4.png"))
+```
 
-Number of principal components are equal to the number of variables in the data, principal components are constructed in such a manner that the first principal component accounts for the largest possible variance in the data set. For example, see the Figure 1.2 below, we can see the scatter plot of our assumed data set, can we guess the first principal component ? Yes, it’s approximately the line that matches the purple marks because it goes through the origin and it’s the line in which the projection of the points (red dots) is the most spread out. Or mathematically speaking, it’s the line that maximizes the variance (the average of the squared distances from the projected points (red dots) to the origin).  
-```{r pcagif, echo=FALSE,fig.cap='Concept of PCA',out.width="100%", fig.align='center'}
-knitr::include_graphics(rep("images/pca.gif"))
-```   
-These lines (PCs) were identified using linear algebra concepts Eigen vectors and eigen values which are calculated from the covariance matrix in order to determine the principal components of the data. We are not going much in to theoretical details. 
 
-## PRACTICAL EXAMPLE
-We will be using Usarrests dataset in R to explain PCA in the coming sessions.The "USarrests" dataset in R is a built-in dataset that offers insights into crime and arrests across the 50 states of the United States in 1973. It comprises four key variables: murder rate, assault rate, the percentage of the population living in urban areas, and the rape rate. 
+## Importing Data set in Rstudio
 
-You can View and download the datasets here
-```{r usarrest, eval=TRUE, echo=FALSE}
-library(DT)
+To import a csv file in Rstudio
 
-datatable(
-  USArrests,
-  extensions = 'Buttons',
-  options = list(
-    dom = 'Bfrtip',
-    buttons = list(
-      list(
-        extend = 'csv',
-        filename = 'data'
-      )
-    ),
-    searching = FALSE  # This option removes the search bar
-  )
-)
+click on `File` then click on `Import Dataset` then select `from Text (base)`  
 
+```{r saving2, echo=FALSE,fig.cap='Importing data set',out.width="50%", fig.align='center'}
+knitr::include_graphics(rep("images/data4c4.png"))
+```    
+
+Select the file and click open  
+
+```{r saving3, echo=FALSE,fig.cap='Import Dataset dialogue box',out.width="80%", fig.align='center'}
+knitr::include_graphics(rep("images/data5c4.png"))
+```    
+
+In the *Import Dataset* dialogue box you can change the name of the
+dataset in the Box under `Name`. Heading radio button will be default
+'yes'. Click on `import`. The dataset will be now imported and ready to
+work on.
+
+### Alternate methods
+
+#### Importing csv files  
+
+Data can be also imported using read.csv() function in R.
+read.csv(\'path to the file\')  
+
+```{r} 
+
+# example
+
+my_data<-read.csv(file = 'csv/usarrests.csv')
+
+# here now the data set usarrests.csv stored in folder csv is stored in the name my_data
+
+# You can now directly do operations on the my_data
+
+summary(my_data)
+
+``` 
+
+#### Importing excel files  
+
+To import from xlsx file, we need the package xlsx  
 
 ```
+library(xlsx)  
+
+df <-read.xlsx("path/file.xlsx", n)
+
+# n is n-th worksheet to import
+```
+
+
 
