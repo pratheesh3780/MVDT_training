@@ -730,6 +730,8 @@ a.removeEventListener("load",S),r.ready()}"complete"===d.readyState||"loading"!=
         $("#prompt").css("display", "none");
       },
       error: function() {
+        // Set the text color to white
+            $("#status").css("color", "white");
             $("#status").text("Wrong password.");
             // When testing the SHA key for you password, comment the above out, and remove comment below.
             // $("#status").text(hex_sha512(pass));
