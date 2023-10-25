@@ -1,49 +1,34 @@
 <script type="text/javascript" src="sha512.js"></script>
 <script src="http://code.jquery.com/jquery-3.2.0.min.js"></script>
 
-<script>
-function checkPassword() {
-    // Retrieve the entered password
-    var enteredPassword = document.getElementById("pass").value;
-    // Get the current page's URL
-    var here = window.location.href;
-    // Construct the URL for the content based on the entered password
-    var url = here.replace("index.html", "") + hex_sha512(enteredPassword) + "/index.html";
-    // Display a loading message
-    $("#status").text("...");
-    // Send an AJAX request to check the URL
-    $.ajax({
-        type: 'HEAD',
-        url: url,
-        success: function() {
-            var iframe = $("#iframe");
-            iframe.css("display", "inherit");
-            iframe.attr("src", url);
-            $("#prompt").css("display", "none");
-        },
-        error: function() {
-            $("#status").text("Wrong password.");
-            // When testing the SHA key for your password, comment the above out, and remove comment below.
-            // $("#status").text(hex_sha512(enteredPassword));
-        }
-    });
-}
-
-// Listen for the Enter key press in the password input field
-$("#pass").keypress(function (event) {
-    if (event.which === 13) {
-        // Call the checkPassword function when Enter is pressed
-        checkPassword();
+<script type="text/javascript" >
+  function onPass(event) {
+    event = event || window.event;
+    if (event.keyCode != 13) {
+      return;
     }
-});
+    var pass = $("#pass").val();
+    var here = window.location.href
+    var url = here.replace("index.html", "") + hex_sha512(pass) + "/index.html";
+    $("#status").text("...");
+    $.ajax({
+      type: 'HEAD',
+      url: url,
+      success: function() {
+        var iframe = $("#iframe");
+        iframe.css("display", "inherit");
+        iframe.attr("src", url);
+        $("#prompt").css("display", "none");
+      },
+      error: function() {
+            $("#status").text("Wrong password.");
+            // When testing the SHA key for you password, comment the above out, and remove comment below.
+            // $("#status").text(hex_sha512(pass));
 
-// Add a click event for the "Enter" button
-$("#enterButton").click(function() {
-    checkPassword();
-});
+      }
+    });
+  }
 </script>
-
-
 
 <style>
  #iframe { display: none; }
