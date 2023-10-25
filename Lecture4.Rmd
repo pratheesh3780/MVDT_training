@@ -1,0 +1,199 @@
+# Exploratory Factor Analysis  
+
+Exploratory Factor Analysis (EFA) is a statistical technique used in the field of multivariate data analysis to identify underlying patterns or latent variables (hidden variables) that explain the correlations or covariations among a set of observed variables. It is a dimensionality reduction method commonly employed in fields like psychology, sociology, and other social sciences, as well as in agricultural extension research and other areas where data reduction and simplification are needed [@johnson2014].  
+
+**Latent variable**: It is an unobservable or hidden variable that cannot be directly measured but is inferred or estimated based on its impact on observed or measurable variables. Latent variables are often used in statistical modeling to explain patterns, relationships, or variability in data. They represent underlying constructs, concepts, or factors that influence the observed data but are not directly observed or measured.
+
+The primary goal of EFA is to uncover the latent factors or constructs that are responsible for the observed patterns in the data. These latent factors are unobservable, but they help explain the common variance among the observed variables. EFA does not assume any pre-defined relationships between variables and is used for data exploration and hypothesis generation.  
+
+Imagine you have data for 50 students, and you've recorded their marks in subjects: English, Hindi, French, Physics, Maths, and Statistics. You want to understand if there are underlying factors that influence these subject scores. Factor analysis can help us understand the underlying factors that may contribute to students' academic performance. In this case, it may identifies the factors related to language and humanities skills (e.g., English, Hindi, French) and analytical skills (e.g., Physics, Maths, Statistics).  
+
+There are two types of factor analysis, called exploratory and confirmatory factor analysis (EFA and CFA). Both EFA and CFA aim to reproduce the observed relationships among a group of features with a smaller set of latent variables. EFA is used in a descriptive, data-driven manner to uncover which measured variables are reasonable indicators of the various latent dimensions. In contrast, CFA is conducted in an a-priori, hypothesis-testing manner that requires strong empirical or theoretical foundations. We will discuss EFA here, which is used to group features into a specified number of latent factors.   
+
+## PRACTICAL EXAMPLE
+In this practical example section, we will work with a dataset containing marks for 100 students in various subjects, including English, Hindi, Maths, French, Physics, Poetry, Statistics, and Geometry.
+
+You can View and download the datasets here
+```{r scores, eval=TRUE, echo=FALSE}
+library(DT)
+score <- read.csv("csv/score.csv", row.names=1)
+datatable(
+  score,
+  extensions = 'Buttons',
+  options = list(
+    dom = 'Bfrtip',
+    buttons = list(
+      list(
+        extend = 'csv',
+        text = 'Download CSV ⬇',
+        filename = 'data'
+      )
+    ),
+    searching = FALSE  # This option removes the search bar
+  )
+)
+```  
+## Analysis
+First prepare your data set and save it as a csv file. Then import the data set in to R. See chapter \@ref(import)to know how to save a csv file and import it to R. You can directly use the code below to import dataset from your computer to R.
+```{r import_data_fa, eval=FALSE}
+data <- read.csv("path to your file", row.names=1)
+#your file will be saved in the name data
+```
+Please note the path copied from your system will be in the format `C:\Users\HP\Documents\`, change it to this format `C:/Users/HP/Documents/` in R.  
+
+We will be using `pysch` package do factor analysis.  
+
+**Install the required packages**:  
+```{r install4FA, eval=FALSE}
+install.packages("psych")  
+```  
+
+
+### Determining the suitability of your dataset for EFA  
+
+We perform Kaiser–Meyer–Olkin (KMO) test [@kaiser1970] & [@kaiser1974] to test the suitability of the dataset for factor analysis.  
+The **Kaiser–Meyer–Olkin (KMO)** test is a statistical measure to determine how suited data is for factor analysis. The test measures sampling adequacy for each variable in the model and the complete model. The Measure of Sampling Adequacy (MSA) is a measure of the proportion of variance among variables that might be common variance. The higher the proportion, the higher the KMO-value, the more suited the data is to factor analysis.  
+
+| KMO Value Range | Interpretation                    |
+|-----------------|-----------------------------------|
+| > 0.90          | Marvelous                         |
+| 0.80 - 0.89     | Meritorious                       |
+| 0.70 - 0.79     | Middling                          |
+| 0.60 - 0.69     | Mediocre                          |
+| 0.50 - 0.59     | Miserable                         |
+| < 0.50          | Unacceptable                      |
+
+- KMO values between 0.8 and 1 indicate adequate sampling and data suitable for factor analysis
+- KMO values below 0.6 suggest inadequate sampling and may require remedial action.
+- A KMO value close to zero indicates the presence of large partial correlations relative to the sum of correlations, which can pose a challenge for factor analysis.  
+We will perform KMO analysis using library `psych` in R. Use the code below.  
+
+```{r kmotest, eval=TRUE, message=FALSE}
+library(psych)
+data <- read.csv("csv/score.csv", row.names=1)
+KMO(data)
+```  
+In our example you can see that the Kaiser-Meyer-Olkin (KMO) measure of sampling adequacy (MSA), calculated for the dataset, indicates an overall adequacy of 0.84, suggesting that the data is suitable for factor analysis. Additionally, the individual item-specific KMO values for each subject, including English, Hindi, Maths, French, Physics, Poetry, Statistics, and Geometry, range from 0.81 to 0.86, supporting the adequacy of the data for factor analysis.  
+In case any item-specific MSA is < 0.60, it is better to avoid that item in the analysis.  
+
+### Identifying the number of factors  
+We will discuss two methods to identify the number of factors. Any of these methods can be employed.  
+
+#### Scree plot  
+
+A Scree plot is a graphical representation used in factor analysis to identify the optimal number of factors to retain from a dataset. It displays the eigenvalues of the correlation matrix, which represent the amount of variance explained by each factor. We will employ the Scree plot to determine the number of factors that should be retained from the given dataset. By examining the pattern of eigenvalues in the Scree plot, we can identify the point at which eigenvalues significantly drop. This drop-off serves as an indicator of the most meaningful and influential factors, ensuring that we capture the essential dimensions within the data.   
+
+```{r screeplot, eval=TRUE, message=FALSE}
+ev <- eigen(cor(score)) # get eigenvalues
+ev$values
+scree(score, pc=FALSE)
+```  
+By analyzing the Scree plot, it becomes evident that two factors exhibit eigenvalues above the value of one. Hence, the number of factors to be retained in our example can be confidently identified as two. This conclusion is drawn from the visual assessment of the eigenvalue patterns in the Scree plot.  
+
+#### Parallel analysis  
+Parallel analysis is a robust statistical technique employed in factor analysis to address the crucial question of how many factors should be retained from a given dataset. This method is particularly valuable when dealing with complex data structures. Rather than relying solely on conventional rules or subjective judgment, parallel analysis offers a data-driven approach. It involves generating random datasets with similar properties to the original data and comparing their factor structures. By scrutinizing the eigenvalues derived from the random datasets alongside those from the actual data, parallel analysis provides a more objective and reliable means of determining the optimal number of factors to retain. This approach enhances the accuracy of factor analysis, ensuring that the identified factors capture the most meaningful and interpretable dimensions within the dataset.  
+
+```{r parallel_anal, eval=TRUE, message=FALSE, warning=FALSE}
+library(psych)
+parallel<-fa.parallel(score, fa="fa")
+```  
+
+Identify the point at which the eigenvalues from the actual data surpass the corresponding eigenvalues from the random data by a significant margin. This indicates the number of factors that should be retained. Here in this example you can see the number of identified factors is two.  
+
+### Factor Analysis  
+We will be using the built-in function in R `factanal()` to perform factor analysis.  
+
+```{r fact_anal, eval=TRUE, message=FALSE}
+Nfacs <- 2  # Number of factors as identified in parallel analysis/Scree plot.
+fit <- factanal(score, Nfacs,rotation="varimax",scores="regression")
+
+``` 
+#### Factor rotation  
+Rotation in the context of factor analysis is a mathematical technique used to simplify and interpret the results of the analysis. Rotation methods are applied to the factor loadings, which are the coefficients that indicate how strongly each observed variable is associated with each latent factor. These loadings can be challenging to interpret when factor analysis yields complex, overlapping, or unclear results.
+Rotation serves the following primary purposes:  
+
+•	Simplification  
+•	Enhanced Interpretability  
+
+Two type of rotation is there, Orthogonal and Oblique. In orthogonal rotation, factors are forced to be uncorrelated with each other, simplifying the factor structure. In oblique rotation, factors can be correlated, allowing for more realistic interpretations when factors are expected to be related.  
+
+R offers two rotation methods, which include Varimax (orthogonal), Promax (oblique. Researchers choose the appropriate rotation method based on their hypotheses about the data and their goals for simplifying and interpreting the results of factor analysis.  
+
+In R the `rotation` option in `factanal()` function may be changed with “promax” or “varimax”. In our example we used Varimax rotation, both Promax and Varimax rotation in our case are giving the same results in a factor analysis, it suggests that the underlying factor structure in our data may be sufficiently simple and well-defined. When the factor solution is clear and distinct, it's possible for different rotation methods to converge on the same solution.  
+
+#### Factor loadings  
+Factor loadings are coefficients that represent the relationships between observed variables (indicators) and latent factors in a factor analysis. These coefficients indicate the strength and direction of the associations between each variable and each factor. Factor loadings play a crucial role in understanding the underlying structure of data and extracting meaningful information from factor analysis.  
+
+Here's how to interpret factor loadings:  
+
+**Magnitude of Loadings:** The magnitude of a loading represents the strength of the relationship between a variable and a factor. Larger loading values indicate a stronger association. For example, a loading of 0.7 is stronger than a loading of 0.3.  
+
+**Sign of Loadings:** The sign of the loading (positive or negative) indicates the direction of the relationship. A positive loading suggests that an increase in the variable is associated with an increase in the factor, while a negative loading suggests an inverse relationship.  
+
+**Interpretation:** Interpret factor loadings by considering which variables have high (absolute) loadings on each factor. Variables with high loadings on a particular factor are strongly associated with that factor and contribute significantly to it.  
+
+**Cross-Loadings:** Some variables may have moderate loadings on multiple factors. These are called cross-loadings and suggest that the variable is related to more than one factor. Cross-loadings can provide insights into the complexity of the data.  
+
+**Loadings Close to 0:** Loadings close to 0 indicate a weak or negligible relationship between the variable and the factor. Variables with loadings near 0 do not contribute significantly to the factor and can often be removed from the analysis to simplify the factor structure.  
+
+**Naming Factors:** Assign meaningful labels to factors based on the variables with high loadings. The variables that load strongly on a factor can help identify the underlying theme or concept that the factor represents.  
+
+Lets find out the loadings in our example
+
+```{r fact_loadings, eval=TRUE, message=FALSE}
+fit$loadings
+```  
+In the output, you have the factor loadings for a factor analysis with two factors, referred to as "Factor1" and "Factor2." Factor1 and Factor 2 together explains 78.9% variance, as you can see from `Cumulative Var` in the result. `Proportion Var` in the result gives the proportion of variance explained by each factor. These loadings represent the relationships between the observed variables and the latent factors. Here's an interpretation of the loadings:  
+
+For "Factor1":
+- The variables "Maths," "Physics," "Statistics," and "Geometry" have high positive loadings, with values around 0.88 to 0.91. This indicates that they are strongly associated with "Factor1."  
+
+- "Factor1" seems to represent a set of variables related to quantitative and analytical subjects, given the strong loadings on mathematics-related subjects such as "Maths," "Physics," and "Statistics." So Factor 1 can be named as analytical ability.  
+
+For "Factor2":  
+- The variables "English," "Hindi," "French," and "Poetry" have high positive loadings, around 0.85 to 0.91, on "Factor2." These loadings suggest a strong association with "Factor2."  
+
+- "Factor2" appears to capture a different set of variables, likely related to language and literature, given the strong loadings on languages and "Poetry."  
+
+The interpretation suggests that the factors are distinct and represent different aspects of the data. "Factor1" is associated with quantitative subjects, while "Factor2" is associated with language and literature-related variables.  Factor 2 can be named as “Linguistic aptitude”.  
+
+You can see that some loadings are blank. In fact, loadings smaller than 0.1 in absolute value are omitted (so that a sparse structure is displayed more clearly).  
+
+#### Communality  
+**Communality** represents the proportion of the variance in an observed variable (indicator) that is accounted for by the underlying factors. In other words, communality measures how much of the variability in a variable is explained by the common factors extracted during the factor analysis.  
+
+**Interpretation:** A higher communality value for a variable indicates that a larger proportion of its variance can be attributed to the underlying factors. Variables with high communality values are well-represented by the factors and have strong associations with the underlying dimensions.  
+Communality can also be calculated as the sum of the squared factor loadings for a variable. In other words, it quantifies how much of the variability in the variable can be attributed to the factors, as evidenced by the squares of the factor loadings.  
+we use the Rcode below to find communality.  
+
+```{r fact_communality, eval=TRUE, message=FALSE}
+apply(fit$loadings^2,1,sum)
+```  
+from the results of our example, each communality value quantifies the proportion of variance in its respective variable that is explained by the common factors extracted through factor analysis. In this context, these high communality values, ranging from approximately 0.720 to 0.834, indicate that a substantial portion of the variability in these variables can be attributed to the underlying factors. This suggests that the factors are effective in capturing the essence of these variables, making them suitable for representing the latent dimensions uncovered in the factor analysis. High communality values reflect the strong association between the variables and the common factors, contributing to a more straightforward and interpretable factor structure.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

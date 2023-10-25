@@ -1,7 +1,7 @@
 # Principal Component Analysis (PCA)  
 
 ## What is PCA?
-Principal component analysis (PCA) is a technique that transforms high-dimensions data into lower-dimensions while retaining as much information as possible. PCA was invented in 1909 by Karl Pearson, as an analogue of the principal axis theorem in mechanics; it was later independently developed and named by Harold Hotelling in the 1930s.  
+Principal component analysis (PCA) is a technique that transforms high-dimensions data into lower-dimensions while retaining as much information as possible. PCA was invented in 1909 by Karl Pearson, as an analogue of the principal axis theorem in mechanics; it was later independently developed and named by Harold Hotelling in the 1930s.[@johnson2014]  
 
 Drawing meaningful inferences from high-dimensional data can be challenging, as humans naturally excel at visualizing and comprehending information in two dimensions. PCA, a powerful technique, aids in transforming multi-dimensional data into a more manageable form by reducing its dimensionality. This simplification facilitates easier visualization and analysis, ultimately enhancing our ability to extract valuable insights from complex datasets.  
 
@@ -74,6 +74,7 @@ datatable(
     buttons = list(
       list(
         extend = 'csv',
+        text = 'Download CSV ⬇',
         filename = 'data'
       )
     ),
@@ -84,12 +85,11 @@ datatable(
 
 ```
 ## Analysis
-First prepare your data set and save it as a csv file. Then import the data set in to R. See [chapter](\@ref(import)) to see how to save a csv file and import it to R. You can directly use the code below to import dataset from your computer to R.
+First prepare your data set and save it as a csv file. Then import the data set in to R. See chapter \@ref(import) to know how to save a csv file and import it to R. You can directly use the code below to import dataset from your computer to R.
 ```{r import_data, eval=FALSE}
 data <- read.csv("path to your file", row.names=1)
 ```
-When you copy a path from your system to data please  change the format as "C:/Users/HP/Documents/" in your code.  
-This is how the dataset looks like after importing to R.  
+Please note the path copied from your system will be in the format `C:\Users\HP\Documents\`, so you should change it to this format `C:/Users/HP/Documents/` in R.   
 
 ```{r data_imp, echo=FALSE,fig.cap='Data set after importing to R in Rstudio',out.width="70%", fig.align='center'}
 knitr::include_graphics(rep("images/PCA_img/dataset.png"))
@@ -369,7 +369,27 @@ Using the code below you can save the plots in required resolution. For changing
 ```  
 
 ## PCA in GRAPES  
-The same csv file can be uploaded in [GRAPES](https://www.kaugrapes.com/data-analysis/pca) for performing PCA. Read the instructions carefully before performing PCA in GRAPES.
+Good news! 
+we have added an app so that you can simply upload your csv here and get all these results running in our cloud server!.  
 
 
+```{=html}
+<button id="toggle-button">Open</button>
+<div id="embedded-url" style="display: none;">
+  `r knitr::include_url("https://coaagstat.shinyapps.io/pca_analysis")`
+</div>
+<script>
+var isOpen = false;
+document.getElementById("toggle-button").addEventListener("click", function() {
+  if (isOpen) {
+    document.getElementById("embedded-url").style.display = "none";
+    document.getElementById("toggle-button").textContent = "Open";
+  } else {
+    document.getElementById("embedded-url").style.display = "block";
+    document.getElementById("toggle-button").textContent = "Close";
+  }
+  isOpen = !isOpen;
+});
+</script>
 
+``` 

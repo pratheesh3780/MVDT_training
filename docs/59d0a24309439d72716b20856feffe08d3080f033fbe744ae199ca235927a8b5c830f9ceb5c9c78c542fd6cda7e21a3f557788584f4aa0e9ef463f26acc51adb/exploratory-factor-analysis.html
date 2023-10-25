@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 4 Exploratory Factor Analysis | MULTIVARIATE DATA ANALYSIS TOOLS FOR AGRICULTURAL RESEARCH</title>
+<meta name="author" content="Dr. PRATHEESH P GOPINATH">
+<meta name="description" content="Exploratory Factor Analysis (EFA) is a statistical technique used in the field of multivariate data analysis to identify underlying patterns or latent variables (hidden variables) that explain the...">
+<meta name="generator" content="bookdown 0.36 with bs4_book()">
+<meta property="og:title" content="Chapter 4 Exploratory Factor Analysis | MULTIVARIATE DATA ANALYSIS TOOLS FOR AGRICULTURAL RESEARCH">
+<meta property="og:type" content="book">
+<meta property="og:image" content="/images/cover.PNG">
+<meta property="og:description" content="Exploratory Factor Analysis (EFA) is a statistical technique used in the field of multivariate data analysis to identify underlying patterns or latent variables (hidden variables) that explain the...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 4 Exploratory Factor Analysis | MULTIVARIATE DATA ANALYSIS TOOLS FOR AGRICULTURAL RESEARCH">
+<meta name="twitter:description" content="Exploratory Factor Analysis (EFA) is a statistical technique used in the field of multivariate data analysis to identify underlying patterns or latent variables (hidden variables) that explain the...">
+<meta name="twitter:image" content="/images/cover.PNG">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.1/transition.js"></script><script src="libs/bs3compat-0.5.1/tabs.js"></script><script src="libs/bs3compat-0.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="libs/datatables-binding-0.29/datatables.js"></script><link href="libs/dt-core-1.13.4/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="libs/dt-core-1.13.4/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="libs/dt-core-1.13.4/js/jquery.dataTables.min.js"></script><link href="libs/dt-ext-buttons-1.13.4/css/buttons.dataTables.min.css" rel="stylesheet">
+<script src="libs/dt-ext-buttons-1.13.4/js/dataTables.buttons.min.js"></script><script src="libs/dt-ext-buttons-1.13.4/js/buttons.html5.min.js"></script><script src="libs/dt-ext-buttons-1.13.4/js/buttons.colVis.min.js"></script><script src="libs/dt-ext-buttons-1.13.4/js/buttons.print.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">MULTIVARIATE DATA ANALYSIS TOOLS FOR AGRICULTURAL RESEARCH</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Welcome</a></li>
+<li><a class="" href="preface.html">Preface</a></li>
+<li><a class="" href="r-and-r-studio.html"><span class="header-section-number">1</span> R and R studio</a></li>
+<li><a class="" href="import.html"><span class="header-section-number">2</span> Importing data files in R</a></li>
+<li><a class="" href="principal-component-analysis-pca.html"><span class="header-section-number">3</span> Principal Component Analysis (PCA)</a></li>
+<li><a class="active" href="exploratory-factor-analysis.html"><span class="header-section-number">4</span> Exploratory Factor Analysis</a></li>
+<li><a class="" href="references.html"><span class="header-section-number">5</span> References</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="exploratory-factor-analysis" class="section level1" number="4">
+<h1>
+<span class="header-section-number">4</span> Exploratory Factor Analysis<a class="anchor" aria-label="anchor" href="#exploratory-factor-analysis"><i class="fas fa-link"></i></a>
+</h1>
+<p>Exploratory Factor Analysis (EFA) is a statistical technique used in the field of multivariate data analysis to identify underlying patterns or latent variables (hidden variables) that explain the correlations or covariations among a set of observed variables. It is a dimensionality reduction method commonly employed in fields like psychology, sociology, and other social sciences, as well as in agricultural extension research and other areas where data reduction and simplification are needed <span class="citation">(<a href="references.html#ref-johnson2014">Johnson and Wichern 2014</a>)</span>.</p>
+<p><strong>Latent variable</strong>: It is an unobservable or hidden variable that cannot be directly measured but is inferred or estimated based on its impact on observed or measurable variables. Latent variables are often used in statistical modeling to explain patterns, relationships, or variability in data. They represent underlying constructs, concepts, or factors that influence the observed data but are not directly observed or measured.</p>
+<p>The primary goal of EFA is to uncover the latent factors or constructs that are responsible for the observed patterns in the data. These latent factors are unobservable, but they help explain the common variance among the observed variables. EFA does not assume any pre-defined relationships between variables and is used for data exploration and hypothesis generation.</p>
+<p>Imagine you have data for 50 students, and you’ve recorded their marks in subjects: English, Hindi, French, Physics, Maths, and Statistics. You want to understand if there are underlying factors that influence these subject scores. Factor analysis can help us understand the underlying factors that may contribute to students’ academic performance. In this case, it may identifies the factors related to language and humanities skills (e.g., English, Hindi, French) and analytical skills (e.g., Physics, Maths, Statistics).</p>
+<p>There are two types of factor analysis, called exploratory and confirmatory factor analysis (EFA and CFA). Both EFA and CFA aim to reproduce the observed relationships among a group of features with a smaller set of latent variables. EFA is used in a descriptive, data-driven manner to uncover which measured variables are reasonable indicators of the various latent dimensions. In contrast, CFA is conducted in an a-priori, hypothesis-testing manner that requires strong empirical or theoretical foundations. We will discuss EFA here, which is used to group features into a specified number of latent factors.</p>
+<div id="practical-example-1" class="section level2" number="4.1">
+<h2>
+<span class="header-section-number">4.1</span> PRACTICAL EXAMPLE<a class="anchor" aria-label="anchor" href="#practical-example-1"><i class="fas fa-link"></i></a>
+</h2>
+<p>In this practical example section, we will work with a dataset containing marks for 100 students in various subjects, including English, Hindi, Maths, French, Physics, Poetry, Statistics, and Geometry.</p>
+<p>You can View and download the datasets here</p>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-2251c2ebb6c061759eb1" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-2251c2ebb6c061759eb1">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["student1","student2","student3","student4","student5","student6","student7","student8","student9","student10","student11","student12","student13","student14","student15","student16","student17","student18","student19","student20","student21","student22","student23","student24","student25","student26","student27","student28","student29","student30","student31","student32","student33","student34","student35","student36","student37","student38","student39","student40","student41","student42","student43","student44","student45","student46","student47","student48","student49","student50","student51","student52","student53","student54","student55","student56","student57","student58","student59","student60","student61","student62","student63","student64","student65","student66","student67","student68","student69","student70","student71","student72","student73","student74","student75","student76","student77","student78","student79","student80","student81","student82","student83","student84","student85","student86","student87","student88","student89","student90","student91","student92","student93","student94","student95","student96","student97","student98","student99","student100"],[5,5,4,4,4,5,3,6,5,4,6,3,5,5,4,3,4,6,5,5,4,5,4,5,5,5,4,5,6,4,6,6,6,5,5,5,3,4,6,5,4,5,5,3,6,4,4,4,4,4,5,6,4,6,2,4,7,5,3,5,4,4,4,4,5,4,6,4,6,4,5,5,4,5,4,2,5,4,5,6,4,6,4,4,6,4,5,6,5,5,5,5,4,3,5,4,5,4,5,5],[4,6,3,4,5,5,3,6,5,4,5,4,5,5,3,4,4,6,4,4,4,5,4,3,5,5,5,5,6,4,5,6,6,5,4,4,4,4,6,5,3,4,5,3,5,5,5,4,5,3,5,5,4,6,2,5,8,5,4,4,5,4,4,5,5,4,5,4,5,3,5,5,4,5,4,3,5,4,5,6,4,6,4,3,6,3,3,6,5,5,5,6,4,3,5,5,6,5,5,4],[3,4,3,4,2,5,4,5,4,4,4,4,4,3,4,4,4,4,3,4,6,4,5,2,4,3,2,3,3,1,3,3,4,5,3,4,4,3,2,3,4,4,4,4,4,4,3,4,5,3,3,5,3,4,4,4,4,3,5,6,4,3,4,3,5,4,3,4,4,5,5,3,3,3,3,2,5,3,4,4,4,3,4,4,3,3,3,2,3,4,3,3,3,3,6,3,3,3,3,4],[5,5,4,3,4,5,3,5,5,4,5,4,4,5,4,4,3,5,4,4,4,4,3,4,5,4,4,4,5,4,6,6,6,5,4,4,3,3,5,5,3,4,4,3,5,3,3,3,5,2,4,5,3,5,2,4,7,5,3,4,4,4,3,4,3,4,5,3,5,4,4,4,3,4,4,3,5,4,4,5,3,5,4,3,5,3,4,5,4,5,4,4,3,2,4,4,5,4,5,4],[4,4,4,5,3,6,5,6,5,5,5,5,5,4,5,4,5,5,3,5,6,4,6,3,5,4,3,4,4,2,4,3,5,5,3,4,5,4,3,3,5,5,5,5,6,5,4,4,6,5,4,5,4,5,5,5,6,4,6,7,5,4,4,4,6,5,4,5,5,6,6,3,4,4,4,4,5,4,4,5,4,4,6,4,3,4,5,3,4,5,4,4,3,4,6,5,4,5,5,6],[4,5,3,4,4,5,3,5,4,4,5,3,4,5,4,3,4,5,4,4,4,4,3,4,5,5,5,5,6,3,5,6,6,4,4,4,3,4,5,5,3,4,4,3,5,4,4,3,4,3,5,5,3,6,2,4,7,5,4,4,4,4,4,5,4,4,5,4,5,3,4,5,4,5,3,3,4,4,4,5,4,5,3,3,5,3,3,5,5,5,5,4,4,3,4,4,5,4,4,5],[3,4,3,4,2,5,4,5,5,5,4,4,4,3,4,3,4,4,3,4,5,3,5,3,4,3,2,3,3,2,3,3,4,5,3,4,4,3,2,3,3,5,4,4,5,4,4,4,5,4,3,5,3,4,4,4,5,3,5,5,4,4,4,4,5,4,4,4,3,5,5,2,3,2,3,4,5,3,4,4,3,3,4,4,3,4,4,3,4,5,4,3,3,3,6,3,3,4,4,5],[3,4,4,5,3,6,5,6,5,5,5,4,5,4,4,4,5,5,3,5,6,4,5,3,4,4,3,4,4,2,4,3,5,5,4,4,4,3,3,3,4,5,5,5,5,5,3,5,5,4,3,5,3,5,5,4,5,3,5,6,5,4,4,5,6,5,4,5,4,5,6,3,4,3,4,3,5,5,5,5,4,4,3,5,3,4,4,3,4,5,4,3,3,4,6,3,3,5,4,5]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>English<\/th>\n      <th>Hindi<\/th>\n      <th>Maths<\/th>\n      <th>French<\/th>\n      <th>Physics<\/th>\n      <th>Poetry<\/th>\n      <th>Statistics<\/th>\n      <th>Geometry<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":[{"extend":"csv","text":"Download CSV ⬇","filename":"data"}],"searching":false,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="analysis-1" class="section level2" number="4.2">
+<h2>
+<span class="header-section-number">4.2</span> Analysis<a class="anchor" aria-label="anchor" href="#analysis-1"><i class="fas fa-link"></i></a>
+</h2>
+<p>First prepare your data set and save it as a csv file. Then import the data set in to R. See chapter <a href="import.html#import">2</a>to know how to save a csv file and import it to R. You can directly use the code below to import dataset from your computer to R.</p>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"path to your file"</span>, row.names<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="co">#your file will be saved in the name data</span></span></code></pre></div>
+<p>Please note the path copied from your system will be in the format <code>C:\Users\HP\Documents\</code>, change it to this format <code>C:/Users/HP/Documents/</code> in R.</p>
+<p>We will be using <code>pysch</code> package do factor analysis.</p>
+<p><strong>Install the required packages</strong>:</p>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"psych"</span><span class="op">)</span>  </span></code></pre></div>
+<div id="determining-the-suitability-of-your-dataset-for-efa" class="section level3" number="4.2.1">
+<h3>
+<span class="header-section-number">4.2.1</span> Determining the suitability of your dataset for EFA<a class="anchor" aria-label="anchor" href="#determining-the-suitability-of-your-dataset-for-efa"><i class="fas fa-link"></i></a>
+</h3>
+<p>We perform Kaiser–Meyer–Olkin (KMO) test <span class="citation">(<a href="references.html#ref-kaiser1970">Kaiser 1970</a>)</span> &amp; <span class="citation">(<a href="references.html#ref-kaiser1974">Kaiser and Rice 1974</a>)</span> to test the suitability of the dataset for factor analysis.<br>
+The <strong>Kaiser–Meyer–Olkin (KMO)</strong> test is a statistical measure to determine how suited data is for factor analysis. The test measures sampling adequacy for each variable in the model and the complete model. The Measure of Sampling Adequacy (MSA) is a measure of the proportion of variance among variables that might be common variance. The higher the proportion, the higher the KMO-value, the more suited the data is to factor analysis.</p>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th>KMO Value Range</th>
+<th>Interpretation</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>&gt; 0.90</td>
+<td>Marvelous</td>
+</tr>
+<tr class="even">
+<td>0.80 - 0.89</td>
+<td>Meritorious</td>
+</tr>
+<tr class="odd">
+<td>0.70 - 0.79</td>
+<td>Middling</td>
+</tr>
+<tr class="even">
+<td>0.60 - 0.69</td>
+<td>Mediocre</td>
+</tr>
+<tr class="odd">
+<td>0.50 - 0.59</td>
+<td>Miserable</td>
+</tr>
+<tr class="even">
+<td>&lt; 0.50</td>
+<td>Unacceptable</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>KMO values between 0.8 and 1 indicate adequate sampling and data suitable for factor analysis</li>
+<li>KMO values below 0.6 suggest inadequate sampling and may require remedial action.</li>
+<li>A KMO value close to zero indicates the presence of large partial correlations relative to the sum of correlations, which can pose a challenge for factor analysis.<br>
+We will perform KMO analysis using library <code>psych</code> in R. Use the code below.</li>
+</ul>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://personality-project.org/r/psych/">psych</a></span><span class="op">)</span></span>
+<span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"csv/score.csv"</span>, row.names<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/psych/man/KMO.html">KMO</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## Kaiser-Meyer-Olkin factor adequacy
+## Call: KMO(r = data)
+## Overall MSA =  0.84
+## MSA for each item = 
+##    English      Hindi      Maths     French    Physics     Poetry Statistics 
+##       0.84       0.84       0.84       0.84       0.85       0.81       0.86 
+##   Geometry 
+##       0.85</code></pre>
+<p>In our example you can see that the Kaiser-Meyer-Olkin (KMO) measure of sampling adequacy (MSA), calculated for the dataset, indicates an overall adequacy of 0.84, suggesting that the data is suitable for factor analysis. Additionally, the individual item-specific KMO values for each subject, including English, Hindi, Maths, French, Physics, Poetry, Statistics, and Geometry, range from 0.81 to 0.86, supporting the adequacy of the data for factor analysis.<br>
+In case any item-specific MSA is &lt; 0.60, it is better to avoid that item in the analysis.</p>
+</div>
+<div id="identifying-the-number-of-factors" class="section level3" number="4.2.2">
+<h3>
+<span class="header-section-number">4.2.2</span> Identifying the number of factors<a class="anchor" aria-label="anchor" href="#identifying-the-number-of-factors"><i class="fas fa-link"></i></a>
+</h3>
+<p>We will discuss two methods to identify the number of factors. Any of these methods can be employed.</p>
+<div id="scree-plot-1" class="section level4" number="4.2.2.1">
+<h4>
+<span class="header-section-number">4.2.2.1</span> Scree plot<a class="anchor" aria-label="anchor" href="#scree-plot-1"><i class="fas fa-link"></i></a>
+</h4>
+<p>A Scree plot is a graphical representation used in factor analysis to identify the optimal number of factors to retain from a dataset. It displays the eigenvalues of the correlation matrix, which represent the amount of variance explained by each factor. We will employ the Scree plot to determine the number of factors that should be retained from the given dataset. By examining the pattern of eigenvalues in the Scree plot, we can identify the point at which eigenvalues significantly drop. This drop-off serves as an indicator of the most meaningful and influential factors, ensuring that we capture the essential dimensions within the data.</p>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">ev</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/eigen.html">eigen</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">score</span><span class="op">)</span><span class="op">)</span> <span class="co"># get eigenvalues</span></span>
+<span><span class="va">ev</span><span class="op">$</span><span class="va">values</span></span></code></pre></div>
+<pre><code>## [1] 3.4434243 3.2878668 0.3070565 0.2643156 0.2072886 0.1817183 0.1653205
+## [8] 0.1430094</code></pre>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/psych/man/VSS.scree.html">scree</a></span><span class="op">(</span><span class="va">score</span>, pc<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure">
+<img src="lecture_note_files/figure-html/screeplot-1.png" width="672">
+By analyzing the Scree plot, it becomes evident that two factors exhibit eigenvalues above the value of one. Hence, the number of factors to be retained in our example can be confidently identified as two. This conclusion is drawn from the visual assessment of the eigenvalue patterns in the Scree plot.</div>
+</div>
+<div id="parallel-analysis" class="section level4" number="4.2.2.2">
+<h4>
+<span class="header-section-number">4.2.2.2</span> Parallel analysis<a class="anchor" aria-label="anchor" href="#parallel-analysis"><i class="fas fa-link"></i></a>
+</h4>
+<p>Parallel analysis is a robust statistical technique employed in factor analysis to address the crucial question of how many factors should be retained from a given dataset. This method is particularly valuable when dealing with complex data structures. Rather than relying solely on conventional rules or subjective judgment, parallel analysis offers a data-driven approach. It involves generating random datasets with similar properties to the original data and comparing their factor structures. By scrutinizing the eigenvalues derived from the random datasets alongside those from the actual data, parallel analysis provides a more objective and reliable means of determining the optimal number of factors to retain. This approach enhances the accuracy of factor analysis, ensuring that the identified factors capture the most meaningful and interpretable dimensions within the dataset.</p>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://personality-project.org/r/psych/">psych</a></span><span class="op">)</span></span>
+<span><span class="va">parallel</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/psych/man/fa.parallel.html">fa.parallel</a></span><span class="op">(</span><span class="va">score</span>, fa<span class="op">=</span><span class="st">"fa"</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="lecture_note_files/figure-html/parallel_anal-1.png" width="672"></div>
+<pre><code>## Parallel analysis suggests that the number of factors =  2  and the number of components =  NA</code></pre>
+<p>Identify the point at which the eigenvalues from the actual data surpass the corresponding eigenvalues from the random data by a significant margin. This indicates the number of factors that should be retained. Here in this example you can see the number of identified factors is two.</p>
+</div>
+</div>
+<div id="factor-analysis" class="section level3" number="4.2.3">
+<h3>
+<span class="header-section-number">4.2.3</span> Factor Analysis<a class="anchor" aria-label="anchor" href="#factor-analysis"><i class="fas fa-link"></i></a>
+</h3>
+<p>We will be using the built-in function in R <code><a href="https://rdrr.io/r/stats/factanal.html">factanal()</a></code> to perform factor analysis.</p>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">Nfacs</span> <span class="op">&lt;-</span> <span class="fl">2</span>  <span class="co"># Number of factors as identified in parallel analysis/Scree plot.</span></span>
+<span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/factanal.html">factanal</a></span><span class="op">(</span><span class="va">score</span>, <span class="va">Nfacs</span>,rotation<span class="op">=</span><span class="st">"varimax"</span>,scores<span class="op">=</span><span class="st">"regression"</span><span class="op">)</span></span></code></pre></div>
+<div id="factor-rotation" class="section level4" number="4.2.3.1">
+<h4>
+<span class="header-section-number">4.2.3.1</span> Factor rotation<a class="anchor" aria-label="anchor" href="#factor-rotation"><i class="fas fa-link"></i></a>
+</h4>
+<p>Rotation in the context of factor analysis is a mathematical technique used to simplify and interpret the results of the analysis. Rotation methods are applied to the factor loadings, which are the coefficients that indicate how strongly each observed variable is associated with each latent factor. These loadings can be challenging to interpret when factor analysis yields complex, overlapping, or unclear results.
+Rotation serves the following primary purposes:</p>
+<p>• Simplification<br>
+• Enhanced Interpretability</p>
+<p>Two type of rotation is there, Orthogonal and Oblique. In orthogonal rotation, factors are forced to be uncorrelated with each other, simplifying the factor structure. In oblique rotation, factors can be correlated, allowing for more realistic interpretations when factors are expected to be related.</p>
+<p>R offers two rotation methods, which include Varimax (orthogonal), Promax (oblique. Researchers choose the appropriate rotation method based on their hypotheses about the data and their goals for simplifying and interpreting the results of factor analysis.</p>
+<p>In R the <code>rotation</code> option in <code><a href="https://rdrr.io/r/stats/factanal.html">factanal()</a></code> function may be changed with “promax” or “varimax”. In our example we used Varimax rotation, both Promax and Varimax rotation in our case are giving the same results in a factor analysis, it suggests that the underlying factor structure in our data may be sufficiently simple and well-defined. When the factor solution is clear and distinct, it’s possible for different rotation methods to converge on the same solution.</p>
+</div>
+<div id="factor-loadings" class="section level4" number="4.2.3.2">
+<h4>
+<span class="header-section-number">4.2.3.2</span> Factor loadings<a class="anchor" aria-label="anchor" href="#factor-loadings"><i class="fas fa-link"></i></a>
+</h4>
+<p>Factor loadings are coefficients that represent the relationships between observed variables (indicators) and latent factors in a factor analysis. These coefficients indicate the strength and direction of the associations between each variable and each factor. Factor loadings play a crucial role in understanding the underlying structure of data and extracting meaningful information from factor analysis.</p>
+<p>Here’s how to interpret factor loadings:</p>
+<p><strong>Magnitude of Loadings:</strong> The magnitude of a loading represents the strength of the relationship between a variable and a factor. Larger loading values indicate a stronger association. For example, a loading of 0.7 is stronger than a loading of 0.3.</p>
+<p><strong>Sign of Loadings:</strong> The sign of the loading (positive or negative) indicates the direction of the relationship. A positive loading suggests that an increase in the variable is associated with an increase in the factor, while a negative loading suggests an inverse relationship.</p>
+<p><strong>Interpretation:</strong> Interpret factor loadings by considering which variables have high (absolute) loadings on each factor. Variables with high loadings on a particular factor are strongly associated with that factor and contribute significantly to it.</p>
+<p><strong>Cross-Loadings:</strong> Some variables may have moderate loadings on multiple factors. These are called cross-loadings and suggest that the variable is related to more than one factor. Cross-loadings can provide insights into the complexity of the data.</p>
+<p><strong>Loadings Close to 0:</strong> Loadings close to 0 indicate a weak or negligible relationship between the variable and the factor. Variables with loadings near 0 do not contribute significantly to the factor and can often be removed from the analysis to simplify the factor structure.</p>
+<p><strong>Naming Factors:</strong> Assign meaningful labels to factors based on the variables with high loadings. The variables that load strongly on a factor can help identify the underlying theme or concept that the factor represents.</p>
+<p>Lets find out the loadings in our example</p>
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fit</span><span class="op">$</span><span class="va">loadings</span></span></code></pre></div>
+<pre><code>## 
+## Loadings:
+##            Factor1 Factor2
+## English             0.877 
+## Hindi               0.879 
+## Maths       0.909         
+## French              0.849 
+## Physics     0.901         
+## Poetry              0.910 
+## Statistics  0.894         
+## Geometry    0.879         
+## 
+##                Factor1 Factor2
+## SS loadings      3.217   3.092
+## Proportion Var   0.402   0.387
+## Cumulative Var   0.402   0.789</code></pre>
+<p>In the output, you have the factor loadings for a factor analysis with two factors, referred to as “Factor1” and “Factor2.” Factor1 and Factor 2 together explains 78.9% variance, as you can see from <code>Cumulative Var</code> in the result. <code>Proportion Var</code> in the result gives the proportion of variance explained by each factor. These loadings represent the relationships between the observed variables and the latent factors. Here’s an interpretation of the loadings:</p>
+<p>For “Factor1”:
+- The variables “Maths,” “Physics,” “Statistics,” and “Geometry” have high positive loadings, with values around 0.88 to 0.91. This indicates that they are strongly associated with “Factor1.”</p>
+<ul>
+<li>“Factor1” seems to represent a set of variables related to quantitative and analytical subjects, given the strong loadings on mathematics-related subjects such as “Maths,” “Physics,” and “Statistics.” So Factor 1 can be named as analytical ability.</li>
+</ul>
+<p>For “Factor2”:<br>
+- The variables “English,” “Hindi,” “French,” and “Poetry” have high positive loadings, around 0.85 to 0.91, on “Factor2.” These loadings suggest a strong association with “Factor2.”</p>
+<ul>
+<li>“Factor2” appears to capture a different set of variables, likely related to language and literature, given the strong loadings on languages and “Poetry.”</li>
+</ul>
+<p>The interpretation suggests that the factors are distinct and represent different aspects of the data. “Factor1” is associated with quantitative subjects, while “Factor2” is associated with language and literature-related variables. Factor 2 can be named as “Linguistic aptitude”.</p>
+<p>You can see that some loadings are blank. In fact, loadings smaller than 0.1 in absolute value are omitted (so that a sparse structure is displayed more clearly).</p>
+</div>
+<div id="communality" class="section level4" number="4.2.3.3">
+<h4>
+<span class="header-section-number">4.2.3.3</span> Communality<a class="anchor" aria-label="anchor" href="#communality"><i class="fas fa-link"></i></a>
+</h4>
+<p><strong>Communality</strong> represents the proportion of the variance in an observed variable (indicator) that is accounted for by the underlying factors. In other words, communality measures how much of the variability in a variable is explained by the common factors extracted during the factor analysis.</p>
+<p><strong>Interpretation:</strong> A higher communality value for a variable indicates that a larger proportion of its variance can be attributed to the underlying factors. Variables with high communality values are well-represented by the factors and have strong associations with the underlying dimensions.<br>
+Communality can also be calculated as the sum of the squared factor loadings for a variable. In other words, it quantifies how much of the variability in the variable can be attributed to the factors, as evidenced by the squares of the factor loadings.<br>
+we use the Rcode below to find communality.</p>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">fit</span><span class="op">$</span><span class="va">loadings</span><span class="op">^</span><span class="fl">2</span>,<span class="fl">1</span>,<span class="va">sum</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##    English      Hindi      Maths     French    Physics     Poetry Statistics 
+##  0.7695653  0.7729351  0.8263179  0.7207453  0.8125261  0.8340212  0.7992973 
+##   Geometry 
+##  0.7739642</code></pre>
+<p>from the results of our example, each communality value quantifies the proportion of variance in its respective variable that is explained by the common factors extracted through factor analysis. In this context, these high communality values, ranging from approximately 0.720 to 0.834, indicate that a substantial portion of the variability in these variables can be attributed to the underlying factors. This suggests that the factors are effective in capturing the essence of these variables, making them suitable for representing the latent dimensions uncovered in the factor analysis. High communality values reflect the strong association between the variables and the common factors, contributing to a more straightforward and interpretable factor structure.</p>
+
+</div>
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="principal-component-analysis-pca.html"><span class="header-section-number">3</span> Principal Component Analysis (PCA)</a></div>
+<div class="next"><a href="references.html"><span class="header-section-number">5</span> References</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#exploratory-factor-analysis"><span class="header-section-number">4</span> Exploratory Factor Analysis</a></li>
+<li><a class="nav-link" href="#practical-example-1"><span class="header-section-number">4.1</span> PRACTICAL EXAMPLE</a></li>
+<li>
+<a class="nav-link" href="#analysis-1"><span class="header-section-number">4.2</span> Analysis</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#determining-the-suitability-of-your-dataset-for-efa"><span class="header-section-number">4.2.1</span> Determining the suitability of your dataset for EFA</a></li>
+<li><a class="nav-link" href="#identifying-the-number-of-factors"><span class="header-section-number">4.2.2</span> Identifying the number of factors</a></li>
+<li><a class="nav-link" href="#factor-analysis"><span class="header-section-number">4.2.3</span> Factor Analysis</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>MULTIVARIATE DATA ANALYSIS TOOLS FOR AGRICULTURAL RESEARCH</strong>" was written by Dr. PRATHEESH P GOPINATH. It was last built on 2023-10-20.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>

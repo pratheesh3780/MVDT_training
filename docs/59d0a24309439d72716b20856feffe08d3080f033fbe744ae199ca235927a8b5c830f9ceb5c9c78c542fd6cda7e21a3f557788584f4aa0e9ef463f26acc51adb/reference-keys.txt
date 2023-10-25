@@ -47,4 +47,15 @@ biplot-indviduals
 biplot-variables
 biplot-indviduals-and-variables
 pca-in-grapes
+exploratory-factor-analysis
+practical-example-1
+analysis-1
+determining-the-suitability-of-your-dataset-for-efa
+identifying-the-number-of-factors
+scree-plot-1
+parallel-analysis
+factor-analysis
+factor-rotation
+factor-loadings
+communality
 references

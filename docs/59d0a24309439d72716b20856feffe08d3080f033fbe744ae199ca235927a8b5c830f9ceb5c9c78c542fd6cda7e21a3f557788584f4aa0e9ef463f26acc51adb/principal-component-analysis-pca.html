@@ -28,6 +28,28 @@
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -54,7 +76,8 @@
 <li><a class="" href="r-and-r-studio.html"><span class="header-section-number">1</span> R and R studio</a></li>
 <li><a class="" href="import.html"><span class="header-section-number">2</span> Importing data files in R</a></li>
 <li><a class="active" href="principal-component-analysis-pca.html"><span class="header-section-number">3</span> Principal Component Analysis (PCA)</a></li>
-<li><a class="" href="references.html"><span class="header-section-number">4</span> References</a></li>
+<li><a class="" href="exploratory-factor-analysis.html"><span class="header-section-number">4</span> Exploratory Factor Analysis</a></li>
+<li><a class="" href="references.html"><span class="header-section-number">5</span> References</a></li>
 </ul>
 
         <div class="book-extra">
@@ -70,7 +93,7 @@
 <h2>
 <span class="header-section-number">3.1</span> What is PCA?<a class="anchor" aria-label="anchor" href="#what-is-pca"><i class="fas fa-link"></i></a>
 </h2>
-<p>Principal component analysis (PCA) is a technique that transforms high-dimensions data into lower-dimensions while retaining as much information as possible. PCA was invented in 1909 by Karl Pearson, as an analogue of the principal axis theorem in mechanics; it was later independently developed and named by Harold Hotelling in the 1930s.</p>
+<p>Principal component analysis (PCA) is a technique that transforms high-dimensions data into lower-dimensions while retaining as much information as possible. PCA was invented in 1909 by Karl Pearson, as an analogue of the principal axis theorem in mechanics; it was later independently developed and named by Harold Hotelling in the 1930s.<span class="citation">(<a href="references.html#ref-johnson2014">Johnson and Wichern 2014</a>)</span></p>
 <p>Drawing meaningful inferences from high-dimensional data can be challenging, as humans naturally excel at visualizing and comprehending information in two dimensions. PCA, a powerful technique, aids in transforming multi-dimensional data into a more manageable form by reducing its dimensionality. This simplification facilitates easier visualization and analysis, ultimately enhancing our ability to extract valuable insights from complex datasets.</p>
 <p>PCA is a valuable tool in social science and agricultural research. It works by transforming multi-dimensional data into a lower-dimensional space while retaining as much variance in the data as possible. In essence, PCA identifies the most significant dimensions or “principal components” of the data, effectively reducing its complexity.
 The idea of PCA is simple — reduce the number of variables of a data set, while preserving as much information as possible.</p>
@@ -138,18 +161,17 @@ Figure 3.2: Concept of PCA
 </h2>
 <p>We will be using Usarrests dataset in R to explain PCA in the coming sessions.The “USarrests” dataset in R is a built-in dataset that offers insights into crime and arrests across the 50 states of the United States in 1973. It comprises four key variables: murder rate, assault rate, the percentage of the population living in urban areas, and the rape rate.</p>
 <p>You can View and download the datasets here</p>
-<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-8ee8a9f69dffbeaffc0b" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-8ee8a9f69dffbeaffc0b">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Carolina","North Dakota","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"],[13.2,10,8.1,8.800000000000001,9,7.9,3.3,5.9,15.4,17.4,5.3,2.6,10.4,7.2,2.2,6,9.699999999999999,15.4,2.1,11.3,4.4,12.1,2.7,16.1,9,6,4.3,12.2,2.1,7.4,11.4,11.1,13,0.8,7.3,6.6,4.9,6.3,3.4,14.4,3.8,13.2,12.7,3.2,2.2,8.5,4,5.7,2.6,6.8],[236,263,294,190,276,204,110,238,335,211,46,120,249,113,56,115,109,249,83,300,149,255,72,259,178,109,102,252,57,159,285,254,337,45,120,151,159,106,174,279,86,188,201,120,48,156,145,81,53,161],[58,48,80,50,91,78,77,72,80,60,83,54,83,65,57,66,52,66,51,67,85,74,66,44,70,53,62,81,56,89,70,86,45,44,75,68,67,72,87,48,45,59,80,80,32,63,73,39,66,60],[21.2,44.5,31,19.5,40.6,38.7,11.1,15.8,31.9,25.8,20.2,14.2,24,21,11.3,18,16.3,22.2,7.8,27.8,16.3,35.1,14.9,17.1,28.2,16.4,16.5,46,9.5,18.8,32.1,26.1,16.1,7.3,21.4,20,29.3,14.9,8.300000000000001,22.5,12.8,26.9,25.5,22.9,11.2,20.7,26.2,9.300000000000001,10.8,15.6]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Murder<\/th>\n      <th>Assault<\/th>\n      <th>UrbanPop<\/th>\n      <th>Rape<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":[{"extend":"csv","filename":"data"}],"searching":false,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-fe9b2535ff1cef571de4" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-fe9b2535ff1cef571de4">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Carolina","North Dakota","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"],[13.2,10,8.1,8.800000000000001,9,7.9,3.3,5.9,15.4,17.4,5.3,2.6,10.4,7.2,2.2,6,9.699999999999999,15.4,2.1,11.3,4.4,12.1,2.7,16.1,9,6,4.3,12.2,2.1,7.4,11.4,11.1,13,0.8,7.3,6.6,4.9,6.3,3.4,14.4,3.8,13.2,12.7,3.2,2.2,8.5,4,5.7,2.6,6.8],[236,263,294,190,276,204,110,238,335,211,46,120,249,113,56,115,109,249,83,300,149,255,72,259,178,109,102,252,57,159,285,254,337,45,120,151,159,106,174,279,86,188,201,120,48,156,145,81,53,161],[58,48,80,50,91,78,77,72,80,60,83,54,83,65,57,66,52,66,51,67,85,74,66,44,70,53,62,81,56,89,70,86,45,44,75,68,67,72,87,48,45,59,80,80,32,63,73,39,66,60],[21.2,44.5,31,19.5,40.6,38.7,11.1,15.8,31.9,25.8,20.2,14.2,24,21,11.3,18,16.3,22.2,7.8,27.8,16.3,35.1,14.9,17.1,28.2,16.4,16.5,46,9.5,18.8,32.1,26.1,16.1,7.3,21.4,20,29.3,14.9,8.300000000000001,22.5,12.8,26.9,25.5,22.9,11.2,20.7,26.2,9.300000000000001,10.8,15.6]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Murder<\/th>\n      <th>Assault<\/th>\n      <th>UrbanPop<\/th>\n      <th>Rape<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":[{"extend":"csv","text":"Download CSV ⬇","filename":"data"}],"searching":false,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="analysis" class="section level2" number="3.8">
 <h2>
 <span class="header-section-number">3.8</span> Analysis<a class="anchor" aria-label="anchor" href="#analysis"><i class="fas fa-link"></i></a>
 </h2>
-<p>First prepare your data set and save it as a csv file. Then import the data set in to R. See <a href="&lt;a%20href=" import.html>2</a>"&gt;chapter to see how to save a csv file and import it to R. You can directly use the code below to import dataset from your computer to R.</p>
+<p>First prepare your data set and save it as a csv file. Then import the data set in to R. See chapter <a href="import.html#import">2</a> to know how to save a csv file and import it to R. You can directly use the code below to import dataset from your computer to R.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"path to your file"</span>, row.names<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span></code></pre></div>
-<p>When you copy a path from your system to data please change the format as “C:/Users/HP/Documents/” in your code.<br>
-This is how the dataset looks like after importing to R.</p>
+<p>Please note the path copied from your system will be in the format <code>C:\Users\HP\Documents\</code>, so you should change it to this format <code>C:/Users/HP/Documents/</code> in R.</p>
 <div class="figure" style="text-align: center">
 <img src="images/PCA_img/dataset.png" alt="Data set after importing to R in Rstudio" width="70%"><p class="caption">
 (#fig:data_imp)Data set after importing to R in Rstudio
@@ -497,13 +519,30 @@ Figure 3.3: Quadrants in biplot
 <h2>
 <span class="header-section-number">3.15</span> PCA in GRAPES<a class="anchor" aria-label="anchor" href="#pca-in-grapes"><i class="fas fa-link"></i></a>
 </h2>
-<p>The same csv file can be uploaded in <a href="https://www.kaugrapes.com/data-analysis/pca">GRAPES</a> for performing PCA. Read the instructions carefully before performing PCA in GRAPES.</p>
-
+<p>Good news!
+we have added an app so that you can simply upload your csv here and get all these results running in our cloud server!.</p>
+<button id="toggle-button">Open</button>
+<div id="embedded-url" style="display: none;">
+  <iframe src="https://coaagstat.shinyapps.io/pca_analysis" width="100%" height="400px" data-external="1"></iframe>
+</div>
+<script>
+var isOpen = false;
+document.getElementById("toggle-button").addEventListener("click", function() {
+  if (isOpen) {
+    document.getElementById("embedded-url").style.display = "none";
+    document.getElementById("toggle-button").textContent = "Open";
+  } else {
+    document.getElementById("embedded-url").style.display = "block";
+    document.getElementById("toggle-button").textContent = "Close";
+  }
+  isOpen = !isOpen;
+});
+</script>
 </div>
 </div>
   <div class="chapter-nav">
 <div class="prev"><a href="import.html"><span class="header-section-number">2</span> Importing data files in R</a></div>
-<div class="next"><a href="references.html"><span class="header-section-number">4</span> References</a></div>
+<div class="next"><a href="exploratory-factor-analysis.html"><span class="header-section-number">4</span> Exploratory Factor Analysis</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
