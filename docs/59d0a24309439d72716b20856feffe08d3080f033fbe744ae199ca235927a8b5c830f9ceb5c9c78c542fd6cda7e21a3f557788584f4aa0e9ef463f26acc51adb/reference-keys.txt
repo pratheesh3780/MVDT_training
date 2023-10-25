@@ -46,7 +46,7 @@ measures-of-indviduals
 biplot-indviduals
 biplot-variables
 biplot-indviduals-and-variables
-pca-in-grapes
+do-pca-in-our-inbuilt-app
 exploratory-factor-analysis
 practical-example-1
 analysis-1
@@ -58,4 +58,6 @@ factor-analysis
 factor-rotation
 factor-loadings
 communality
+uniqueness
+draw-diagrams
 references

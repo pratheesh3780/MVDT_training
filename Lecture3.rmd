@@ -368,10 +368,9 @@ Using the code below you can save the plots in required resolution. For changing
 
 ```  
 
-## PCA in GRAPES  
+## Do PCA in our inbuilt app  
 Good news! 
-we have added an app so that you can simply upload your csv here and get all these results running in our cloud server!.  
-
+We have added an app so that you can simply upload your csv here and get all these results by running in our cloud server!.  
 
 ```{=html}
 <button id="toggle-button">Open</button>
