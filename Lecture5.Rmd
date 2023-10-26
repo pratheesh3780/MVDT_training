@@ -1,0 +1,202 @@
+# Cluster Analysis  
+
+Cluster analysis, also known as clustering, is a data analysis technique used in statistics, machine learning, and data mining. It involves the process of grouping a set of objects or data points into clusters or subsets, with the aim of organizing similar items together while keeping dissimilar items apart. The primary goal of cluster analysis is to identify patterns, structures, or natural groupings within a dataset.[@hastie2009]  
+Mainly two types of clustering is discussed in this section.  
+
+* Hierarchical clustering  
+
+* K-means clustering  
+
+
+We will be using `cluster`, `ggplot2`, `pheatmap` and `factominer` packages to do cluster analysis.  
+
+**Install the required packages**:  
+```{r install4cluster, eval=FALSE}  
+# install two pacakges cluster and factominer
+install.packages(c("cluster", "factominer","ggplot2","pheatmap"))  
+```  
+We will be using the "mtcars" dataset, which is a well-known dataset in R that contains information about various car models from the 1970s, specifically 1973 and 1974. It provides data on the characteristics of these cars, such as their miles per gallon (mpg), number of cylinders, horsepower, weight, and more.  
+We will perform cluster analysis using this data.
+
+```{r iris_cl, eval=TRUE, echo=FALSE}
+library(DT)
+data <- read.csv("csv/mtcars.csv", row.names=1)
+datatable(
+  data,
+  extensions = 'Buttons',
+  options = list(
+    dom = 'Bfrtip',
+    buttons = list(
+      list(
+        extend = 'csv',
+        text = 'Download CSV ⬇',
+        filename = 'data'
+      )
+    ),
+    searching = FALSE  # This option removes the search bar
+  )
+)
+```  
+## Dataset import  
+First prepare your data set similar to above and save it as a csv file. Then import the data set in to R. See chapter \@ref(import)to know how to save a csv file and import it to R. Also you can directly use the code below to import dataset from your computer to R.
+```{r import_data_cl, eval=FALSE}
+data <- read.csv("path to your file", row.names=1)
+#your file will be saved in the name data
+```
+Please note the path copied from your system will be in the format `C:\Users\HP\Documents\`, change it to this format `C:/Users/HP/Documents/` in R.  
+
+```{block2 itemcl1, type='rmdnote'}
+While importing csv file for Factor Analysis don't forget to set first column as rownames.  In the code above row.names = 1 will set the first column as rowname.
+``` 
+## Hierarchical clustering  
+
+It is an unsupervised clustering method that groups data points into clusters based on their similarities without using predefined labels or categories. It is often used for exploratory data analysis and visualization.  
+Hierarchical clustering is used when you don't have prior knowledge of the number of clusters or how data points should be grouped. It starts with each data point as its cluster and gradually merges them based on their similarities. 
+
+Hierarchical clustering is widely used in biology for gene expression analysis, in marketing for customer segmentation, and in various fields for taxonomy, where the objective is to discover the natural hierarchy of groupings in the data.  
+
+Two approaches are there:  
+
+### Agglomerative clustering  
+
+In the agglomerative approach, data points start as individual clusters and are successively merged  
+
+### Divisive clustering  
+In divisive all data points begin in a single cluster and are successively split into smaller clusters.  
+
+### Dendrogram  
+
+Hierarchical clustering produces a dendrogram, a tree-like diagram that illustrates the merging or splitting of clusters at different levels. This dendrogram helps visualize the hierarchy of clusters and can guide the selection of the optimal number of clusters.  
+
+## Hierrachial clustering in R  
+
+### Agglomerative hierrarchial clustering  
+
+First step is to normalize the data, sometimes we have variables in different scales, need to normalized based on scale function before clustering the data sets.  
+```{r normalize_h, eval=TRUE, message=FALSE}
+#import your csv and save it in the name "data" and use row names as first column.
+data <- scale(data)
+``` 
+
+R function `hclust()` is used. It takes a dissimilarity matrix as an input, which is calculated using the function `dist()`.  
+Compute the distance matrix and then use the hclust() function with appropriate linkage method.  
+
+```{r dist_cl, eval=TRUE, message=FALSE, warning=FALSE}  
+# perform agglomerative clustering with linkage method ward.D2
+library("factoextra")
+res.hc <- hclust(dist(data),  method = "ward.D2")
+# create dendrogram
+p<-factoextra::fviz_dend(res.hc, cex = 0.5)
+# cex: label size  
+p
+```  
+
+### Linkage methods  
+
+Several linkage methods are commonly used in hierarchical clustering. Here's a brief summary of these methods:  
+you can use any of these method inside the argument `method` in `hclust()` function  
+
+**"ward.D" and "ward.D2"**: Ward's method minimizes the increase in the within-cluster sum of squares when merging clusters. "ward.D" uses the Euclidean distance, while "ward.D2" uses the squared Euclidean distance. These methods are often preferred when you want to create well-balanced clusters.  
+
+**"single"**: Single linkage calculates the minimum pairwise distance between any two points in different clusters. It tends to create stringy, elongated clusters and can be sensitive to outliers.  
+
+
+**"complete"**: Complete linkage calculates the maximum pairwise distance between points in different clusters. It produces more compact clusters and is less sensitive to outliers than single linkage.  
+
+
+**"average"**: Average linkage computes the average distance between all pairs of data points from different clusters. It balances the trade-off between single and complete linkage and is a common choice for many applications.  
+
+
+**"mcquitty"**: McQuitty linkage is a modification of complete linkage designed to address some of the issues associated with complete linkage. It is a weighted method that reduces the sensitivity to outliers.  
+
+**"median"**: Median linkage calculates the distance between the medians of clusters. It can result in clusters of various shapes and sizes.  
+
+**"centroid"**: Centroid linkage calculates the distance between the centroids of clusters. Similar to median linkage, it can lead to clusters of different shapes and sizes.
+
+These linkage methods allow you to control how clusters are formed during the hierarchical clustering process. The choice of method depends on your specific data, objectives, and preferences for the characteristics of the resulting clusters. Experimenting with different methods and assessing their suitability for your particular dataset is often necessary to determine the most appropriate linkage method. In our example we have used `ward.D2`.  
+
+### Customizing dendrogram  
+
+Suppose you decide with 7 clusters and want to colour it accordingly use this code:  
+
+```{r col_dendro, eval=TRUE, message=FALSE, warning=FALSE}  
+p<- fviz_dend(res.hc, cex = 0.5, k = 7, palette = "jco") 
+# 'k=' specifies the number of clusters
+p
+```  
+Suppose we want to draw rectangle around the required number of clusters. we have selected the number of clusters as 7
+
+```{r rectdend, eval=TRUE, message=FALSE, warning=FALSE}
+p<-factoextra::fviz_dend(res.hc, cex = 0.5, k=7, rect = TRUE)
+p
+
+```  
+
+You can save the dendrogram using the code below:    
+
+```{r save_dendro, eval=FALSE, message=FALSE}  
+# Save dendrogram
+library(ggplot2)
+ggsave ("dendro.png",plot = p,width=6, height = 4, dpi=300)
+```  
+#### Heat Map  
+A heatmap is another way to visualize hierarchical clustering. It’s also called a false colored image, where data values are transformed to color scale. Heat maps allow us to simultaneously visualize groups of samples and features. You can easily create a pretty heatmap using the R package `pheatmap`.
+
+```{r heatmap, eval=TRUE, message=FALSE}  
+library(pheatmap)
+heatmap<- pheatmap(t(data), cutree_cols = 7)  
+heatmap
+```  
+
+You can save the heatmap using the code below:    
+
+```{r save_heat, eval=FALSE, message=FALSE}  
+# Save heat map
+ggsave ("heatmap.png",plot = heatmap,width=6, height = 4, dpi=300)
+```  
+
+In heatmap, generally, columns are samples and rows are variables.  
+
+#### silhouette plot   
+The silhouette score is a widely used metric for evaluating the quality of clusters in unsupervised machine learning. It provides a measure of how well-separated and distinct the clusters are, offering valuable insights into the effectiveness of a clustering algorithm. The silhouette score is calculated for each data point, assessing its similarity to the other data points within the same cluster compared to the nearest neighboring cluster. It ranges from -1 to 1, where a high silhouette score (close to 1) indicates that a data point is appropriately placed in its cluster, while a low score (close to -1) suggests that it might be more suited to a different cluster. A silhouette score close to zero implies that a data point is on or very close to the decision boundary between two clusters. This metric aids in selecting the optimal number of clusters and is a valuable tool for cluster validation and interpretation.    
+In a silhouette plot the y-axis typically represents individual data points or samples and x-axis represents silhouette values. Each data point in the dataset is represented on the plot as a vertical bar. The height of the bar corresponds to the silhouette value of that data point.  
+Silhouette plots are organized by clusters, with each cluster's data points grouped together. This helps visualize the structure of individual clusters and their overall quality.  
+```{r silhoutte, eval=TRUE, message=FALSE}
+# Silhoutte plot  
+library(cluster)
+distance <-dist(data)
+plot(silhouette(cutree(res.hc,7), distance))
+
+```
+In our example we have an average silhoutte width of 0.44, indicating that, on average, the data points are well-clustered and have a high degree of similarity to their respective clusters compared to neighboring clusters.  
+
+### Divisive hierrarchial clustering  
+Also known as DIvisive ANAlysis (DIANA) Clustering. In this lecture we will be limiting our discussion in Agglomerative clustering alone as divisive clustering not much widely used in agricultural research.  
+
+## K means clustering  
+
+K means clustering is another unsupervised clustering method that partitions data points into k clusters based on their similarities. It is widely used for grouping data when the number of clusters is known or can be estimated.   
+
+Unlike hierarchical clustering, k-means requires you to specify the number of clusters (k) in advance. It tries to find cluster centroids and assigns data points to the nearest centroid based on their features. K-means is a centroid-based algorithm, where the centroids represent the center of each cluster. Data points are assigned to the cluster whose centroid is closest to them.  
+
+K-means is used in image compression, customer segmentation, document clustering, and recommendation systems. It is a versatile method for grouping data when the number of clusters is known or can be estimated based on the problem domain.  
+
+In summary, hierarchical clustering is a method for discovering the natural hierarchy of clusters in data, and it can be applied in unsupervised scenarios where the number of clusters is not predetermined. On the other hand, k-means clustering is a centroid-based method used to partition data into a specified number of clusters, making it suitable for unsupervised clustering tasks with a known or estimated number of clusters.  
+
+### K means using R  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

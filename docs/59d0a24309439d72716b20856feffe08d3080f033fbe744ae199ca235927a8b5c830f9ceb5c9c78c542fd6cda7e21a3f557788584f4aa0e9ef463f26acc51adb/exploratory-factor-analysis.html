@@ -77,7 +77,8 @@
 <li><a class="" href="import.html"><span class="header-section-number">2</span> Importing data files in R</a></li>
 <li><a class="" href="principal-component-analysis-pca.html"><span class="header-section-number">3</span> Principal Component Analysis (PCA)</a></li>
 <li><a class="active" href="exploratory-factor-analysis.html"><span class="header-section-number">4</span> Exploratory Factor Analysis</a></li>
-<li><a class="" href="references.html"><span class="header-section-number">5</span> References</a></li>
+<li><a class="" href="cluster-analysis.html"><span class="header-section-number">5</span> Cluster Analysis</a></li>
+<li><a class="" href="references.html"><span class="header-section-number">6</span> References</a></li>
 </ul>
 
         <div class="book-extra">
@@ -100,21 +101,25 @@
 </h2>
 <p>In this practical example section, we will work with a dataset containing marks for 100 students in various subjects, including English, Hindi, Maths, French, Physics, Poetry, Statistics, and Geometry.</p>
 <p>You can View and download the datasets here</p>
-<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-6c161ebb55074912034c" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-6c161ebb55074912034c">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["student1","student2","student3","student4","student5","student6","student7","student8","student9","student10","student11","student12","student13","student14","student15","student16","student17","student18","student19","student20","student21","student22","student23","student24","student25","student26","student27","student28","student29","student30","student31","student32","student33","student34","student35","student36","student37","student38","student39","student40","student41","student42","student43","student44","student45","student46","student47","student48","student49","student50","student51","student52","student53","student54","student55","student56","student57","student58","student59","student60","student61","student62","student63","student64","student65","student66","student67","student68","student69","student70","student71","student72","student73","student74","student75","student76","student77","student78","student79","student80","student81","student82","student83","student84","student85","student86","student87","student88","student89","student90","student91","student92","student93","student94","student95","student96","student97","student98","student99","student100"],[5,5,4,4,4,5,3,6,5,4,6,3,5,5,4,3,4,6,5,5,4,5,4,5,5,5,4,5,6,4,6,6,6,5,5,5,3,4,6,5,4,5,5,3,6,4,4,4,4,4,5,6,4,6,2,4,7,5,3,5,4,4,4,4,5,4,6,4,6,4,5,5,4,5,4,2,5,4,5,6,4,6,4,4,6,4,5,6,5,5,5,5,4,3,5,4,5,4,5,5],[4,6,3,4,5,5,3,6,5,4,5,4,5,5,3,4,4,6,4,4,4,5,4,3,5,5,5,5,6,4,5,6,6,5,4,4,4,4,6,5,3,4,5,3,5,5,5,4,5,3,5,5,4,6,2,5,8,5,4,4,5,4,4,5,5,4,5,4,5,3,5,5,4,5,4,3,5,4,5,6,4,6,4,3,6,3,3,6,5,5,5,6,4,3,5,5,6,5,5,4],[3,4,3,4,2,5,4,5,4,4,4,4,4,3,4,4,4,4,3,4,6,4,5,2,4,3,2,3,3,1,3,3,4,5,3,4,4,3,2,3,4,4,4,4,4,4,3,4,5,3,3,5,3,4,4,4,4,3,5,6,4,3,4,3,5,4,3,4,4,5,5,3,3,3,3,2,5,3,4,4,4,3,4,4,3,3,3,2,3,4,3,3,3,3,6,3,3,3,3,4],[5,5,4,3,4,5,3,5,5,4,5,4,4,5,4,4,3,5,4,4,4,4,3,4,5,4,4,4,5,4,6,6,6,5,4,4,3,3,5,5,3,4,4,3,5,3,3,3,5,2,4,5,3,5,2,4,7,5,3,4,4,4,3,4,3,4,5,3,5,4,4,4,3,4,4,3,5,4,4,5,3,5,4,3,5,3,4,5,4,5,4,4,3,2,4,4,5,4,5,4],[4,4,4,5,3,6,5,6,5,5,5,5,5,4,5,4,5,5,3,5,6,4,6,3,5,4,3,4,4,2,4,3,5,5,3,4,5,4,3,3,5,5,5,5,6,5,4,4,6,5,4,5,4,5,5,5,6,4,6,7,5,4,4,4,6,5,4,5,5,6,6,3,4,4,4,4,5,4,4,5,4,4,6,4,3,4,5,3,4,5,4,4,3,4,6,5,4,5,5,6],[4,5,3,4,4,5,3,5,4,4,5,3,4,5,4,3,4,5,4,4,4,4,3,4,5,5,5,5,6,3,5,6,6,4,4,4,3,4,5,5,3,4,4,3,5,4,4,3,4,3,5,5,3,6,2,4,7,5,4,4,4,4,4,5,4,4,5,4,5,3,4,5,4,5,3,3,4,4,4,5,4,5,3,3,5,3,3,5,5,5,5,4,4,3,4,4,5,4,4,5],[3,4,3,4,2,5,4,5,5,5,4,4,4,3,4,3,4,4,3,4,5,3,5,3,4,3,2,3,3,2,3,3,4,5,3,4,4,3,2,3,3,5,4,4,5,4,4,4,5,4,3,5,3,4,4,4,5,3,5,5,4,4,4,4,5,4,4,4,3,5,5,2,3,2,3,4,5,3,4,4,3,3,4,4,3,4,4,3,4,5,4,3,3,3,6,3,3,4,4,5],[3,4,4,5,3,6,5,6,5,5,5,4,5,4,4,4,5,5,3,5,6,4,5,3,4,4,3,4,4,2,4,3,5,5,4,4,4,3,3,3,4,5,5,5,5,5,3,5,5,4,3,5,3,5,5,4,5,3,5,6,5,4,4,5,6,5,4,5,4,5,6,3,4,3,4,3,5,5,5,5,4,4,3,5,3,4,4,3,4,5,4,3,3,4,6,3,3,5,4,5]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>English<\/th>\n      <th>Hindi<\/th>\n      <th>Maths<\/th>\n      <th>French<\/th>\n      <th>Physics<\/th>\n      <th>Poetry<\/th>\n      <th>Statistics<\/th>\n      <th>Geometry<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":[{"extend":"csv","text":"Download CSV ⬇","filename":"data"}],"searching":false,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-009e9fa7569c862273fc" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-009e9fa7569c862273fc">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["student1","student2","student3","student4","student5","student6","student7","student8","student9","student10","student11","student12","student13","student14","student15","student16","student17","student18","student19","student20","student21","student22","student23","student24","student25","student26","student27","student28","student29","student30","student31","student32","student33","student34","student35","student36","student37","student38","student39","student40","student41","student42","student43","student44","student45","student46","student47","student48","student49","student50","student51","student52","student53","student54","student55","student56","student57","student58","student59","student60","student61","student62","student63","student64","student65","student66","student67","student68","student69","student70","student71","student72","student73","student74","student75","student76","student77","student78","student79","student80","student81","student82","student83","student84","student85","student86","student87","student88","student89","student90","student91","student92","student93","student94","student95","student96","student97","student98","student99","student100"],[5,5,4,4,4,5,3,6,5,4,6,3,5,5,4,3,4,6,5,5,4,5,4,5,5,5,4,5,6,4,6,6,6,5,5,5,3,4,6,5,4,5,5,3,6,4,4,4,4,4,5,6,4,6,2,4,7,5,3,5,4,4,4,4,5,4,6,4,6,4,5,5,4,5,4,2,5,4,5,6,4,6,4,4,6,4,5,6,5,5,5,5,4,3,5,4,5,4,5,5],[4,6,3,4,5,5,3,6,5,4,5,4,5,5,3,4,4,6,4,4,4,5,4,3,5,5,5,5,6,4,5,6,6,5,4,4,4,4,6,5,3,4,5,3,5,5,5,4,5,3,5,5,4,6,2,5,8,5,4,4,5,4,4,5,5,4,5,4,5,3,5,5,4,5,4,3,5,4,5,6,4,6,4,3,6,3,3,6,5,5,5,6,4,3,5,5,6,5,5,4],[3,4,3,4,2,5,4,5,4,4,4,4,4,3,4,4,4,4,3,4,6,4,5,2,4,3,2,3,3,1,3,3,4,5,3,4,4,3,2,3,4,4,4,4,4,4,3,4,5,3,3,5,3,4,4,4,4,3,5,6,4,3,4,3,5,4,3,4,4,5,5,3,3,3,3,2,5,3,4,4,4,3,4,4,3,3,3,2,3,4,3,3,3,3,6,3,3,3,3,4],[5,5,4,3,4,5,3,5,5,4,5,4,4,5,4,4,3,5,4,4,4,4,3,4,5,4,4,4,5,4,6,6,6,5,4,4,3,3,5,5,3,4,4,3,5,3,3,3,5,2,4,5,3,5,2,4,7,5,3,4,4,4,3,4,3,4,5,3,5,4,4,4,3,4,4,3,5,4,4,5,3,5,4,3,5,3,4,5,4,5,4,4,3,2,4,4,5,4,5,4],[4,4,4,5,3,6,5,6,5,5,5,5,5,4,5,4,5,5,3,5,6,4,6,3,5,4,3,4,4,2,4,3,5,5,3,4,5,4,3,3,5,5,5,5,6,5,4,4,6,5,4,5,4,5,5,5,6,4,6,7,5,4,4,4,6,5,4,5,5,6,6,3,4,4,4,4,5,4,4,5,4,4,6,4,3,4,5,3,4,5,4,4,3,4,6,5,4,5,5,6],[4,5,3,4,4,5,3,5,4,4,5,3,4,5,4,3,4,5,4,4,4,4,3,4,5,5,5,5,6,3,5,6,6,4,4,4,3,4,5,5,3,4,4,3,5,4,4,3,4,3,5,5,3,6,2,4,7,5,4,4,4,4,4,5,4,4,5,4,5,3,4,5,4,5,3,3,4,4,4,5,4,5,3,3,5,3,3,5,5,5,5,4,4,3,4,4,5,4,4,5],[3,4,3,4,2,5,4,5,5,5,4,4,4,3,4,3,4,4,3,4,5,3,5,3,4,3,2,3,3,2,3,3,4,5,3,4,4,3,2,3,3,5,4,4,5,4,4,4,5,4,3,5,3,4,4,4,5,3,5,5,4,4,4,4,5,4,4,4,3,5,5,2,3,2,3,4,5,3,4,4,3,3,4,4,3,4,4,3,4,5,4,3,3,3,6,3,3,4,4,5],[3,4,4,5,3,6,5,6,5,5,5,4,5,4,4,4,5,5,3,5,6,4,5,3,4,4,3,4,4,2,4,3,5,5,4,4,4,3,3,3,4,5,5,5,5,5,3,5,5,4,3,5,3,5,5,4,5,3,5,6,5,4,4,5,6,5,4,5,4,5,6,3,4,3,4,3,5,5,5,5,4,4,3,5,3,4,4,3,4,5,4,3,3,4,6,3,3,5,4,5]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>English<\/th>\n      <th>Hindi<\/th>\n      <th>Maths<\/th>\n      <th>French<\/th>\n      <th>Physics<\/th>\n      <th>Poetry<\/th>\n      <th>Statistics<\/th>\n      <th>Geometry<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":[{"extend":"csv","text":"Download CSV ⬇","filename":"data"}],"searching":false,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="analysis-1" class="section level2" number="4.2">
 <h2>
 <span class="header-section-number">4.2</span> Analysis<a class="anchor" aria-label="anchor" href="#analysis-1"><i class="fas fa-link"></i></a>
 </h2>
-<p>First prepare your data set and save it as a csv file. Then import the data set in to R. See chapter <a href="import.html#import">2</a>to know how to save a csv file and import it to R. You can directly use the code below to import dataset from your computer to R.</p>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<p>First prepare your data set and save it as a csv file. Then import the data set in to R. See chapter <a href="import.html#import">2</a>to know how to save a csv file and import it to R. Also you can directly use the code below to import dataset from your computer to R.</p>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"path to your file"</span>, row.names<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
 <span><span class="co">#your file will be saved in the name data</span></span></code></pre></div>
 <p>Please note the path copied from your system will be in the format <code>C:\Users\HP\Documents\</code>, change it to this format <code>C:/Users/HP/Documents/</code> in R.</p>
+
+<div class="rmdnote">
+While importing csv file for Factor Analysis don’t forget to set first column as rownames. In the code above row.names = 1 will set the first column as rowname.
+</div>
 <p>We will be using <code>pysch</code> package do factor analysis.</p>
 <p><strong>Install the required packages</strong>:</p>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"psych"</span><span class="op">)</span>  </span></code></pre></div>
 <div id="determining-the-suitability-of-your-dataset-for-efa" class="section level3" number="4.2.1">
 <h3>
@@ -160,9 +165,9 @@ The <strong>Kaiser–Meyer–Olkin (KMO)</strong> test is a statistical measure 
 <li>A KMO value close to zero indicates the presence of large partial correlations relative to the sum of correlations, which can pose a challenge for factor analysis.<br>
 We will perform KMO analysis using library <code>psych</code> in R. Use the code below.</li>
 </ul>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://personality-project.org/r/psych/">psych</a></span><span class="op">)</span></span>
-<span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"csv/score.csv"</span>, row.names<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="co">#import your csv and save it in the name "data" and use rownames as first column.</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/psych/man/KMO.html">KMO</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Kaiser-Meyer-Olkin factor adequacy
 ## Call: KMO(r = data)
@@ -185,13 +190,13 @@ In case any item-specific MSA is &lt; 0.60, it is better to avoid that item in t
 <span class="header-section-number">4.2.2.1</span> Scree plot<a class="anchor" aria-label="anchor" href="#scree-plot-1"><i class="fas fa-link"></i></a>
 </h4>
 <p>A Scree plot is a graphical representation used in factor analysis to identify the optimal number of factors to retain from a dataset. It displays the eigenvalues of the correlation matrix, which represent the amount of variance explained by each factor. We will employ the Scree plot to determine the number of factors that should be retained from the given dataset. By examining the pattern of eigenvalues in the Scree plot, we can identify the point at which eigenvalues significantly drop. This drop-off serves as an indicator of the most meaningful and influential factors, ensuring that we capture the essential dimensions within the data.</p>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">ev</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/eigen.html">eigen</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">score</span><span class="op">)</span><span class="op">)</span> <span class="co"># get eigenvalues</span></span>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">ev</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/eigen.html">eigen</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span><span class="op">)</span> <span class="co"># get eigenvalues</span></span>
 <span><span class="va">ev</span><span class="op">$</span><span class="va">values</span></span></code></pre></div>
 <pre><code>## [1] 3.4434243 3.2878668 0.3070565 0.2643156 0.2072886 0.1817183 0.1653205
 ## [8] 0.1430094</code></pre>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/psych/man/VSS.scree.html">scree</a></span><span class="op">(</span><span class="va">score</span>, pc<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/psych/man/VSS.scree.html">scree</a></span><span class="op">(</span><span class="va">data</span>, pc<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure">
 <img src="lecture_note_files/figure-html/screeplot-1.png" width="672">
 By analyzing the Scree plot, it becomes evident that two factors exhibit eigenvalues above the value of one. Hence, the number of factors to be retained in our example can be confidently identified as two. This conclusion is drawn from the visual assessment of the eigenvalue patterns in the Scree plot.</div>
@@ -201,9 +206,9 @@ By analyzing the Scree plot, it becomes evident that two factors exhibit eigenva
 <span class="header-section-number">4.2.2.2</span> Parallel analysis<a class="anchor" aria-label="anchor" href="#parallel-analysis"><i class="fas fa-link"></i></a>
 </h4>
 <p>Parallel analysis is a robust statistical technique employed in factor analysis to address the crucial question of how many factors should be retained from a given dataset. This method is particularly valuable when dealing with complex data structures. Rather than relying solely on conventional rules or subjective judgment, parallel analysis offers a data-driven approach. It involves generating random datasets with similar properties to the original data and comparing their factor structures. By scrutinizing the eigenvalues derived from the random datasets alongside those from the actual data, parallel analysis provides a more objective and reliable means of determining the optimal number of factors to retain. This approach enhances the accuracy of factor analysis, ensuring that the identified factors capture the most meaningful and interpretable dimensions within the dataset.</p>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://personality-project.org/r/psych/">psych</a></span><span class="op">)</span></span>
-<span><span class="va">parallel</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/psych/man/fa.parallel.html">fa.parallel</a></span><span class="op">(</span><span class="va">score</span>, fa<span class="op">=</span><span class="st">"fa"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">parallel</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/psych/man/fa.parallel.html">fa.parallel</a></span><span class="op">(</span><span class="va">data</span>, fa<span class="op">=</span><span class="st">"fa"</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="lecture_note_files/figure-html/parallel_anal-1.png" width="672"></div>
 <pre><code>## Parallel analysis suggests that the number of factors =  2  and the number of components =  NA</code></pre>
 <p>Identify the point at which the eigenvalues from the actual data surpass the corresponding eigenvalues from the random data by a significant margin. This indicates the number of factors that should be retained. Here in this example you can see the number of identified factors is two.</p>
@@ -214,9 +219,9 @@ By analyzing the Scree plot, it becomes evident that two factors exhibit eigenva
 <span class="header-section-number">4.2.3</span> Factor Analysis<a class="anchor" aria-label="anchor" href="#factor-analysis"><i class="fas fa-link"></i></a>
 </h3>
 <p>We will be using the built-in function in R <code><a href="https://rdrr.io/r/stats/factanal.html">factanal()</a></code> to perform factor analysis.</p>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Nfacs</span> <span class="op">&lt;-</span> <span class="fl">2</span>  <span class="co"># Number of factors as identified in parallel analysis/Scree plot.</span></span>
-<span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/factanal.html">factanal</a></span><span class="op">(</span><span class="va">score</span>, <span class="va">Nfacs</span>,rotation<span class="op">=</span><span class="st">"varimax"</span>,scores<span class="op">=</span><span class="st">"regression"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/factanal.html">factanal</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">Nfacs</span>,rotation<span class="op">=</span><span class="st">"varimax"</span>,scores<span class="op">=</span><span class="st">"regression"</span><span class="op">)</span></span></code></pre></div>
 <div id="factor-rotation" class="section level4" number="4.2.3.1">
 <h4>
 <span class="header-section-number">4.2.3.1</span> Factor rotation<a class="anchor" aria-label="anchor" href="#factor-rotation"><i class="fas fa-link"></i></a>
@@ -242,7 +247,7 @@ Rotation serves the following primary purposes:</p>
 <p><strong>Loadings Close to 0:</strong> Loadings close to 0 indicate a weak or negligible relationship between the variable and the factor. Variables with loadings near 0 do not contribute significantly to the factor and can often be removed from the analysis to simplify the factor structure.</p>
 <p><strong>Naming Factors:</strong> Assign meaningful labels to factors based on the variables with high loadings. The variables that load strongly on a factor can help identify the underlying theme or concept that the factor represents.</p>
 <p>Lets find out the loadings in our example</p>
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fit</span><span class="op">$</span><span class="va">loadings</span></span></code></pre></div>
 <pre><code>## 
 ## Loadings:
@@ -282,7 +287,7 @@ Rotation serves the following primary purposes:</p>
 <p><strong>Interpretation:</strong> A higher communality value for a variable indicates that a larger proportion of its variance can be attributed to the underlying factors. Variables with high communality values are well-represented by the factors and have strong associations with the underlying dimensions.<br>
 Communality can also be calculated as the sum of the squared factor loadings for a variable. In other words, it quantifies how much of the variability in the variable can be attributed to the factors, as evidenced by the squares of the factor loadings.<br>
 we use the Rcode below to find communality.</p>
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">fit</span><span class="op">$</span><span class="va">loadings</span><span class="op">^</span><span class="fl">2</span>,<span class="fl">1</span>,<span class="va">sum</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##    English      Hindi      Maths     French    Physics     Poetry Statistics 
 ##  0.7695653  0.7729351  0.8263179  0.7207453  0.8125261  0.8340212  0.7992973 
@@ -296,7 +301,7 @@ we use the Rcode below to find communality.</p>
 </h4>
 <p>uniqueness (also known as “specific variance” or “unique variance”) is a concept that represents the variance in an observed variable that is not explained by the latent variables in the model. Uniqueness is a value typically between 0 and 1, where 0 indicates that all the variance in the variable is explained by the common factors, and 1 implies that none of the variance is accounted for by the factors.</p>
 <p>Interpretation: A low uniqueness value suggests that the variable is highly related to the underlying factors in the model. In this case, most of the variance in the variable is explained by the common factors, indicating that the variable is a good indicator of the latent constructs.</p>
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fit</span><span class="op">$</span><span class="va">uniquenesses</span></span></code></pre></div>
 <pre><code>##    English      Hindi      Maths     French    Physics     Poetry Statistics 
 ##  0.2304343  0.2270650  0.1736824  0.2792547  0.1874740  0.1659783  0.2007031 
@@ -304,7 +309,7 @@ we use the Rcode below to find communality.</p>
 ##  0.2260363</code></pre>
 <p>The uniqueness values for variables obtained reveal the proportion of variance that is specific to each variable and not shared with the common factors. For instance, high uniqueness values, like the approximately 27.93% for “French,” indicate that a substantial part of the variance in “French” is unique to that language, highlighting its distinct characteristics within the factor analysis model. These uniqueness values assist researchers in determining the extent to which variables are idiosyncratic and can be essential for identifying variables that may not fit well into the factor structure or for gaining insights into the individual features of each variable. Overall low values of uniqueness indicate that a significant portion of the variance in those variables is accounted for by the latent factors, which can be a positive sign for the quality of the factor analysis.</p>
 <p>You can also calculate the correlation between the variables using the Rcode below, if any further insights are required.</p>
-<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">correl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">fit</span><span class="op">$</span><span class="va">correlation</span>, <span class="fl">3</span><span class="op">)</span> <span class="co"># round correlation to 3 digits</span></span>
 <span><span class="va">correl</span></span></code></pre></div>
 <pre><code>##            English  Hindi  Maths French Physics Poetry Statistics Geometry
@@ -322,20 +327,20 @@ we use the Rcode below to find communality.</p>
 <span class="header-section-number">4.2.3.5</span> Draw diagrams<a class="anchor" aria-label="anchor" href="#draw-diagrams"><i class="fas fa-link"></i></a>
 </h4>
 <p>Use the R code below to draw some diagram to visualize factor analysis. Lets simply visualize the variables and correlation. The below code is good to visualize when the number of variables are few.</p>
-<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("PerformanceAnalytics")</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/braverock/PerformanceAnalytics">"PerformanceAnalytics"</a></span><span class="op">)</span></span>
-<span><span class="va">chart</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/PerformanceAnalytics/man/chart.Correlation.html">chart.Correlation</a></span><span class="op">(</span><span class="va">score</span>, histogram<span class="op">=</span><span class="cn">TRUE</span>, pch<span class="op">=</span><span class="fl">19</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">chart</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/PerformanceAnalytics/man/chart.Correlation.html">chart.Correlation</a></span><span class="op">(</span><span class="va">data</span>, histogram<span class="op">=</span><span class="cn">TRUE</span>, pch<span class="op">=</span><span class="fl">19</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure">
 <img src="lecture_note_files/figure-html/visualize-1.png" width="672">
 Now draw a factor diagram using the code below:</div>
-<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">loads</span> <span class="op">&lt;-</span> <span class="va">fit</span><span class="op">$</span><span class="va">loadings</span></span>
 <span><span class="va">fa_diag</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/psych/man/fa.diagram.html">fa.diagram</a></span><span class="op">(</span><span class="va">loads</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="lecture_note_files/figure-html/fact_diagram-1.png" width="672"></div>
 <p>You can save your diagrams in high resolution using the codes below:<br>
 Now draw a factor diagram using the code below:</p>
-<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#saving visulaization plot </span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/grDevices/png.html">png</a></span><span class="op">(</span><span class="st">"Plot.png"</span>, res <span class="op">=</span> <span class="fl">72</span>, width <span class="op">=</span> <span class="fl">1000</span>, height <span class="op">=</span> <span class="fl">1000</span>, pointsize <span class="op">=</span> <span class="fl">25</span><span class="op">)</span></span>
 <span><span class="fu">PerformanceAnalytics</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/PerformanceAnalytics/man/chart.Correlation.html">chart.Correlation</a></span><span class="op">(</span><span class="va">score</span>, histogram<span class="op">=</span><span class="cn">TRUE</span>, pch<span class="op">=</span><span class="fl">19</span><span class="op">)</span></span>
@@ -355,7 +360,7 @@ Now draw a factor diagram using the code below:</p>
 </div>
   <div class="chapter-nav">
 <div class="prev"><a href="principal-component-analysis-pca.html"><span class="header-section-number">3</span> Principal Component Analysis (PCA)</a></div>
-<div class="next"><a href="references.html"><span class="header-section-number">5</span> References</a></div>
+<div class="next"><a href="cluster-analysis.html"><span class="header-section-number">5</span> Cluster Analysis</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">

@@ -34,11 +34,17 @@ When the **sample size** is less than number of dimensions (n < p)
 
 ## How PCA is done
 In this training program, we are primarily focused on the practical application of PCA rather than delving into its theoretical aspects. Our aim is to explore when and how PCA can be effectively utilized and to understand how to interpret the results in a meaningful manner. But the usual procedure of performing is as follows for your information:-  
-* Standardize the range of continuous initial variables  
+
+* Standardize the range of continuous initial variables   
+
 * Compute the covariance matrix to identify correlations  
+
 * Compute the eigen vectors and eigen values of the covariance matrix to identify the principal components  
+
 * Create a feature vector to decide which principal components to keep  
-* Recast the data along the principal components axes  
+
+* Recast the data along the principal components axes   
+
 
 ## What is Principal Component  
 
@@ -65,9 +71,9 @@ We will be using Usarrests dataset in R to explain PCA in the coming sessions.Th
 You can View and download the datasets here
 ```{r usarrest, eval=TRUE, echo=FALSE}
 library(DT)
-
+data <- read.csv("csv/usarrests.csv", row.names=1)  
 datatable(
-  USArrests,
+ data,
   extensions = 'Buttons',
   options = list(
     dom = 'Bfrtip',
@@ -85,7 +91,7 @@ datatable(
 
 ```
 ## Analysis
-First prepare your data set and save it as a csv file. Then import the data set in to R. See chapter \@ref(import) to know how to save a csv file and import it to R. You can directly use the code below to import dataset from your computer to R.
+First prepare your data set and save it as a csv file. Then import the data set in to R. See chapter \@ref(import) to know how to save a csv file and import it to R. Also you can directly use the code below to import dataset from your computer to R.
 ```{r import_data, eval=FALSE}
 data <- read.csv("path to your file", row.names=1)
 ```
@@ -109,13 +115,19 @@ install.packages("factoextra")
 
 **Follow below codes for PCA analysis**
 ```{r PCA-anal, eval=TRUE, message=FALSE}
-library(factoextra)
-#storing your dataset to the variable data
-data <- read.csv("csv/usarrests.csv", row.names=1)
+library(factoextra) 
+
+#import your csv and save it in the name "data".
 
 #this will display the first 6 rows of your data
 head(data, n = 6)
+```  
+we will obtain the descriptive statistics of the dataset before moving further.  
+```{r PCA-summary, eval=TRUE, message=FALSE}  
+summary(data)
+```
 
+```{r PCA-analysis, eval=TRUE, message=FALSE}
 # Do PCA using prcomp function in factoextra
 pca_res <- prcomp(data, scale = TRUE)
 # scale = TRUE will standardise the variables (x-mean(x)/sd(x))

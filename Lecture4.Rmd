@@ -16,9 +16,9 @@ In this practical example section, we will work with a dataset containing marks 
 You can View and download the datasets here
 ```{r scores, eval=TRUE, echo=FALSE}
 library(DT)
-score <- read.csv("csv/score.csv", row.names=1)
+data <- read.csv("csv/score.csv", row.names=1)
 datatable(
-  score,
+  data,
   extensions = 'Buttons',
   options = list(
     dom = 'Bfrtip',
@@ -34,12 +34,16 @@ datatable(
 )
 ```  
 ## Analysis
-First prepare your data set and save it as a csv file. Then import the data set in to R. See chapter \@ref(import)to know how to save a csv file and import it to R. You can directly use the code below to import dataset from your computer to R.
+First prepare your data set and save it as a csv file. Then import the data set in to R. See chapter \@ref(import)to know how to save a csv file and import it to R. Also you can directly use the code below to import dataset from your computer to R.
 ```{r import_data_fa, eval=FALSE}
 data <- read.csv("path to your file", row.names=1)
 #your file will be saved in the name data
 ```
 Please note the path copied from your system will be in the format `C:\Users\HP\Documents\`, change it to this format `C:/Users/HP/Documents/` in R.  
+
+```{block2 itemf1, type='rmdnote'}
+While importing csv file for Factor Analysis don't forget to set first column as rownames.  In the code above row.names = 1 will set the first column as rowname.
+``` 
 
 We will be using `pysch` package do factor analysis.  
 
@@ -70,7 +74,7 @@ We will perform KMO analysis using library `psych` in R. Use the code below.
 
 ```{r kmotest, eval=TRUE, message=FALSE}
 library(psych)
-data <- read.csv("csv/score.csv", row.names=1)
+#import your csv and save it in the name "data" and use rownames as first column.
 KMO(data)
 ```  
 In our example you can see that the Kaiser-Meyer-Olkin (KMO) measure of sampling adequacy (MSA), calculated for the dataset, indicates an overall adequacy of 0.84, suggesting that the data is suitable for factor analysis. Additionally, the individual item-specific KMO values for each subject, including English, Hindi, Maths, French, Physics, Poetry, Statistics, and Geometry, range from 0.81 to 0.86, supporting the adequacy of the data for factor analysis.  
@@ -84,9 +88,9 @@ We will discuss two methods to identify the number of factors. Any of these meth
 A Scree plot is a graphical representation used in factor analysis to identify the optimal number of factors to retain from a dataset. It displays the eigenvalues of the correlation matrix, which represent the amount of variance explained by each factor. We will employ the Scree plot to determine the number of factors that should be retained from the given dataset. By examining the pattern of eigenvalues in the Scree plot, we can identify the point at which eigenvalues significantly drop. This drop-off serves as an indicator of the most meaningful and influential factors, ensuring that we capture the essential dimensions within the data.   
 
 ```{r screeplot, eval=TRUE, message=FALSE}
-ev <- eigen(cor(score)) # get eigenvalues
+ev <- eigen(cor(data)) # get eigenvalues
 ev$values
-scree(score, pc=FALSE)
+scree(data, pc=FALSE)
 ```  
 By analyzing the Scree plot, it becomes evident that two factors exhibit eigenvalues above the value of one. Hence, the number of factors to be retained in our example can be confidently identified as two. This conclusion is drawn from the visual assessment of the eigenvalue patterns in the Scree plot.  
 
@@ -95,7 +99,7 @@ Parallel analysis is a robust statistical technique employed in factor analysis 
 
 ```{r parallel_anal, eval=TRUE, message=FALSE, warning=FALSE}
 library(psych)
-parallel<-fa.parallel(score, fa="fa")
+parallel<-fa.parallel(data, fa="fa")
 ```  
 
 Identify the point at which the eigenvalues from the actual data surpass the corresponding eigenvalues from the random data by a significant margin. This indicates the number of factors that should be retained. Here in this example you can see the number of identified factors is two.  
@@ -105,7 +109,7 @@ We will be using the built-in function in R `factanal()` to perform factor analy
 
 ```{r fact_anal, eval=TRUE, message=FALSE}
 Nfacs <- 2  # Number of factors as identified in parallel analysis/Scree plot.
-fit <- factanal(score, Nfacs,rotation="varimax",scores="regression")
+fit <- factanal(data, Nfacs,rotation="varimax",scores="regression")
 
 ``` 
 #### Factor rotation  
@@ -191,7 +195,7 @@ Use the R code below to draw some diagram to visualize factor analysis. Lets sim
 ```{r visualize, eval=TRUE, message=FALSE, warning=FALSE}
 # install.packages("PerformanceAnalytics")
 library("PerformanceAnalytics")
-chart<-chart.Correlation(score, histogram=TRUE, pch=19)
+chart<-chart.Correlation(data, histogram=TRUE, pch=19)
 ```
 Now draw a factor diagram using the code below:  
 ```{r fact_diagram, eval=TRUE, message=FALSE, warning=FALSE}
