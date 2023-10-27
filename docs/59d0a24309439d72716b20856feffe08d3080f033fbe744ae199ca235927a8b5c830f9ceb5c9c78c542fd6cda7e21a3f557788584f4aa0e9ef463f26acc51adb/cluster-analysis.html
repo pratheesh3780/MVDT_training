@@ -78,7 +78,8 @@
 <li><a class="" href="principal-component-analysis-pca.html"><span class="header-section-number">3</span> Principal Component Analysis (PCA)</a></li>
 <li><a class="" href="exploratory-factor-analysis.html"><span class="header-section-number">4</span> Exploratory Factor Analysis</a></li>
 <li><a class="active" href="cluster-analysis.html"><span class="header-section-number">5</span> Cluster Analysis</a></li>
-<li><a class="" href="references.html"><span class="header-section-number">6</span> References</a></li>
+<li><a class="" href="logistic-regression.html"><span class="header-section-number">6</span> Logistic Regression</a></li>
+<li><a class="" href="references.html"><span class="header-section-number">7</span> References</a></li>
 </ul>
 
         <div class="book-extra">
@@ -96,17 +97,17 @@ Mainly two types of clustering is discussed in this section.</p>
 <li><p>Hierarchical clustering</p></li>
 <li><p>K-means clustering</p></li>
 </ul>
-<p>We will be using <code>cluster</code>, <code>ggplot2</code>, <code>pheatmap</code> and <code>factominer</code> packages to do cluster analysis.</p>
+<p>We will be using <code>cluster</code>, <code>ggplot2</code>, <code>pheatmap</code>, <code>NbClust</code>,<code>factoextra</code> and <code>factominer</code> packages to do cluster analysis.</p>
 <p><strong>Install the required packages</strong>:</p>
 <div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># install two pacakges cluster and factominer</span></span>
+<code class="sourceCode R"><span><span class="co"># install required pacakges</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"cluster"</span>, <span class="st">"factominer"</span>,<span class="st">"ggplot2"</span>,<span class="st">"pheatmap"</span><span class="op">)</span><span class="op">)</span>  </span></code></pre></div>
 <p>We will be using the “mtcars” dataset, which is a well-known dataset in R that contains information about various car models from the 1970s, specifically 1973 and 1974. It provides data on the characteristics of these cars, such as their miles per gallon (mpg), number of cylinders, horsepower, weight, and more.<br>
 We will perform cluster analysis using this data.</p>
-<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-9d90595213699435b169" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-9d90595213699435b169">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["Mazda RX4","Mazda RX4 Wag","Datsun 710","Hornet 4 Drive","Hornet Sportabout","Valiant","Duster 360","Merc 240D","Merc 230","Merc 280","Merc 280C","Merc 450SE","Merc 450SL","Merc 450SLC","Cadillac Fleetwood","Lincoln Continental","Chrysler Imperial","Fiat 128","Honda Civic","Toyota Corolla","Toyota Corona","Dodge Challenger","AMC Javelin","Camaro Z28","Pontiac Firebird","Fiat X1-9","Porsche 914-2","Lotus Europa","Ford Pantera L","Ferrari Dino","Maserati Bora","Volvo 142E"],[21,21,22.8,21.4,18.7,18.1,14.3,24.4,22.8,19.2,17.8,16.4,17.3,15.2,10.4,10.4,14.7,32.4,30.4,33.9,21.5,15.5,15.2,13.3,19.2,27.3,26,30.4,15.8,19.7,15,21.4],[6,6,4,6,8,6,8,4,4,6,6,8,8,8,8,8,8,4,4,4,4,8,8,8,8,4,4,4,8,6,8,4],[160,160,108,258,360,225,360,146.7,140.8,167.6,167.6,275.8,275.8,275.8,472,460,440,78.7,75.7,71.09999999999999,120.1,318,304,350,400,79,120.3,95.09999999999999,351,145,301,121],[110,110,93,110,175,105,245,62,95,123,123,180,180,180,205,215,230,66,52,65,97,150,150,245,175,66,91,113,264,175,335,109],[3.9,3.9,3.85,3.08,3.15,2.76,3.21,3.69,3.92,3.92,3.92,3.07,3.07,3.07,2.93,3,3.23,4.08,4.93,4.22,3.7,2.76,3.15,3.73,3.08,4.08,4.43,3.77,4.22,3.62,3.54,4.11],[2.62,2.875,2.32,3.215,3.44,3.46,3.57,3.19,3.15,3.44,3.44,4.07,3.73,3.78,5.25,5.424,5.345,2.2,1.615,1.835,2.465,3.52,3.435,3.84,3.845,1.935,2.14,1.513,3.17,2.77,3.57,2.78],[16.46,17.02,18.61,19.44,17.02,20.22,15.84,20,22.9,18.3,18.9,17.4,17.6,18,17.98,17.82,17.42,19.47,18.52,19.9,20.01,16.87,17.3,15.41,17.05,18.9,16.7,16.9,14.5,15.5,14.6,18.6]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>mpg<\/th>\n      <th>cyl<\/th>\n      <th>disp<\/th>\n      <th>hp<\/th>\n      <th>drat<\/th>\n      <th>wt<\/th>\n      <th>qsec<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":[{"extend":"csv","text":"Download CSV ⬇","filename":"data"}],"searching":false,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><div id="dataset-import" class="section level2" number="5.1">
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-df2c20e6262ce826f5b2" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-df2c20e6262ce826f5b2">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["Mazda RX4","Mazda RX4 Wag","Datsun 710","Hornet 4 Drive","Hornet Sportabout","Valiant","Duster 360","Merc 240D","Merc 230","Merc 280","Merc 280C","Merc 450SE","Merc 450SL","Merc 450SLC","Cadillac Fleetwood","Lincoln Continental","Chrysler Imperial","Fiat 128","Honda Civic","Toyota Corolla","Toyota Corona","Dodge Challenger","AMC Javelin","Camaro Z28","Pontiac Firebird","Fiat X1-9","Porsche 914-2","Lotus Europa","Ford Pantera L","Ferrari Dino","Maserati Bora","Volvo 142E"],[21,21,22.8,21.4,18.7,18.1,14.3,24.4,22.8,19.2,17.8,16.4,17.3,15.2,10.4,10.4,14.7,32.4,30.4,33.9,21.5,15.5,15.2,13.3,19.2,27.3,26,30.4,15.8,19.7,15,21.4],[6,6,4,6,8,6,8,4,4,6,6,8,8,8,8,8,8,4,4,4,4,8,8,8,8,4,4,4,8,6,8,4],[160,160,108,258,360,225,360,146.7,140.8,167.6,167.6,275.8,275.8,275.8,472,460,440,78.7,75.7,71.09999999999999,120.1,318,304,350,400,79,120.3,95.09999999999999,351,145,301,121],[110,110,93,110,175,105,245,62,95,123,123,180,180,180,205,215,230,66,52,65,97,150,150,245,175,66,91,113,264,175,335,109],[3.9,3.9,3.85,3.08,3.15,2.76,3.21,3.69,3.92,3.92,3.92,3.07,3.07,3.07,2.93,3,3.23,4.08,4.93,4.22,3.7,2.76,3.15,3.73,3.08,4.08,4.43,3.77,4.22,3.62,3.54,4.11],[2.62,2.875,2.32,3.215,3.44,3.46,3.57,3.19,3.15,3.44,3.44,4.07,3.73,3.78,5.25,5.424,5.345,2.2,1.615,1.835,2.465,3.52,3.435,3.84,3.845,1.935,2.14,1.513,3.17,2.77,3.57,2.78],[16.46,17.02,18.61,19.44,17.02,20.22,15.84,20,22.9,18.3,18.9,17.4,17.6,18,17.98,17.82,17.42,19.47,18.52,19.9,20.01,16.87,17.3,15.41,17.05,18.9,16.7,16.9,14.5,15.5,14.6,18.6]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>mpg<\/th>\n      <th>cyl<\/th>\n      <th>disp<\/th>\n      <th>hp<\/th>\n      <th>drat<\/th>\n      <th>wt<\/th>\n      <th>qsec<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":[{"extend":"csv","text":"Download CSV ⬇","filename":"data"}],"searching":false,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><div id="importcsv" class="section level2" number="5.1">
 <h2>
-<span class="header-section-number">5.1</span> Dataset import<a class="anchor" aria-label="anchor" href="#dataset-import"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.1</span> Dataset import<a class="anchor" aria-label="anchor" href="#importcsv"><i class="fas fa-link"></i></a>
 </h2>
 <p>First prepare your data set similar to above and save it as a csv file. Then import the data set in to R. See chapter <a href="import.html#import">2</a>to know how to save a csv file and import it to R. Also you can directly use the code below to import dataset from your computer to R.</p>
 <div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
@@ -257,18 +258,109 @@ In our example we have an average silhoutte width of 0.44, indicating that, on a
 <h3>
 <span class="header-section-number">5.4.1</span> K means using R<a class="anchor" aria-label="anchor" href="#k-means-using-r"><i class="fas fa-link"></i></a>
 </h3>
+<p>We will be using the usarrests dataset discussed in previous sections to perform K means clustering.</p>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-58530fd8e28a076dd4af" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-58530fd8e28a076dd4af">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Carolina","North Dakota","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"],[13.2,10,8.1,8.800000000000001,9,7.9,3.3,5.9,15.4,17.4,5.3,2.6,10.4,7.2,2.2,6,9.699999999999999,15.4,2.1,11.3,4.4,12.1,2.7,16.1,9,6,4.3,12.2,2.1,7.4,11.4,11.1,13,0.8,7.3,6.6,4.9,6.3,3.4,14.4,3.8,13.2,12.7,3.2,2.2,8.5,4,5.7,2.6,6.8],[236,263,294,190,276,204,110,238,335,211,46,120,249,113,56,115,109,249,83,300,149,255,72,259,178,109,102,252,57,159,285,254,337,45,120,151,159,106,174,279,86,188,201,120,48,156,145,81,53,161],[58,48,80,50,91,78,77,72,80,60,83,54,83,65,57,66,52,66,51,67,85,74,66,44,70,53,62,81,56,89,70,86,45,44,75,68,67,72,87,48,45,59,80,80,32,63,73,39,66,60],[21.2,44.5,31,19.5,40.6,38.7,11.1,15.8,31.9,25.8,20.2,14.2,24,21,11.3,18,16.3,22.2,7.8,27.8,16.3,35.1,14.9,17.1,28.2,16.4,16.5,46,9.5,18.8,32.1,26.1,16.1,7.3,21.4,20,29.3,14.9,8.300000000000001,22.5,12.8,26.9,25.5,22.9,11.2,20.7,26.2,9.300000000000001,10.8,15.6]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Murder<\/th>\n      <th>Assault<\/th>\n      <th>UrbanPop<\/th>\n      <th>Rape<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":[{"extend":"csv","text":"Download CSV ⬇","filename":"data"}],"searching":false,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><p>First step is to normalize the data, sometimes we have variables in different scales, need to normalized based on scale function before clustering the data sets.</p>
+<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#import your csv and save it in the name "data" and use row names as first column.</span></span>
+<span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div id="finding-optimum-number-of-clusters" class="section level3" number="5.4.2">
+<h3>
+<span class="header-section-number">5.4.2</span> Finding optimum number of clusters<a class="anchor" aria-label="anchor" href="#finding-optimum-number-of-clusters"><i class="fas fa-link"></i></a>
+</h3>
+<div id="elbow-method" class="section level4" number="5.4.2.1">
+<h4>
+<span class="header-section-number">5.4.2.1</span> Elbow method<a class="anchor" aria-label="anchor" href="#elbow-method"><i class="fas fa-link"></i></a>
+</h4>
+<p>We will use the Elbow method, which is a common technique used to determine the optimal number of clusters for K-means clustering. It involves running K-means clustering on the dataset for a range of values of K (the number of clusters) and then plotting the sum of squared distances from each point to its assigned cluster center as a function of K. The “elbow” point in the plot is typically the optimal number of clusters, as it represents the point where adding more clusters does not significantly reduce the sum of squared distances.</p>
+<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.sthda.com/english/rpkgs/factoextra">factoextra</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://sites.google.com/site/malikacharrad/research/nbclust-package">NbClust</a></span><span class="op">)</span></span>
+<span><span class="co"># Elbow method</span></span>
+<span><span class="va">P1</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/factoextra/man/fviz_nbclust.html">fviz_nbclust</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">kmeans</span>, method <span class="op">=</span> <span class="st">"wss"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">4</span>, linetype <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>subtitle <span class="op">=</span> <span class="st">"Elbow method"</span><span class="op">)</span></span>
+<span><span class="va">P1</span></span></code></pre></div>
+<div class="inline-figure"><img src="lecture_note_files/figure-html/elbow_kmeans-1.png" width="672"></div>
+<p>Save the plot in required dpi using the code below</p>
+<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave</a></span><span class="op">(</span><span class="va">P1</span>, file<span class="op">=</span><span class="st">"optimCluster.png"</span>, width<span class="op">=</span><span class="fl">10</span>, height<span class="op">=</span><span class="fl">5</span>, dpi <span class="op">=</span> <span class="fl">700</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div id="gap-statistic-method" class="section level4" number="5.4.2.2">
+<h4>
+<span class="header-section-number">5.4.2.2</span> Gap Statistic method<a class="anchor" aria-label="anchor" href="#gap-statistic-method"><i class="fas fa-link"></i></a>
+</h4>
+<p>The gap statistic is a method that helps us find the optimal number of clusters in a dataset. It does this by comparing the variation within clusters for different values of “k” (the number of clusters) with what we would expect by chance. The best number of clusters is the one that gives us the largest gap statistic. In other words, it tells us that the data’s clustering structure is distinct from a random distribution of points.<span class="citation">(<a href="references.html#ref-tibs">Tibshirani, Walther, and Hastie 2001</a>)</span></p>
+<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/factoextra/man/fviz_nbclust.html">fviz_nbclust</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">kmeans</span>, nstart <span class="op">=</span> <span class="fl">25</span>,  method <span class="op">=</span> <span class="st">"gap_stat"</span>, nboot <span class="op">=</span> <span class="fl">50</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>subtitle <span class="op">=</span> <span class="st">"Gap statistic method"</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="lecture_note_files/figure-html/gap_kmeans-1.png" width="672"></div>
+</div>
+<div id="silhouette-method" class="section level4" number="5.4.2.3">
+<h4>
+<span class="header-section-number">5.4.2.3</span> Silhouette method<a class="anchor" aria-label="anchor" href="#silhouette-method"><i class="fas fa-link"></i></a>
+</h4>
+<p>The average silhouette approach is a method used to evaluate the quality of a clustering. It assesses how well each data point fits within its assigned cluster. A high average silhouette width indicates a good clustering, suggesting that the data points are well-separated within their clusters and that the clustering is meaningful and well-defined.</p>
+<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Silhouette method </span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/factoextra/man/fviz_nbclust.html">fviz_nbclust</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">kmeans</span>, method <span class="op">=</span> <span class="st">"silhouette"</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>subtitle <span class="op">=</span> <span class="st">"Silhouette method"</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="lecture_note_files/figure-html/silh_kmeans-1.png" width="672"></div>
+<p>Here all the the methods are indicating different number of clusters.</p>
+<p>The elbow and average silhouette methods have a limitation – they give you a general sense of how good your clustering is, but they don’t provide a precise number of clusters.<br>
+A more advanced approach is the gap statistic. it can give you a more reliable estimate of the ideal number of clusters for your data.
+Here in this example we are moving with number of clusters as 3, (k=3).</p>
+</div>
+</div>
+<div id="computing-k-means" class="section level3" number="5.4.3">
+<h3>
+<span class="header-section-number">5.4.3</span> Computing K means<a class="anchor" aria-label="anchor" href="#computing-k-means"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Compute k-means with k = 3</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
+<span><span class="va">km.res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/kmeans.html">kmeans</a></span><span class="op">(</span><span class="va">data</span>, <span class="fl">3</span>, nstart <span class="op">=</span> <span class="fl">25</span><span class="op">)</span></span></code></pre></div>
+<p>You can see the cluster sizes</p>
+<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Cluster size</span></span>
+<span><span class="va">km.res</span><span class="op">$</span><span class="va">size</span></span></code></pre></div>
+<pre><code>## [1] 20 13 17</code></pre>
+<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#Cluster means</span></span>
+<span><span class="va">km.res</span><span class="op">$</span><span class="va">centers</span>  </span></code></pre></div>
+<pre><code>##       Murder    Assault   UrbanPop       Rape
+## 1  1.0049340  1.0138274  0.1975853  0.8469650
+## 2 -0.9615407 -1.1066010 -0.9301069 -0.9667633
+## 3 -0.4469795 -0.3465138  0.4788049 -0.2571398</code></pre>
+</div>
+<div id="plotting-k-means" class="section level3" number="5.4.4">
+<h3>
+<span class="header-section-number">5.4.4</span> Plotting K means<a class="anchor" aria-label="anchor" href="#plotting-k-means"><i class="fas fa-link"></i></a>
+</h3>
+<p>You can plot K means clustering using the code below.</p>
+<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">plot_k</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/factoextra/man/fviz_cluster.html">fviz_cluster</a></span><span class="op">(</span><span class="va">km.res</span>, <span class="va">data</span>,</span>
+<span>             palette <span class="op">=</span> <span class="st">"Set1"</span>, ggtheme <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">plot_k</span></span></code></pre></div>
+<div class="inline-figure"><img src="lecture_note_files/figure-html/kmplot-1.png" width="672"></div>
+<p>Save the plot using the code below</p>
+<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave</a></span><span class="op">(</span><span class="va">plot_k</span>, file<span class="op">=</span><span class="st">"plot_k.png"</span>, width<span class="op">=</span><span class="fl">10</span>, height<span class="op">=</span><span class="fl">5</span>, dpi <span class="op">=</span> <span class="fl">700</span><span class="op">)</span></span></code></pre></div>
 
 </div>
 </div>
 </div>
   <div class="chapter-nav">
 <div class="prev"><a href="exploratory-factor-analysis.html"><span class="header-section-number">4</span> Exploratory Factor Analysis</a></div>
-<div class="next"><a href="references.html"><span class="header-section-number">6</span> References</a></div>
+<div class="next"><a href="logistic-regression.html"><span class="header-section-number">6</span> Logistic Regression</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#cluster-analysis"><span class="header-section-number">5</span> Cluster Analysis</a></li>
-<li><a class="nav-link" href="#dataset-import"><span class="header-section-number">5.1</span> Dataset import</a></li>
+<li><a class="nav-link" href="#importcsv"><span class="header-section-number">5.1</span> Dataset import</a></li>
 <li>
 <a class="nav-link" href="#hierarchical-clustering"><span class="header-section-number">5.2</span> Hierarchical clustering</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#agglomerative-clustering"><span class="header-section-number">5.2.1</span> Agglomerative clustering</a></li>
@@ -285,7 +377,12 @@ In our example we have an average silhoutte width of 0.44, indicating that, on a
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#k-means-clustering"><span class="header-section-number">5.4</span> K means clustering</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#k-means-using-r"><span class="header-section-number">5.4.1</span> K means using R</a></li></ul>
+<a class="nav-link" href="#k-means-clustering"><span class="header-section-number">5.4</span> K means clustering</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#k-means-using-r"><span class="header-section-number">5.4.1</span> K means using R</a></li>
+<li><a class="nav-link" href="#finding-optimum-number-of-clusters"><span class="header-section-number">5.4.2</span> Finding optimum number of clusters</a></li>
+<li><a class="nav-link" href="#computing-k-means"><span class="header-section-number">5.4.3</span> Computing K means</a></li>
+<li><a class="nav-link" href="#plotting-k-means"><span class="header-section-number">5.4.4</span> Plotting K means</a></li>
+</ul>
 </li>
 </ul>
 
@@ -311,6 +408,34 @@ In our example we have an average silhoutte width of 0.44, indicating that, on a
   </div>
 
 </div></div>
-</footer>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
 </body>
 </html>

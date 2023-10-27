@@ -208,7 +208,7 @@ Now draw a factor diagram using the code below:
 ```{r saving_fa, eval=FALSE, message=FALSE, warning=FALSE}
 #saving visulaization plot 
 png("Plot.png", res = 72, width = 1000, height = 1000, pointsize = 25)
-PerformanceAnalytics::chart.Correlation(score, histogram=TRUE, pch=19)
+PerformanceAnalytics::chart.Correlation(data, histogram=TRUE, pch=19)
 dev.off()  
 
 #saving factor analysis diagram

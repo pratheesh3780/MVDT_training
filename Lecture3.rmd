@@ -183,7 +183,7 @@ From the scree plot and eigen values it is clear that first two PCs combined tog
 
 ```{r PCA-anal_only2, eval=TRUE, message=FALSE} 
 #Now we will take the PCA results keeping first two pricipal components only
-res.pca <- prcomp(USArrests, scale = TRUE, rank =2)
+res.pca <- prcomp(data, scale = TRUE, rank =2)
 #here rank =2 will keep only two PCs
 ```
 ## Accessing the PCA results 

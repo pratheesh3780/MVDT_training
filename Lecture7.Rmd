@@ -1,0 +1,190 @@
+# Logistic Regression  
+
+Logistic regression is a statistical method used for predicting the category or class of individuals based on one or multiple predictor variables (denoted as "x"). It is specifically designed for modeling a binary outcome, where the response variable can take one of two possible values, such as 0 or 1, yes or no, or diseased or non-diseased.  
+
+
+This modeling technique is part of the Generalized Linear Model (GLM) family, which extends the principles of linear regression to handle a broader range of data scenarios. Logistic regression is also known by various names, including **binary logistic regression**, **binomial logistic regression**, and the **logit model**.  
+
+It's essential to note that logistic regression doesn't directly provide class labels for observations. Instead, it estimates the probability (denoted as "p") of an observation belonging to a particular class. This probability value falls within the range of 0 to 1. To determine the class assignment, you must select a threshold probability. By default, this threshold is often set at p = 0.5, but in practice, the choice of the threshold should be determined based on the specific goals of the analysis.  
+The standard logistic regression function is represented as:
+
+\[
+p = \frac{e^{y}}{1 + e^{y}}
+\]
+or more simply:
+\[
+p = \frac{1}{1 + e^{-y}}
+\]
+Where:  
+
+- \(y = b_0 + b_1 \cdot x\)  
+
+- \(e\) represents the exponential function  
+
+- \(p\) represents the probability of an event occurring given \(x\), denoted as   
+\(  
+p(\text{{event}}=1|x)  
+\) and abbreviated as \(p(x)\), so   
+\[
+p(x) = \frac{1}{1 + e^{-(b_0 + b_1 \cdot x)}}
+\]  
+By a bit of manipulation, it can be demonstrated that:
+\[
+\frac{p}{1-p} = e^{b_0 + b_1 \cdot x}
+\]  
+
+Taking the logarithm of both sides, we get the formula as a linear combination of predictors:  
+
+\[
+\log\left(\frac{p}{1-p}\right) = b_0 + b_1 \cdot x
+\]  
+
+When dealing with multiple predictor variables, the logistic function takes the form:  
+
+\[
+\log\left(\frac{p}{1-p}\right) = b_0 + b_1 \cdot x_1 + b_2 \cdot x_2 + \ldots + b_n \cdot x_n
+\]  
+
+Here, \(b_0\) and \(b_1\) are the regression beta coefficients. A positive \(b_1\) indicates that an increase in \(x\) will be associated with an increase in \(p\), while a negative \(b_1\) indicates that an increase in \(x\) will be associated with a decrease in \(p\).  
+
+The term \(\log\left(\frac{p}{1-p}\right)\) is known as the logarithm of the odds, often referred to as the log-odds or logit. The odds represent the likelihood of an event occurring and can be thought of as the ratio of "successes" to "non-successes". Technically, odds are calculated as the probability of an event divided by the probability that the event will not occur. For instance, if the probability of being diabetes-positive is 0.5, the probability of "not being positive" is \(1 - 0.5 = 0.5\), and the odds are 1.0.
+You can calculate the probability from the odds using the formula:
+\[  
+p = \frac{\text{Odds}}{1 + \text{Odds}}
+\]  
+
+## Practical Example  
+Before proceeding to the sections install following packages: `texreg`, `ggplot2`,`dplyr`  
+```{r install4logi, eval=FALSE}  
+# install required packages
+install.packages(c("texreg", "ggplot2","dplyr"))  
+```  
+
+We will be using a part of `PimaIndiansDiabetes2` dataset in `mlbench` package. You can download and view the model dataset below.
+```{r logi, eval=TRUE, echo=FALSE}
+library(DT)
+data <- read.csv("csv/logistic.csv")
+datatable(
+  data,
+  extensions = 'Buttons',
+  options = list(
+    dom = 'Bfrtip',
+    buttons = list(
+      list(
+        extend = 'csv',
+        text = 'Download CSV ⬇',
+        filename = 'data'
+      )
+    ),
+    searching = FALSE  # This option removes the search bar
+  )
+)
+```  
+## Dataset import  
+First prepare your data set similar to above and save it as a csv file. Then import the data set in to R. See chapter \@ref(import)to know how to save a csv file and import it to R. Also you can directly use the code below to import dataset from your computer to R.
+```{r import_data_logi, eval=FALSE}
+data <- read.csv("path to your file", row.names=1)
+#your file will be saved in the name data
+```
+Please note the path copied from your system will be in the format `C:\Users\HP\Documents\`, change it to this format `C:/Users/HP/Documents/` in R.    
+
+Now fit the model  
+```{r logistic_fit, eval=TRUE, message=FALSE}
+# Fit the model
+model <- glm( as.factor(diabetes) ~., data = data, family = binomial)
+# Summarize the model
+summary(model)  
+```
+
+### Viewing results   
+Viewing the results in a better way.  
+
+```{r better_view, eval=TRUE, message=FALSE}
+library(texreg)
+screenreg(model)  
+```   
+### Interpretation  
+The analysis of the logistic regression model reveals that out of the eight predictors considered, only three show statistically significant associations with the outcome variable. These significant predictors are glucose, pedigree and mass.  
+When a logistic regression is calculated, the regression coefficient (b1) is the estimated increase in the log odds of the outcome per unit increase in the value of the variable (x1). For the variable "glucose," which has a positive coefficient estimate of b = 0.04, an increase in glucose is associated with an increased probability of being diabetes-positive. This means that higher glucose levels tend to indicate a higher likelihood of diabetes. 
+
+
+### Odds ratio (OR)  
+
+The OR represents the odds that an outcome will occur in the presence of a particular variable, compared to the odds of the outcome occurring in the absence of that particular variable.  
+
+- OR=1 Variable does not affect odds of outcome  
+
+- OR>1 Variable associated with higher odds of outcome  
+
+- OR<1 Variable associated with lower odds of outcome  
+Odds ratio is calculated as the the exponential function of the regression coefficient \(e^{b_1}\).  
+
+For instance, the regression coefficient for "glucose" being 0.04 indicates that a one-unit increase in glucose concentration increases the odds of being diabetes-positive by a factor of exp(0.042), which is approximately 1.04 times.  
+
+### Model comparisons   
+
+#### Akaike Information Criteria (AIC)  
+
+The AIC is a measure of the goodness of fit of a statistical model. It is commonly used for model selection when comparing several models to determine which one is the best fit for a given dataset. Lower AIC values indicate a better balance between model fit and simplicity.  
+
+#### Bayesian Information Criterion (BIC)  
+The BIC is a similar measure to the AIC but places a stronger penalty on complex models. It is used for model selection, much like the AIC. The BIC considers both model fit and model complexity and is often preferred when you want to prevent overfitting and select a simpler model.  
+
+#### log-likelihood  
+
+The log-likelihood is a fundamental component of both AIC and BIC. It represents the logarithm of the likelihood of the data given the model, which measures how well the model explains the observed data. It is often used to compare the fit of different models, where a higher log-likelihood indicates a better fit to the data.  
+
+#### Deviance measures
+
+**Null deviance** : is a measure of the model's goodness of fit when only the intercept (no predictor variables) is included in the model. It represents the deviance when your model contains no explanatory variables and is essentially a null model.
+In our example, the null deviance is 498.10, and it is calculated on 391 degrees of freedom.
+**Residual Deviance**:
+The residual deviance is a measure of the model's goodness of fit when predictor variables are included. It quantifies the deviance of the model from the observed data after adjusting for the parameters in the model. In our example, the residual deviance is 344.02, and it is calculated on 383 degrees of freedom.  
+
+## Fitting a better model  
+
+From the logistic regression results, it can be noticed that some variables - pregnent, triceps, insulin and age - are not statistically significant. Keeping them in the model may contribute to overfitting. Therefore, they should be eliminated. A better model can be fitted as below.  
+
+```{r better_model, eval=TRUE, message=FALSE}
+model <- glm( as.factor(diabetes) ~ age+glucose + mass + pedigree+pregnant, data = data, family = binomial)
+# Summarize the model
+summary(model)  
+```
+In the new model you can see AIC is reduced to 356.89 when compared to previous model AIC of 362.  
+
+## Saving results to csv 
+ You can use the code below to save the results as csv.
+
+```{r save_logit_csv, eval=FALSE, message=FALSE}
+# Extract coefficients, standard errors, and p-values
+coef <- as.data.frame(round(model$coefficients[, c("Estimate", "Std. Error", "Pr(>|z|)")], 3))
+# Rename the columns for clarity
+colnames(coef) <- c("Coefficient", "Std.Error", "P.Value")
+# write to csv
+write.csv(coef, "result_logit.csv")
+```
+## Plotting logistic curve  
+You can draw a logistic curve for single variable models like below using the code.
+
+```{r plot_model, eval=TRUE, message=FALSE}  
+library(ggplot2)  
+library(dplyr)
+data %>%
+  mutate(prob = ifelse(diabetes == "pos", 1, 0)) %>%
+  ggplot(aes(glucose, prob)) +
+  geom_point(alpha = 0.2) +
+  geom_smooth(method = "glm", method.args = list(family = "binomial")) +
+  labs(
+    title = "Logistic Regression Model", 
+    x = "Glucose",
+    y = "Probability of being diabetic"
+    )+theme_bw()
+```
+
+
+
+
+
+
+
+

@@ -8,11 +8,11 @@ Mainly two types of clustering is discussed in this section.
 * K-means clustering  
 
 
-We will be using `cluster`, `ggplot2`, `pheatmap` and `factominer` packages to do cluster analysis.  
+We will be using `cluster`, `ggplot2`, `pheatmap`, `NbClust`,`factoextra` and `factominer` packages to do cluster analysis.  
 
 **Install the required packages**:  
 ```{r install4cluster, eval=FALSE}  
-# install two pacakges cluster and factominer
+# install required pacakges
 install.packages(c("cluster", "factominer","ggplot2","pheatmap"))  
 ```  
 We will be using the "mtcars" dataset, which is a well-known dataset in R that contains information about various car models from the 1970s, specifically 1973 and 1974. It provides data on the characteristics of these cars, such as their miles per gallon (mpg), number of cylinders, horsepower, weight, and more.  
@@ -37,7 +37,7 @@ datatable(
   )
 )
 ```  
-## Dataset import  
+## Dataset import {#importcsv}  
 First prepare your data set similar to above and save it as a csv file. Then import the data set in to R. See chapter \@ref(import)to know how to save a csv file and import it to R. Also you can directly use the code below to import dataset from your computer to R.
 ```{r import_data_cl, eval=FALSE}
 data <- read.csv("path to your file", row.names=1)
@@ -184,19 +184,116 @@ K-means is used in image compression, customer segmentation, document clustering
 In summary, hierarchical clustering is a method for discovering the natural hierarchy of clusters in data, and it can be applied in unsupervised scenarios where the number of clusters is not predetermined. On the other hand, k-means clustering is a centroid-based method used to partition data into a specified number of clusters, making it suitable for unsupervised clustering tasks with a known or estimated number of clusters.  
 
 ### K means using R  
+We will be using the usarrests dataset discussed in previous sections to perform K means clustering.  
+
+```{r usarrest_k, eval=TRUE, echo=FALSE}
+library(DT)
+data <- read.csv("csv/usarrests.csv", row.names=1)
+datatable(
+  data,
+  extensions = 'Buttons',
+  options = list(
+    dom = 'Bfrtip',
+    buttons = list(
+      list(
+        extend = 'csv',
+        text = 'Download CSV ⬇',
+        filename = 'data'
+      )
+    ),
+    searching = FALSE  # This option removes the search bar
+  )
+)
+``` 
 
 
 
+First step is to normalize the data, sometimes we have variables in different scales, need to normalized based on scale function before clustering the data sets.  
+```{r normalize_kme, eval=TRUE, message=FALSE}
+#import your csv and save it in the name "data" and use row names as first column.
+data <- scale(data)
+``` 
 
 
+### Finding optimum number of clusters  
+#### Elbow method  
+
+We will use the Elbow method, which is a common technique used to determine the optimal number of clusters for K-means clustering. It involves running K-means clustering on the dataset for a range of values of K (the number of clusters) and then plotting the sum of squared distances from each point to its assigned cluster center as a function of K. The "elbow" point in the plot is typically the optimal number of clusters, as it represents the point where adding more clusters does not significantly reduce the sum of squared distances.  
+```{r elbow_kmeans, eval=TRUE, message=FALSE}  
+library(factoextra)
+library(NbClust)
+# Elbow method
+P1<-fviz_nbclust(data, kmeans, method = "wss") +
+  geom_vline(xintercept = 4, linetype = 2)+
+  labs(subtitle = "Elbow method")
+P1
+```  
+
+Save the plot in required dpi using the code below  
+
+```{r saveplot_kmean, eval=FALSE, message=FALSE}  
+library(ggplot2)
+ggsave(P1, file="optimCluster.png", width=10, height=5, dpi = 700)
+``` 
+
+#### Gap Statistic method   
+The gap statistic is a method that helps us find the optimal number of clusters in a dataset. It does this by comparing the variation within clusters for different values of "k" (the number of clusters) with what we would expect by chance. The best number of clusters is the one that gives us the largest gap statistic. In other words, it tells us that the data's clustering structure is distinct from a random distribution of points.[@tibs]  
+
+```{r gap_kmeans, eval=TRUE, message=FALSE}  
+fviz_nbclust(data, kmeans, nstart = 25,  method = "gap_stat", nboot = 50)+
+  labs(subtitle = "Gap statistic method")
+```  
+
+#### Silhouette method  
+The average silhouette approach is a method used to evaluate the quality of a clustering. It assesses how well each data point fits within its assigned cluster. A high average silhouette width indicates a good clustering, suggesting that the data points are well-separated within their clusters and that the clustering is meaningful and well-defined.   
+
+```{r silh_kmeans, eval=TRUE, message=FALSE} 
+# Silhouette method 
+set.seed(123)
+fviz_nbclust(data, kmeans, method = "silhouette")+
+  labs(subtitle = "Silhouette method")
+```  
+
+Here all the the methods are indicating different number of clusters.  
+
+The elbow and average silhouette methods have a limitation – they give you a general sense of how good your clustering is, but they don't provide a precise number of clusters.  
+A more advanced approach is the gap statistic. it can give you a more reliable estimate of the ideal number of clusters for your data. 
+Here in this example we are moving with number of clusters as 3, (k=3).  
 
 
+### Computing K means
+```{r kmeans_4, eval=TRUE, message=FALSE}
+# Compute k-means with k = 3
+set.seed(123)
+km.res <- kmeans(data, 3, nstart = 25)
+```  
 
+You can see the cluster sizes 
 
+```{r clsize, eval=TRUE, message=FALSE}
+# Cluster size
+km.res$size
+```  
 
+```{r clmeans, eval=TRUE, message=FALSE}
+#Cluster means
+km.res$centers  
+```  
+### Plotting K means  
 
+You can plot K means clustering using the code below.  
 
+```{r kmplot, eval=TRUE, message=FALSE}
+plot_k<-fviz_cluster(km.res, data,
+             palette = "Set1", ggtheme = theme_minimal())
+plot_k
+```   
 
+Save the plot using the code below   
+
+```{r save_kmplot, eval=TRUE, message=FALSE}
+ggsave(plot_k, file="plot_k.png", width=10, height=5, dpi = 700)
+```  
 
 
 
