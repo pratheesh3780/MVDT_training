@@ -1,0 +1,74 @@
+# MANOVA  
+MANOVA, which stands for Multivariate Analysis of Variance, is a statistical technique used for analyzing the relationship between multiple dependent variables and one or more independent variables. It extends the principles of Analysis of Variance (ANOVA) to cases where there are two or more response variables, making it suitable for situations where you want to investigate the joint variation of multiple outcome measures in response to one or more factors or treatments.
+
+Here are some key points about MANOVA and its advantages over ANOVA:
+
+**Multiple Dependent Variables**: MANOVA is designed for situations where you have more than one dependent variable. In contrast, ANOVA is typically used when you have a single dependent variable.  
+
+
+**Simultaneous Analysis**: MANOVA allows you to analyze the relationships between multiple dependent variables and independent variables simultaneously. This is advantageous because it considers the correlations between the dependent variables, providing a more comprehensive view of the data.  
+
+
+**Reduced Risk of Type I Error**: By analyzing multiple dependent variables together, MANOVA can reduce the risk of making a Type I error (rejecting a null hypothesis when it's true) compared to conducting multiple ANOVAs separately. This helps maintain the overall significance level for the analysis.  
+
+
+**Increased Statistical Power**: MANOVA can enhance the statistical power to detect differences or relationships because it takes into account the information in all dependent variables. In ANOVA, analyzing each variable separately may lead to a loss of information and statistical power.  
+
+
+**Multivariate Test Statistics**: MANOVA employs multivariate test statistics (e.g., Wilks' Lambda, Pillai's Trace, Hotelling-Lawley Trace, or Roy's Largest Root) to assess the overall relationship between the sets of variables, allowing for a more nuanced analysis than ANOVA's univariate F-test.  
+
+In summary, MANOVA is a valuable statistical technique for situations involving multiple correlated dependent variables. Its primary advantages over ANOVA include its ability to analyze these variables together, reduce the risk of Type I errors, increase statistical power, and provide a more comprehensive assessment of relationships within the data. It is particularly useful when studying complex experimental or observational data with multiple outcome measures.  
+
+## Practical Example 
+We will use a real experiment data where 3 characters avgR, avgG, avgB of 4 groups of banana is measured. We will use MANOVA to test whether there is any significant difference between these groups based on these characters.  
+You can see and download the data from below:  
+
+```{r mandata, eval=TRUE, echo=FALSE}
+library(DT)
+data <- read.csv("csv/manova.csv")
+datatable(
+  data,
+  extensions = 'Buttons',
+  options = list(
+    dom = 'Bfrtip',
+    buttons = list(
+      list(
+        extend = 'csv',
+        text = 'Download CSV ⬇',
+        filename = 'data'
+      )
+    ),
+    searching = FALSE  # This option removes the search bar
+  )
+)
+```  
+## Dataset import 
+First prepare your data set similar to above and save it as a csv file. Then import the data set in to R. See chapter  \@ref(import)to know how to save a csv file and import it to R. Also you can directly use the code below to import dataset from your computer to R.
+```{r import_data_man, eval=FALSE}
+data <- read.csv("path to your file")
+#your file will be saved in the name data
+```
+Please note the path copied from your system will be in the format `C:\Users\HP\Documents\`, change it to this format `C:/Users/HP/Documents/` in R.   
+
+## MANOVA using R  
+
+```{r manova1, eval=TRUE, message=FALSE}
+# Performing MANOVA
+attach(data)
+res.man <- manova(cbind(avgR,avgG,avgB) ~ stage, data = data)
+res<-summary(res.man)  
+res
+```   
+Interpretation:
+The MANOVA results suggest that the "stage" factor has a significant multivariate effect on the response variables. The multivariate response variables, taken together, show a significant relationship with the "stage" factor. The very low p-value (close to zero) and the significance codes ("***") indicate that the effect of the "stage" factor is highly significant. This means that there are significant differences in the multivariate response patterns among the different stages.  
+
+### Saving result as csv  
+```{r manova2, eval=FALSE, message=FALSE}
+# Saving results
+res_man<-res$stats
+write.csv(res_man, "result_org.csv")
+
+# Use this command to see where the result is saved  
+getwd()
+
+``` 

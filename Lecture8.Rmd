@@ -1,0 +1,230 @@
+# Canonical Correlation   
+
+Canonical correlation analysis (CCA) is a multivariate statistical technique that explores the relationships between two sets of variables (X and Y) that are measured on the same set of individuals or observations.  
+
+Canonical correlation analysis was first introduced by the American statistician and psychologist Harold Hotelling in the early 1930s. Hotelling's seminal work on this technique was published in the article "Relations between two sets of variates" in 1936.[@hot1936]  
+
+CCA is used to identify and quantify the associations between these two sets of variables, providing insights into how they are related, and it aims to find linear combinations of the variables (canonical variates) in each set that are maximally correlated with each other.  
+
+The canonical variates are designed to capture the most significant relationships or patterns between the two sets of variables. These linear combinations are used to understand and quantify the associations between the two sets.   
+Here's how canonical variates are typically defined: 
+For Set X:  
+
+
+\[U_1 = a_{11}X_1 + a_{12}X_2 + \ldots + a_{1p}X_p\]  
+
+\[U_2 = a_{21}X_1 + a_{22}X_2 + \ldots + a_{2p}X_p\]
+
+For Set Y:  
+
+
+\[V_1 = b_{11}Y_1 + b_{12}Y_2 + \ldots + b_{1q}Y_q\]  
+
+\[V_2 = b_{21}Y_1 + b_{22}Y_2 + \ldots + b_{2q}Y_q\]   
+
+
+In these equations, U₁ and U₂ are canonical variates derived from Set X, while V₁ and V₂ are canonical variates derived from Set Y. The coefficients (a's and b's) are calculated such that the correlation between U₁ and V₁ (the first canonical pair) is maximized, and similarly for U₂ and V₂ (the second canonical pair), and so on. The canonical variables within each set are orthogonal to each other, meaning they are uncorrelated. This orthogonality simplifies the interpretation of the results.  
+
+
+Canonical Correlation Analysis allows us to summarize the relationships into fewer statistics while preserving the main facets of the relationships. In a way, the motivation for canonical correlation is very similar to principal component analysis. It is another dimension-reduction technique. 
+
+We select X and Y based on the number of variables in each set so that \(p \leq q\). There will be p canonical correlations.   
+
+## Canonical Correlation in R  
+packages required for the analysis are`CCA` and `CCP`.   
+**Install the required packages**:  
+```{r install4canon, eval=FALSE}  
+# install required pacakges
+install.packages(c("CCA","CCP",))  
+``` 
+
+
+## Practical Examople   
+The example data comes from a firm that surveyed a random sample of n = 50 of its employees in an attempt to determine which factors influence sales performance. Two collections of variables were measured:  
+
+
+**Sales Performance:**  
+
+- Sales Growth  
+
+- Sales Profitability  
+
+- New Account Sales  
+
+
+**Test Scores as a Measure of Intelligence:**  
+
+- Creativity  
+
+- Mechanical Reasoning  
+
+- Abstract Reasoning  
+
+- Mathematics  
+
+
+There are p = 3 variables in the first group relating to Sales Performance and q = 4 variables in the second group relating to Test Scores. There will be 3 canonical correlations.  
+
+You can view and download the data below.  
+
+```{r canon_data, eval=TRUE, echo=FALSE}
+library(DT)
+data <- read.csv("csv/sales.csv")
+datatable(
+  data,
+  extensions = 'Buttons',
+  options = list(
+    dom = 'Bfrtip',
+    buttons = list(
+      list(
+        extend = 'csv',
+        text = 'Download CSV ⬇',
+        filename = 'data'
+      )
+    ),
+    searching = FALSE  # This option removes the search bar
+  )
+)
+```   
+## Dataset import  
+
+First prepare your data set similar to above and save it as a csv file. Then import the data set in to R. See chapter \@ref(import)to know how to save a csv file and import it to R. Also you can directly use the code below to import dataset from your computer to R.
+```{r import_data_can, eval=FALSE}
+data <- read.csv("path to your file")
+#your file will be saved in the name data
+```
+Please note the path copied from your system will be in the format `C:\Users\HP\Documents\`, change it to this format `C:/Users/HP/Documents/` in R. 
+
+### Analysis  
+```{r canon1, eval=TRUE, message=FALSE}
+#Define X and Y in your data  
+attach(data)
+sp <- data[, c("growth", "profit", "new")]
+ts <- data[, c("create", "mech", "abs", "math")]
+```   
+#### Testing Hypothesis  
+
+Testing the null hypothesis that all p canonical variate pairs are uncorrelated . Following hypothesis are tested.    
+H0: \(\rho_1 = \rho_2 = \rho_3 = 0\)
+H0: \(\rho_2 = \rho_3 = 0\)  
+H0: \(rho_3 = 0\)   
+
+```{r canontest, eval=TRUE, message=FALSE}
+# Calculate the number of rows (observations) in the 'sp' dataset and store it in 'n'.
+n <- dim(sp)[1]
+# Calculate the number of columns (variables) in the 'sp' dataset and store it in 'p'.
+p <- length(sp)
+# Calculate the number of columns (variables) in the 'ts' dataset and store it in 'q'.
+q <- length(ts)
+#testing hypothesis
+library(CCA)
+library(CCP)
+cc1 <- cc(sp, ts)
+rho <- cc1$cor
+p.asym(rho, n, p, q, tstat = "Wilks")
+```  
+Here Wilks' Lambda is used as a test statistic for assessing the significance of the canonical correlations. The extremely low p-value (essentially zero) suggests that there is strong evidence to reject all the above three null hypothesis.  
+
+All three canonical variate pairs are significantly correlated and dependent on one another. This suggests that we may summarize all three pairs. In practice, these tests are carried out successively until you find a non-significant result. Once a non-significant result is found, you stop. If this happens with the first canonical variate pair, then there is not sufficient evidence of any relationship between the two sets of variables and the analysis may stop.  
+
+If the first pair shows significance, then you move on to the second canonical variate pair. If this second pair is not significantly correlated then stop. If it was significant you would continue to the third pair, proceeding in this iterative manner through the pairs of canonical variates testing until you find non-significant results.
+
+
+```{r canon2, eval=TRUE, message=FALSE}
+# correlations using the matcor function from the CCA package
+library(CCA)
+library(CCP)
+matcor(sp, ts)
+```  
+```{r canon3, eval=TRUE, message=FALSE}
+# canonical correlation
+cc1 <- cc(sp, ts)
+```  
+#### Canonical correlations  
+
+```{r canon4, eval=TRUE, message=FALSE}  
+# display the canonical correlations
+cc1$cor
+```
+These are the correlations between canonical variates ($U_1$, $V_1$), ($U_2$, $V_2$), and ($U_3$, $V_3$) respectively.  
+
+#### Raw canonical coefficients  
+
+```{r canon5, eval=TRUE, message=FALSE}
+# raw canonical coefficients
+cc1[3:4]
+```
+The raw canonical coefficients are interpreted in a manner analogous to interpreting regression coefficients i.e., for the variable growth, a one unit increase in growth leads  to a 0.062 decrease in the first canonical variate of set 1. when all of the other variables are held constant.  
+
+### Canonical Loadings  
+Canonical loadings, also known as structure coefficients, are a fundamental concept in canonical correlation analysis (CCA). They measure the simple linear correlation between an original observed variable (from Set X or Set Y) and the corresponding canonical variate in the respective set. Canonical loadings provide insight into how each variable contributes to the canonical relationship and help identify the most influential variables in each set with respect to the canonical variates. 
+
+**Correlations Between the Sales Variables and Their Canonical Variables**  
+
+```{r canon6, eval=TRUE, message=FALSE}
+# compute canonical loadings
+cc2 <- comput(sp, ts, cc1)  
+cc2[3]  
+```   
+Analyzing the first canonical variable related to sales, we observe uniformly strong negative correlations across all variables. Consequently, this initial canonical variate can be regarded as a comprehensive gauge of Sales Performance. On the other hand, the second canonical variable associated with Sales Performance displays no notably strong correlations, thus offering limited insights into the data. we opted not to explore the third canonical variate pairs. 
+
+A parallel interpretation can be applied to the Test Scores.  
+**Correlations Between the test Variables and Their Canonical Variables**  
+
+```{r canon7, eval=TRUE, message=FALSE}
+# compute canonical loadings for test scores
+cc2[6]  
+```  
+Because all correlations are large (negative) for the first canonical variable, this can be thought of as an overall measure of test performance as well, however, it is most strongly correlated with mathematics test scores. Most of the correlations with the second canonical variable are small. There is some suggestion that this variable may be negatively correlated with abstract reasoning.  
+we see that the best predictor of sales performance is mathematics test scores as this indicator stands out the most.  
+
+we can confirm it by further analysis.  
+
+**Correlations Between the Sales Variables and the Canonical Variables of the Test Scores**  
+```{r canon8, eval=TRUE, message=FALSE}
+# compute canonical loadings for test scores
+cc2[5]  
+``` 
+We can see that all three of these correlations are strong and show a pattern similar to that with the canonical variate for sales. The reason for this is obvious: The first canonical correlation is very high. 
+
+**Correlations Between the Test Scores and the Canonical Variables of the Sales Variables**  
+```{r canon9, eval=TRUE, message=FALSE}
+# compute canonical loadings for test scores
+cc2[4]  
+```  
+These also show a pattern similar to that with the canonical variate for test scores. Again, this is because the first canonical correlation is very high.  
+
+## Do Canonical Correlation in our inbuilt app  
+Good news! 
+We have added an app so that you can simply upload your csv here and get all these results by running in our cloud server!.  
+
+```{=html}
+<button id="toggle-button">Open</button>
+<div id="embedded-url" style="display: none;">
+  `r knitr::include_url("https://agstatkau.shinyapps.io/grapesCancor/")`
+</div>
+<script>
+var isOpen = false;
+document.getElementById("toggle-button").addEventListener("click", function() {
+  if (isOpen) {
+    document.getElementById("embedded-url").style.display = "none";
+    document.getElementById("toggle-button").textContent = "Open";
+  } else {
+    document.getElementById("embedded-url").style.display = "block";
+    document.getElementById("toggle-button").textContent = "Close";
+  }
+  isOpen = !isOpen;
+});
+</script>
+
+``` 
+
+
+
+
+
+
+
+
+
+
